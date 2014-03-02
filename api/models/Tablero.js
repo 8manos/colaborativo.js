@@ -16,6 +16,10 @@ module.exports = {
             type: 'BOOLEAN',
             defaultsTo: true,
             required: true
+           },
+           fuentes: {
+            collection: 'fuente',
+            via: 'entablero'
            }
 	}
 
