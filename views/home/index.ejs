@@ -1,0 +1,6 @@
+<h1>COLABORATIVO</h1>
+<ul>
+<% _.each(tableros, function (tablero) { %>
+	<li><a href="/tablero/<%= tablero.id %>"><%= tablero.name %></a></li>
+<% }) %>
+</ul>

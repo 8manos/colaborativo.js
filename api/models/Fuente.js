@@ -1,7 +1,7 @@
 /**
  * Fuente.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: Las fuentes de cada tablero, cada una tiene una red a la que pertenece, un query, y un tablero al que alimenta.
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
 

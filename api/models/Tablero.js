@@ -1,7 +1,7 @@
 /**
  * Tablero.js
  *
- * @description :: Los taleros de colaborativo, define si estan activos y sus fuentes.
+ * @description :: Los tableros de colaborativo, define si estan activos y sus fuentes.
  * @docs		:: http://sailsjs.org/#!documentation/models
  */
 
