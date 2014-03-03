@@ -13,7 +13,7 @@ module.exports = {
 			if (err) {
 				res.send(err, 500);
 			}else{
-				res.view({ tableros: tableros });
+				res.view({ tableros: tableros })
 			}
 		});
 

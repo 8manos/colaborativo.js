@@ -1,3 +1,3 @@
-# sails-test
+# Colaborativo.js
 
-a [Sails](http://sailsjs.org) application
+Lo nuevo de [Colaborativo](http://colaborativo.co)

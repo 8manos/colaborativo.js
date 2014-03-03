@@ -1,8 +1,8 @@
 {
-  "name": "sails-test",
+  "name": "colaborativo",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
+  "description": "La forma inteligente de seguir las redes sociales",
   "keywords": [],
   "dependencies": {
     "sails": "~0.10.0-rc3",
@@ -29,7 +29,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ana/sails-test.git"
+    "url": "git://github.com/anabelle/sails-test.git"
   },
   "author": "ana",
   "license": ""
