@@ -13,10 +13,10 @@ module.exports.bootstrap = function (cb) {
 	console.log("                                                                                                                              ");
 	console.log("                                                                                                                              ");
 	console.log("                                                                                                                              ");
-	console.log(" 	   dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP                      ");
-	console.log(" 	  dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP                       ");
-	console.log(" 	 dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP                        ");
-	console.log(" 	dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP                         ");
+	console.log(" 	   dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    ");
+	console.log(" 	  dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP     ");
+	console.log(" 	 dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP      ");
+	console.log(" 	dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP    dP       ");
 	console.log(" 	                                                                                                                           ");
 	console.log(" 	                                                                                                                           ");
 	console.log(" 	                                                                                                                           ");
@@ -28,12 +28,15 @@ module.exports.bootstrap = function (cb) {
 	console.log(" 	                                                                                                                           ");
 	console.log(" 	                                                                                                                           ");
 	console.log(" 	                                                                                                                           ");
-	console.log(" 	Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb                         ");
-	console.log(" 	 Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb                        ");
-	console.log(" 	  Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb                       ");
-	console.log(" 	   Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb                      ");
+	console.log(" 	Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb       ");
+	console.log(" 	 Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb      ");
+	console.log(" 	  Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb     ");
+	console.log(" 	   Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    Yb    ");
 	console.log("                                                                                                                              ");
-	console.log("                                                                                                                              ");																								   
+	console.log("                                                                                                                              ");			
+
+	/* We will check for needed connections after app starts */ 
+	setTimeout( function() { var C = FuentesService.start() } , 10000 );																					   
 
 	cb();
 };

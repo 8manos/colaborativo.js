@@ -16,6 +16,11 @@ module.exports = {
 			type: 'STRING',
 			required: true
 		},
+		active: {
+			type: 'BOOLEAN',
+			defaultsTo: true,
+			required: true
+		},
 		entablero:{
 			model: 'tablero'
 		},

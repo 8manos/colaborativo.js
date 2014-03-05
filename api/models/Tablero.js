@@ -17,6 +17,11 @@ module.exports = {
 			defaultsTo: true,
 			required: true
 		},
+		ispublic: {
+			type: 'BOOLEAN',
+			defaultsTo: true,
+			required: true
+		},
 			fuentes: {
 			collection: 'fuente',
 			via: 'entablero'

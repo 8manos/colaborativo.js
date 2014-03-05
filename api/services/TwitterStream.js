@@ -61,3 +61,7 @@ module.exports.closeStream = function(url){
 module.exports.reopenStream = function(url){
 	if(openStreams[url]) openStreams[url].start()
 }
+
+module.exports.test = function(){
+	console.log("Test Twitter request received")
+}
