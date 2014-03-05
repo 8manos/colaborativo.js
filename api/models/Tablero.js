@@ -8,23 +8,23 @@
 module.exports = {
 
 	attributes: {
-           name: {
-            type: 'STRING',
-            required: true
-           },
-           active: {
-            type: 'BOOLEAN',
-            defaultsTo: true,
-            required: true
-           },
-           fuentes: {
-            collection: 'fuente',
-            via: 'entablero'
-           },
-           publicaciones: {
-            collection: 'publicacion',
-            via: 'entablero'
-           }
+		name: {
+			type: 'STRING',
+			required: true
+		},
+		active: {
+			type: 'BOOLEAN',
+			defaultsTo: true,
+			required: true
+		},
+			fuentes: {
+			collection: 'fuente',
+			via: 'entablero'
+		},
+			publicaciones: {
+			collection: 'publicacion',
+			via: 'entablero'
+		}
 	}
 
 };

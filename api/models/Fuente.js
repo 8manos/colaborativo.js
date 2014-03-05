@@ -20,9 +20,9 @@ module.exports = {
 			model: 'tablero'
 		},
 		publicaciones: {
-            collection: 'publicacion',
-            via: 'defuente'
-        }
+			collection: 'publicacion',
+			via: 'defuente'
+		}
 	}
 
 };

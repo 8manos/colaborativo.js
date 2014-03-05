@@ -15,7 +15,7 @@ module.exports = {
 		red: {
 			type: 'STRING',
 			required: true
-		}
+		},
 		defuente: {
 			model: 'fuente'
 		},
