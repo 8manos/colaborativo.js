@@ -20,6 +20,10 @@ module.exports = {
            fuentes: {
             collection: 'fuente',
             via: 'entablero'
+           },
+           publicaciones: {
+            collection: 'publicacion',
+            via: 'entablero'
            }
 	}
 

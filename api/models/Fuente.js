@@ -18,7 +18,11 @@ module.exports = {
 		},
 		entablero:{
 			model: 'tablero'
-		}
+		},
+		publicaciones: {
+            collection: 'publicacion',
+            via: 'defuente'
+        }
 	}
 
 };
