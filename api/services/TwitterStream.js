@@ -13,20 +13,45 @@ var openStreams = {}
 //url : what path to listen to
 //event : stream event to listen for
 //handler : what to do when event is fired
-module.exports.listenToStream = function(url,event,options,handler){
+module.exports.listenToStream = function( url , event , options ){
 
-	console.log( "Twitter Stream Service Starting With Options:", options );
+	console.log( "Twitter Stream Requested With Options:", options );
 	
 	//already an open listener
-	if(openStreams[url]) return openStreams[url]
+	if( openStreams[url]){
+
+		console.log( "Stream is already active.")
+		return openStreams[url];	
+
+	}else{
+
+		console.log( "Connecting to new twitter stream.")
+
+		var stream = twitterConnection.stream( url , options );
+	 
+		stream.on( event , function ( tweet ){
+			Publicacion.create({
+				red: 'twitter',
+				tipo: 'tweet',
+				data: tweet
+			}).done(function(err, publicacion) {
+				// Error handling
+				if (err) {
+					return console.log(err);
+
+				// The User was created successfully!
+				}else {
+					console.log("Publicacion saved:", publicacion.id );
+				}
+			});
+		});
+	 
+		openStreams[url] = stream;
+	 
+		return stream;	
+
+	}
 	
-	var stream = twitterConnection.stream( url , options );
- 
-	stream.on(event,handler);
- 
-	openStreams[url] = stream;
- 
-	return stream;
 }
  
 module.exports.closeStream = function(url){
