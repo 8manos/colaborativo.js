@@ -9,11 +9,11 @@ var colors = require('colors'),
 	later  = require('later');
 
 module.exports.start = function(){
-	console.log("info: ".green + "Fuentes check starting...");
+	console.log("info: ".green + "Fuentes check background service starting...");
 
 	RevisarFuentes();
 
-	var sched       = later.parse.text('every 2 mins'),
+	var sched       = later.parse.text('every 30 seconds'),
 		timer 		= later.setInterval( RevisarFuentes, sched );
 
 	function RevisarFuentes(){ 
@@ -30,7 +30,7 @@ module.exports.start = function(){
 					console.log(" ");
 					console.log("Tablero: ".cyan + tableros[i].name );
 					console.log(" ");
-					Fuente.find({ entablero: tableros[i].id }).exec( function( err, fuentes){
+					Fuente.find({ entablero: tableros[i].id }).exec( function( err, fuentes ){
 						if( err ){
 							console.log( err );
 						}else{
@@ -50,12 +50,33 @@ module.exports.start = function(){
 
 	function ActivarDesactivarFuente( fuente ){
 		if( fuente.active === false ){
-			console.log( colors.red( " Fuente " + fuente.id + " inactive" ) ); 
+			console.log( colors.red( " Fuente " + fuente.id + " inactive" ) );
+			InfoFuente( fuente ); 
+
+			DesactivarFuente( fuente.id, fuente.network, fuente.query );
 		}else{
-			console.log( colors.green( " Fuente " + fuente.id + " active" ) ); 
+			console.log( colors.green( " Fuente " + fuente.id + " active" ) );
+			InfoFuente( fuente ); 
+
+			ActivarFuente( fuente.id, fuente.network, fuente.query, fuente.entablero );
 		}
-		console.log("  Network: ".magenta + fuente.network );
-		console.log("  Query: ".magenta + fuente.query );
-		console.log(" ");
+
+		function InfoFuente( fuente ){
+			console.log("  Network: ".magenta + fuente.network );
+			console.log("  Query: ".magenta + fuente.query );
+			console.log(" ");
+		}
+	}
+
+	function ActivarFuente( id, network, query, tablero ){
+		if( network === "twitter" ){
+			var activar = TwitterStream.listenToStream( id, 'statuses/filter', 'tweet' , { track: query }, tablero );
+		}
+	}
+
+	function DesactivarFuente( id, network, query ){
+		if( network === "twitter" ){
+			var desactivar = TwitterStream.closeStream( id );
+		}
 	}
 }

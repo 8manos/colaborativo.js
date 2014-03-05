@@ -13,40 +13,48 @@ var openStreams = {}
 //url : what path to listen to
 //event : stream event to listen for
 //handler : what to do when event is fired
-module.exports.listenToStream = function( url , event , options ){
+module.exports.listenToStream = function( id, url , event , options, tablero ){
 
-	console.log( "Twitter Stream Requested With Options:", options );
+	console.log("info: ".green + "Twitter Stream Requested With Options:", options );
 	
 	//already an open listener
-	if( openStreams[url]){
+	if( openStreams[id] ){
 
-		console.log( "Stream is already active.")
-		return openStreams[url];	
+		console.log("info: ".yellow + "Stream is already active.")
+		return openStreams[id];	
 
 	}else{
 
-		console.log( "Connecting to new twitter stream.")
+		console.log("info: ".green + "Connecting to new twitter stream.")
 
 		var stream = twitterConnection.stream( url , options );
 	 
+	 	stream.on( 'connect', function( request ){
+	 		console.log( "info: ".green + "Connected to twitter stream: "+ id )
+	 	});
+
 		stream.on( event , function ( tweet ){
 			Publicacion.create({
+				entablero: tablero,
+				defuente: id,
 				red: 'twitter',
 				tipo: 'tweet',
 				data: tweet
 			}).done(function(err, publicacion) {
-				// Error handling
 				if (err) {
 					return console.log(err);
 
-				// The User was created successfully!
 				}else {
-					console.log("Publicacion saved:", publicacion.id );
+					console.log("info: ".green + "Publicacion saved:", publicacion.id );
 				}
 			});
 		});
+
+		stream.on( 'disconnect', function( disconnectMessage ){
+	 		console.log( "info: ".red + "Disconnected from twitter stream: "+ id + " with message: " + disconnectMessage );
+	 	});
 	 
-		openStreams[url] = stream;
+		openStreams[id] = stream;
 	 
 		return stream;	
 
@@ -54,14 +62,18 @@ module.exports.listenToStream = function( url , event , options ){
 	
 }
  
-module.exports.closeStream = function(url){
-	if(openStreams[url]) openStreams[url].close()
+module.exports.closeStream = function( id ){
+	if( openStreams[id] ){
+
+		console.log("info: ".green + "Closing twitter stream: " + id );
+		openStreams[id].stop();
+		delete openStreams[id];
+
+	}else{
+		console.log( "info: ".yellow + "Twitter stream " + id + " is already closed.");
+	}
 }
  
-module.exports.reopenStream = function(url){
-	if(openStreams[url]) openStreams[url].start()
-}
-
-module.exports.test = function(){
-	console.log("Test Twitter request received")
+module.exports.reopenStream = function( id ){
+	if(openStreams[id]) openStreams[id].start()
 }
