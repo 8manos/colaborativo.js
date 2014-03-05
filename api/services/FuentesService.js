@@ -28,7 +28,7 @@ module.exports.start = function(){
 					console.log(" ");
 					console.log( "========".grey );
 					console.log(" ");
-					console.log("Tablero: ".cyan + tableros[i].name );
+					console.log("Tablero Active: ".cyan + tableros[i].name );
 					console.log(" ");
 					Fuente.find({ entablero: tableros[i].id }).exec( function( err, fuentes ){
 						if( err ){
@@ -37,6 +37,39 @@ module.exports.start = function(){
 							for (var i = 0; i < fuentes.length; i++) {
 
 								ActivarDesactivarFuente( fuentes[i] );
+		
+							}
+						}
+					});
+					console.log( "========".grey );
+					console.log(" ");
+				}
+			}
+		});
+
+		// Traemos los tableros activos y apagamos sus fuentes sin importar el estado
+		Tablero.find().where({ active: false }).exec( function( err, tableros){
+			if( err ){
+				console.log( err );
+			}else{
+				for (var i = 0; i < tableros.length; i++) {
+					console.log(" ");
+					console.log( "========".grey );
+					console.log(" ");
+					console.log("Tablero Inactive: ".red + tableros[i].name );
+					console.log(" ");
+					Fuente.find({ entablero: tableros[i].id }).exec( function( err, fuentes ){
+						if( err ){
+							console.log( err );
+						}else{
+							for (var i = 0; i < fuentes.length; i++) {
+								if( fuentes[i].active === false ){
+									console.log( colors.red( " Fuente " + fuentes[i].id + " inactive" ) );
+								}else{
+									console.log( colors.green( " Fuente " + fuentes[i].id + " active" ) );
+								}
+								InfoFuente( fuentes[i] );
+								DesactivarFuente( fuentes[i].id, fuentes[i].network, fuentes[i].query );
 		
 							}
 						}
@@ -61,11 +94,6 @@ module.exports.start = function(){
 			ActivarFuente( fuente.id, fuente.network, fuente.query, fuente.entablero );
 		}
 
-		function InfoFuente( fuente ){
-			console.log("  Network: ".magenta + fuente.network );
-			console.log("  Query: ".magenta + fuente.query );
-			console.log(" ");
-		}
 	}
 
 	function ActivarFuente( id, network, query, tablero ){
@@ -78,5 +106,11 @@ module.exports.start = function(){
 		if( network === "twitter" ){
 			var desactivar = TwitterStream.closeStream( id );
 		}
+	}
+
+	function InfoFuente( fuente ){
+		console.log("  Network: ".magenta + fuente.network );
+		console.log("  Query: ".magenta + fuente.query );
+		console.log(" ");
 	}
 }

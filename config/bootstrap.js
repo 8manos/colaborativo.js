@@ -36,7 +36,7 @@ module.exports.bootstrap = function (cb) {
 	console.log("                                                                                                                              ");			
 
 	/* We will check for needed connections after app starts */ 
-	setTimeout( function() { var C = FuentesService.start() } , 10000 );																					   
+	setTimeout( function() { var C = FuentesService.start() } , 5000 );																					   
 
 	cb();
 };

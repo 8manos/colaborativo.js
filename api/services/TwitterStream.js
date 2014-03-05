@@ -45,7 +45,7 @@ module.exports.listenToStream = function( id, url , event , options, tablero ){
 					return console.log(err);
 
 				}else {
-					console.log("info: ".green + "Publicacion saved:", publicacion.id );
+					console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + id );
 				}
 			});
 		});
