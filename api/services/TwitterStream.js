@@ -51,7 +51,8 @@ module.exports.listenToStream = function( id, url , event , options, tablero ){
 		});
 
 		stream.on( 'disconnect', function( disconnectMessage ){
-	 		console.log( "info: ".red + "Disconnected from twitter stream: "+ id + " with message: " + disconnectMessage );
+	 		console.log( "info: ".red + "Disconnected from twitter stream: "+ id + " with message: ", disconnectMessage );
+	 		delete openStreams[id];
 	 	});
 	 
 		openStreams[id] = stream;
