@@ -94,6 +94,7 @@ module.exports.blueprints = {
    * as long you take standard security precautions (combine w/ policies, etc.)
    */
   rest: true,
+  populate: false,
 
 
   /**
