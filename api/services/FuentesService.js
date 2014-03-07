@@ -100,6 +100,10 @@ module.exports.start = function(){
 		if( network === "twitter" ){
 			var activar = TwitterStream.listenToStream( id, 'statuses/filter', 'tweet' , { track: query }, tablero );
 		}
+
+		if( network === "instagram" ){
+			var activar = InstagramService.recentFromTag( id, query );
+		}
 	}
 
 	function DesactivarFuente( id, network, query ){
