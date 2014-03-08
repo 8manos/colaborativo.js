@@ -102,7 +102,7 @@ module.exports.start = function(){
 		}
 
 		if( network === "instagram" ){
-			var activar = InstagramService.RequestRecentFromTag( id, query );
+			var activar = InstagramService.RequestRecentFromTag( id, query, tablero );
 		}
 	}
 
