@@ -102,13 +102,17 @@ module.exports.start = function(){
 		}
 
 		if( network === "instagram" ){
-			var activar = InstagramService.recentFromTag( id, query );
+			var activar = InstagramService.RequestRecentFromTag( id, query );
 		}
 	}
 
 	function DesactivarFuente( id, network, query ){
 		if( network === "twitter" ){
 			var desactivar = TwitterStream.closeStream( id );
+		}
+
+		if ( network === "instagram" ){
+			var desactivar = InstagramService.StopRecentFromTag( id );
 		}
 	}
 
