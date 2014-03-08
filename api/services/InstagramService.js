@@ -62,7 +62,6 @@ module.exports.RequestRecentFromTag = function( id, tag, tablero ){
 			name: job.data.tag,
 			min_tag_id: min_tag_id,
 			complete: function( data, paging ){
-				console.log( min_tag_id );
 				console.log("info: ".green + data.length + " images found.");
 				for (var i = data.length - 1; i >= 0; i--) {
 					console.log("info: ".green + "Saving image from fuente: " + job.data.id + " from user: " + data[i].user.username + " in tablero: " + job.data.tablero );
@@ -84,7 +83,11 @@ module.exports.RequestRecentFromTag = function( id, tag, tablero ){
 					});
 				};
 				console.log("info: ".green + "Saving images done");
-				done();
+				console.log("info: ".green + "Giving instagram servers a 10 second break.");
+				setTimeout ( function() {
+					console.log("info: ".green + "Gave instagram servers a 10 second break.");
+					done();
+				}, 10000 );
 			}
 		});
 
