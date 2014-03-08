@@ -20,7 +20,6 @@ module.exports.RequestRecentFromTag = function( id, tag, tablero ){
 	if( openSubscriptions[id] ){
 
 		console.log("info: ".yellow + "Instagram Subscription: " + id + " is already active.")
-		JobsKue.process( 'instagramRecentFromTag', function( job, done ){ GetRecentFromTag( job, done ) });
 		return openSubscriptions[id];	
 
 	}else{
@@ -38,7 +37,7 @@ module.exports.RequestRecentFromTag = function( id, tag, tablero ){
 	}
 }
 
-	function GetRecentFromTag( job, done ){
+module.exports.GetRecentFromTag = function( job, done ){
 		console.log("info: ".green + "Saving recent instagram entries with tag: " + job.data.tag + ". From fuente: " + job.data.id );
 
 		var min_tag_id = ''; 

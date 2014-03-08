@@ -7,7 +7,8 @@
 
  var kue  = require('kue'), 
  	 url = require('url'), 
- 	 redis = require('redis');
+ 	 redis = require('redis'),
+ 	 later  = require('later');
 
  if (process.env.REDISTOGO_URL) {
  	console.log( "Redis URL: " + process.env.REDISTOGO_URL)
@@ -45,4 +46,18 @@ module.exports.shutdown = function () {
 		console.log( 'Kue is shut down.', err||'' );
 		process.exit( 0 );
 	}, 5000 );
+}
+
+module.exports.aTrabajar = function () {
+
+	console.log("info: ".green + "Fuentes check background service starting...");
+
+	aTrabajar();
+
+	var sched       = later.parse.text('every 1 minute'),
+		timer 		= later.setInterval( aTrabajar, sched );
+
+	function aTrabajar(){ 
+		var trabaja = JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+	}
 }
