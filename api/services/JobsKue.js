@@ -5,8 +5,23 @@
  * @docs		:: TODO
  */
 
- var kue  = require('kue')
-   , jobs = kue.createQueue();
+ var kue  = require('kue'), 
+ 	 url = require('url'), 
+ 	 redis = require('redis');
+
+ if (process.env.REDISTOGO_URL) {
+ 	console.log( "Redis URL: " + process.env.REDISTOGO_URL)
+    kue.redis.createClient = function() {
+	    var redisUrl = url.parse(process.env.REDISTOGO_URL)
+	      , client = redis.createClient(redisUrl.port, redisUrl.hostname);
+	    if (redisUrl.auth) {
+	        client.auth(redisUrl.auth.split(":")[1]);
+	    }
+	    return client;
+	};
+}
+
+ var jobs = kue.createQueue();
 
    kue.app.set('title', 'Colaborativo Jobs');
    kue.app.listen(3000);

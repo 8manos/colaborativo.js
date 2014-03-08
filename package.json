@@ -26,7 +26,8 @@
     "later": "^1.1.6",
     "instagram-node": "^0.1.15",
     "instagram-node-lib": "^0.1.1",
-    "kue": "^0.7.5"
+    "kue": "^0.7.5",
+    "redis": "^0.10.1"
   },
   "scripts": {
     "start": "node app.js",
