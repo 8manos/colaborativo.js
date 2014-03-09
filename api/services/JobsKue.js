@@ -70,6 +70,15 @@ module.exports.aTrabajar = function () {
 		    if (err) { console.log(err) }
 		    if (!jobs.length) {
 				JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+		    }else{
+		    	console.log( "PENDIENTE:" , jobs[0].id );
+		    	kue.Job.get( jobs[0].id , function (err, job) {
+			        if (err) return;
+			        job.remove(function (err) {
+			            if (err) throw err;
+			            console.log('removed stalled job #%d', job.id);
+			        });
+			    });
 		    }
 		});
 	}
