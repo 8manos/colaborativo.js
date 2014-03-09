@@ -20,8 +20,8 @@
 			</div>
 
 			<div ng-if="publicacion.red=='instagram'">
-				<h2>{{publicacion.data.caption.text}}</h2>
 				<img src="{{publicacion.data.images.low_resolution.url}}" width="306" height="306" />
+				<h2>{{publicacion.data.caption.text}}</h2>
 			</div>
 
 			<pre>{{publicacion.red}}: {{publicacion.data.id}}</pre>
