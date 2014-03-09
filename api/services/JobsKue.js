@@ -52,7 +52,7 @@ module.exports.shutdown = function () {
 	jobs.shutdown( function(err) {
 		console.log( 'Kue is shut down.', err||'' );
 		process.exit( 0 );
-	}, 5000 );
+	}, 0 );
 }
 
 module.exports.aTrabajar = function () {
