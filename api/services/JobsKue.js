@@ -23,6 +23,7 @@
 }
 
  var jobs = kue.createQueue();
+ var promoter = jobs.promote();
 
    kue.app.set('title', 'Colaborativo Jobs');
    kue.app.listen(3000);
@@ -60,19 +61,27 @@ module.exports.aTrabajar = function () {
 
 	// aTrabajar();
 
-	var sched       = later.parse.text('every 1 minute'),
+	var sched       = later.parse.text('every 10 seconds'),
 		timer 		= later.setInterval( aTrabajar, sched );
 
+	var flag = false; // Para evitar process repetidos
+
 	function aTrabajar(){ 
+
 		kue.Job.rangeByType('instagramRecentFromTag','active', 0, 10, '', function (err, trabajo) {
 		   
 		    if (err) { console.log(err) }
 
 		    if (!trabajo.length) {
 
-		    	console.log("info: ".green + "No hay trabajos pendientes" );
-				JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
-				jobs.promote();
+		    	if( flag ){
+		    		console.log("info: ".green + "Ya se ha iniciado el process" );
+		    	}else{
+		    		flag = true;
+			    	console.log("info: ".green + "No hay trabajos pendientes" );
+			    	console.log("info: ".green + "Iniciando process" );
+					JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+		    	}
 
 		    }else{
 
@@ -86,7 +95,7 @@ module.exports.aTrabajar = function () {
 				        job.remove(function (err) {
 				            if (err) throw err;
 				            console.log("info: ".yellow + 'removed stalled job #%d', job.id);
-				            JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+				            // JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
 				        });
 				    });
 		    	}
