@@ -65,20 +65,24 @@ module.exports.aTrabajar = function () {
 		timer 		= later.setInterval( aTrabajar, sched );
 
 	function aTrabajar(){ 
-		console.log( "A trabajar");
 		kue.Job.rangeByType('instagramRecentFromTag','active', 0, 10, '', function (err, jobs) {
 		    if (err) { console.log(err) }
 		    if (!jobs.length) {
 				JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
 		    }else{
-		    	console.log( "PENDIENTE:" , jobs[0].id );
-		    	kue.Job.get( jobs[0].id , function (err, job) {
-			        if (err) return;
-			        job.remove(function (err) {
-			            if (err) throw err;
-			            console.log('removed stalled job #%d', job.id);
-			        });
-			    });
+		    	console.log("info: ".green + "PENDIENTE:" , jobs[0].id );
+		    	var edad = Date.now() - jobs[0].updated_at;
+		    	console.log("info: ".green + "Edad: ", edad);
+		    	if( edad > 20000 ){  		
+			    	kue.Job.get( jobs[0].id , function (err, job) {
+				        if (err) return;
+				        job.remove(function (err) {
+				            if (err) throw err;
+				            console.log("info: ".yellow + 'removed stalled job #%d', job.id);
+				            JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+				        });
+				    });
+		    	}
 		    }
 		});
 	}
