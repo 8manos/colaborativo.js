@@ -63,6 +63,10 @@ module.exports.listenToStream = function( id, url , event , options, tablero ){
 
 				}else {
 					console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + id + ". Author: @" + publicacion.data.user.screen_name );
+						Publicacion.publishCreate({
+						  id: tablero,
+						  data: publicacion
+						});
 				}
 			});
 		});

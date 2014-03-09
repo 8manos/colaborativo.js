@@ -1,0 +1,12 @@
+<h1><%= tablero.name %></h1>
+<div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl"> 
+	{{tablero.length}} Tablero
+	<ul ng-view>
+		<li ng-repeat="tablero in tablero"><a href="/tablero/show/{{tablero.id}}">{{tablero.name}}</a></li>
+	</ul>
+
+	<h3>Publicaciones</h3>
+	<ul ng-view>
+		<li ng-repeat="publicacion in publicaciones | limitTo:50">{{publicacion.red}}: {{publicacion.data.id}}</li>
+	</ul>
+</div>

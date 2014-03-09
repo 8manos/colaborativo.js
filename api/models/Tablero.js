@@ -30,6 +30,16 @@ module.exports = {
 			collection: 'publicacion',
 			via: 'entablero'
 		}
+	},
+
+	findByID: function (id, cb) {
+		this.findOne(id).done(function (err, tablero) {
+			if (err) {
+				return res.send(err,500);
+			} else {
+				cb(tablero);
+			}
+		});
 	}
 
 };

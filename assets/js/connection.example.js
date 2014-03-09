@@ -49,9 +49,9 @@ socket.on('connect', function socketConnected() {
 
 	  // Attach a listener which fires every time Sails publishes
 	  // message to the firehose.
-    socket.on('firehose', function newMessageFromSails ( message ) {
-      console.log('FIREHOSE (debug): Sails published a message ::\n', message);
-    });
+    // socket.on('firehose', function newMessageFromSails ( message ) {
+    //   console.log('FIREHOSE (debug): Sails published a message ::\n', message);
+    // });
   });
 
 

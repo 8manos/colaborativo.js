@@ -75,7 +75,7 @@ module.exports.aTrabajar = function () {
 		    if (!trabajo.length) {
 
 		    	if( flag ){
-		    		console.log("info: ".green + "Ya se ha iniciado el process" );
+		    		console.log("info: ".grey + "Ya se ha iniciado el process".grey );
 		    	}else{
 		    		flag = true;
 			    	console.log("info: ".green + "No hay trabajos pendientes" );

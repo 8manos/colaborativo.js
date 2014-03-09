@@ -67,10 +67,8 @@ module.exports.GetRecentFromTag = function( job, done ){
 												if( typeof publicacion[0] != 'undefined' ){					
 													console.log("info: ".green + "La mas nueva es: ", publicacion[0].paging.min_tag_id );
 													min_tag_id = publicacion[0].paging.min_tag_id;
-													console.log( min_tag_id );
 												}else{
 													min_tag_id = null;
-													console.log( min_tag_id );
 													console.log("info: ".green + "No hay publicaciones anteriores");
 												}
 
@@ -81,9 +79,9 @@ module.exports.GetRecentFromTag = function( job, done ){
 														console.log("info: ".green + data.length + " images found.");
 														if( data.length === 0 ){
 																setTimeout ( function() {
-																	console.log("info: ".green + "Gave instagram servers a 10 second break.");
+																	console.log("info: ".green + "Gave instagram servers a 1 second break.");
 																	done();
-																}, 10000 );
+																}, 1000 );
 														}else{
 															for (var i = data.length - 1; i >= 0; i--) {
 																// console.log("info: ".green + "Saving image from fuente: " + job.data.id + " from user: " + data[i].user.username + " in tablero: " + job.data.tablero );
@@ -101,15 +99,20 @@ module.exports.GetRecentFromTag = function( job, done ){
 
 																	}else {
 																		console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id );
+
+																		Publicacion.publishCreate({
+																		  id: job.data.tablero,
+																		  data: publicacion
+																		});
 																	}
 																});
 																if( i === 0) {
 																	console.log("info: ".green + "Saving images done");
-																	console.log("info: ".green + "Giving instagram servers a 10 second break.");
+																	console.log("info: ".green + "Giving instagram servers a 2 second break.");
 																	setTimeout ( function() {
-																		console.log("info: ".green + "Gave instagram servers a 10 second break.");
+																		console.log("info: ".green + "Gave instagram servers a 2 second break.");
 																		done();
-																	}, 10000 );
+																	}, 2000 );
 																}
 															};	
 														}
