@@ -77,7 +77,7 @@ module.exports.GetRecentFromTag = function( job, done ){
 							return console.log(err);
 
 						}else {
-							console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id + ". Author: @" + data[i].user.username );
+							console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id );
 						}
 					});
 				};
