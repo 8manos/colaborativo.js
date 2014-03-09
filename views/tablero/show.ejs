@@ -6,7 +6,25 @@
 	</ul>
 
 	<h3>Publicaciones</h3>
-	<ul ng-view>
-		<li ng-repeat="publicacion in publicaciones | limitTo:50">{{publicacion.red}}: {{publicacion.data.id}}</li>
+	<ul class="publicaciones" ng-view>
+		<li class="publicacion {{publicacion.red}}"ng-repeat="publicacion in publicaciones | limitTo:50">
+
+			<div ng-if="publicacion.red=='twitter'">
+				<h2>Twitter</h2>
+				<h3>
+					<img width="48" height="48" src="{{publicacion.data.user.profile_image_url}}" />
+					<a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank">@{{publicacion.data.user.name}}:</a></h3>
+				<blockquote>
+					{{publicacion.data.text}}
+				</blockquote>
+			</div>
+
+			<div ng-if="publicacion.red=='instagram'">
+				<h2>{{publicacion.data.caption.text}}</h2>
+				<img src="{{publicacion.data.images.low_resolution.url}}" width="306" height="306" />
+			</div>
+
+			<pre>{{publicacion.red}}: {{publicacion.data.id}}</pre>
+		</li>
 	</ul>
 </div>
