@@ -17,6 +17,17 @@
  * For more information on configuration, check out:
  * http://links.sailsjs.org/docs/config/connections
  */
+url = require('url'); 
+
+if (process.env.MONGOHQ_URL) {
+    var mongoUrl = url.parse(process.env.MONGOHQ_URL)
+      , mongoPort = mongoUrl.port
+      , mongoHost = mongoUrl.hostname
+      , mongoUser = mongoUrl.auth.split(":")[0]
+      , mongoPass = mongoUrl.auth.split(":")[1]
+      , mongoName = mongoUrl.pathname.substr(1);
+    
+}
 
 module.exports.connections = {
 
@@ -50,11 +61,11 @@ module.exports.connections = {
   //
   someMongodbServer: {
     adapter   : 'sails-mongo',
-    host      : 'localhost',
-    port      : 27017,
-    user      : 'username',
-    password  : 'password',
-    database  : 'your mongo db name here'
+    host      : mongoHost,
+    port      : mongoPort,
+    user      : mongoUser,
+    password  : mongoPass,
+    database  : mongoName
   },
 
   // PostgreSQL is another officially supported relational database. 

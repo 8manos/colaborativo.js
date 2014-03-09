@@ -16,6 +16,11 @@ module.exports = {
 			type: 'STRING',
 			required: true
 		},
+		ispublic: {
+			type: 'BOOLEAN',
+			defaultsTo: true,
+			required: true
+		},
 		defuente: {
 			model: 'fuente'
 		},
