@@ -39,64 +39,104 @@ module.exports.RequestRecentFromTag = function( id, tag, tablero ){
 
 module.exports.GetRecentFromTag = function( job, done ){
 
-		console.log("info: ".green + "Saving recent instagram entries with tag: " + job.data.tag + ". From fuente: " + job.data.id );
-
-		var min_tag_id = ''; 
-		Publicacion.find().where({ defuente: job.data.id }).sort({ createdAt: 'desc' }).limit(1).exec( function( err, publicacion ){
-			if (err) {
-				return console.log(err);
+		Fuente.find().where({ id: job.data.id }).limit(1).exec( function( err, fuente ){
+			if( err ){
+				return console.log( err );
 			}else{
-				if( typeof publicacion[0] != 'undefined' ){					
-					console.log("info: ".green + "La mas nueva es: ", publicacion[0].paging.min_tag_id );
-					min_tag_id = publicacion[0].paging.min_tag_id;
-					console.log( min_tag_id );
-				}else{
-					min_tag_id = null;
-					console.log( min_tag_id );
-					console.log("info: ".green + "No hay publicaciones anteriores");
-				}
+				if( typeof fuente[0] != 'undefined' ){	
+					console.log("info: ".green + "La fuente está activa: " + fuente[0].active);
 
-				Instagram.tags.recent({ 
-					name: job.data.tag,
-					min_tag_id: min_tag_id,
-					complete: function( data, paging ){
-						console.log("info: ".green + data.length + " images found.");
-						if( data.length === 0 ){
-								setTimeout ( function() {
-									console.log("info: ".green + "Gave instagram servers a 10 second break.");
-									done();
-								}, 10000 );
-						}else{
-							for (var i = data.length - 1; i >= 0; i--) {
-								// console.log("info: ".green + "Saving image from fuente: " + job.data.id + " from user: " + data[i].user.username + " in tablero: " + job.data.tablero );
+					if( fuente[0].active ){
 
-								Publicacion.create({
-									entablero: job.data.tablero,
-									defuente: job.data.id,
-									red: 'instagram',
-									tipo: data[i].type ,
-									data: data[i],
-									paging: paging,
-								}).done(function(err, publicacion) {
-									if (err) {
-										return console.log(err);
+						Tablero.find().where({ id: fuente[0].entablero }).limit(1).exec( function( err, tablero ){
 
-									}else {
-										console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id );
-									}
-								});
-								if( i === 0) {
-									console.log("info: ".green + "Saving images done");
-									console.log("info: ".green + "Giving instagram servers a 10 second break.");
-									setTimeout ( function() {
-										console.log("info: ".green + "Gave instagram servers a 10 second break.");
+							if( err ){
+								return console.log( err );
+							}else{
+								if( typeof tablero[0] != 'undefined' ){	
+									console.log("info: ".green + "El tablero está activo: " + tablero[0].active);
+
+									if( tablero[0].active ){
+										console.log("info: ".green + "Saving recent instagram entries with tag: " + job.data.tag + ". From fuente: " + job.data.id );
+
+										var min_tag_id = ''; 
+										Publicacion.find().where({ defuente: job.data.id }).sort({ createdAt: 'desc' }).limit(1).exec( function( err, publicacion ){
+											if (err) {
+												return console.log(err);
+											}else{
+												if( typeof publicacion[0] != 'undefined' ){					
+													console.log("info: ".green + "La mas nueva es: ", publicacion[0].paging.min_tag_id );
+													min_tag_id = publicacion[0].paging.min_tag_id;
+													console.log( min_tag_id );
+												}else{
+													min_tag_id = null;
+													console.log( min_tag_id );
+													console.log("info: ".green + "No hay publicaciones anteriores");
+												}
+
+												Instagram.tags.recent({ 
+													name: job.data.tag,
+													min_tag_id: min_tag_id,
+													complete: function( data, paging ){
+														console.log("info: ".green + data.length + " images found.");
+														if( data.length === 0 ){
+																setTimeout ( function() {
+																	console.log("info: ".green + "Gave instagram servers a 10 second break.");
+																	done();
+																}, 10000 );
+														}else{
+															for (var i = data.length - 1; i >= 0; i--) {
+																// console.log("info: ".green + "Saving image from fuente: " + job.data.id + " from user: " + data[i].user.username + " in tablero: " + job.data.tablero );
+
+																Publicacion.create({
+																	entablero: job.data.tablero,
+																	defuente: job.data.id,
+																	red: 'instagram',
+																	tipo: data[i].type ,
+																	data: data[i],
+																	paging: paging,
+																}).done(function(err, publicacion) {
+																	if (err) {
+																		return console.log(err);
+
+																	}else {
+																		console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id );
+																	}
+																});
+																if( i === 0) {
+																	console.log("info: ".green + "Saving images done");
+																	console.log("info: ".green + "Giving instagram servers a 10 second break.");
+																	setTimeout ( function() {
+																		console.log("info: ".green + "Gave instagram servers a 10 second break.");
+																		done();
+																	}, 10000 );
+																}
+															};	
+														}
+													}
+												});
+											}
+										});
+									}else{
+										console.log("info: ".green + "El tablero ya no está activo" );
 										done();
-									}, 10000 );
+									}
+
+								}else{
+									console.log("info: ".green + "El tablero ya no existe" );
+									done();
 								}
-							};	
-						}
+							}
+
+						});
+
+					}else{
+						done();
 					}
-				});
+				}else{
+					console.log("info: ".green + "La fuente ya no existe" );
+					done();
+				}
 			}
 		});
 

@@ -45,7 +45,6 @@ module.exports.create = function( type, params, priority, delay ){
 module.exports.process = function( type, callback ){
  	console.log("info: ".green + "Procesando jobs tipo: " + type);
  	jobs.process( type, callback );
- 	jobs.promote( 10000 );
 }
 
 module.exports.shutdown = function () {
@@ -57,7 +56,7 @@ module.exports.shutdown = function () {
 
 module.exports.aTrabajar = function () {
 
-	console.log("info: ".green + "Fuentes check background service starting...");
+	console.log("info: ".green + "JobsKue background service starting...");
 
 	// aTrabajar();
 
@@ -65,16 +64,24 @@ module.exports.aTrabajar = function () {
 		timer 		= later.setInterval( aTrabajar, sched );
 
 	function aTrabajar(){ 
-		kue.Job.rangeByType('instagramRecentFromTag','active', 0, 10, '', function (err, jobs) {
+		kue.Job.rangeByType('instagramRecentFromTag','active', 0, 10, '', function (err, trabajo) {
+		   
 		    if (err) { console.log(err) }
-		    if (!jobs.length) {
+
+		    if (!trabajo.length) {
+
+		    	console.log("info: ".green + "No hay trabajos pendientes" );
 				JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+				jobs.promote();
+
 		    }else{
-		    	console.log("info: ".green + "PENDIENTE:" , jobs[0].id );
-		    	var edad = Date.now() - jobs[0].updated_at;
+
+		    	console.log("info: ".green + "PENDIENTE:" , trabajo[0].id );
+		    	var edad = Date.now() - trabajo[0].updated_at;
 		    	console.log("info: ".green + "Edad: ", edad);
+
 		    	if( edad > 20000 ){  		
-			    	kue.Job.get( jobs[0].id , function (err, job) {
+			    	kue.Job.get( trabajo[0].id , function (err, job) {
 				        if (err) return;
 				        job.remove(function (err) {
 				            if (err) throw err;
@@ -83,6 +90,7 @@ module.exports.aTrabajar = function () {
 				        });
 				    });
 		    	}
+
 		    }
 		});
 	}
