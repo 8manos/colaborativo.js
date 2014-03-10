@@ -28,8 +28,14 @@ module.exports.RequestRecentFromTag = function( id, tag, tablero ){
 
 		var sched       = later.parse.text('every 1 minute'),
 		    timer 		= later.setInterval(
-		    									function(){ JobsKue.create( 'instagramRecentFromTag', { id: id, tag: tag, tablero: tablero }, 0, 3000 ) }, 
-		    									sched 
+		    									function(){ 
+		    										JobsKue.create( 'instagramRecentFromTag', { 
+		    											title: 'instagramRecentFromTag: ' + tag,
+		    											id: id, 
+		    											tag: tag, 
+		    											tablero: tablero 
+		    										}, 0, 3000 ) 
+		    									}, sched 
 		    								);
 
 		/* Add Subscription to openSubscriptions */ 
