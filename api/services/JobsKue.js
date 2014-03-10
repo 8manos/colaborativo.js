@@ -35,11 +35,11 @@
 	var handler = kue.app.stack.pop();
 	kue.app.stack.push({ route: '/kue', handle: handler.handle });
 
- var jobs = kue.createQueue();
- var promoter = jobs.promote();
+ 	var jobs = kue.createQueue();
+ 	var promoter = jobs.promote();
 
    kue.app.set('title', 'Colaborativo Jobs');
-   kue.app.listen(3000);
+   kue.app.listen( process.env.PORT );
 
 process.on( 'SIGTERM', function ( sig ) {
   jobs.shutdown(function(err) {
