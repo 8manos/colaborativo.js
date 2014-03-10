@@ -2,7 +2,9 @@
 <p><%= __('Nothing') %> {{'yet' + '!'}}</p>
 <div id="tableros" ng-controller="AppCtrl"> 
 	{{tableros.length}} Tableros
-	<ul ng-view>
-		<li ng-repeat="tablero in tableros"><a href="/tablero/show/{{tablero.id}}">{{tablero.name}}</a></li>
+	<ul>
+		<% tableros.forEach(function(tablero) { %>
+			<li><a href="/tablero/show/<%= tablero.id %>"><%= tablero.name %></a></li>
+		<% }) %>
 	</ul>
 </div>
