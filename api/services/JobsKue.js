@@ -5,8 +5,7 @@
  * @docs		:: TODO
  */
 
- var lodash = require('lodash'),
- 	 kue  = require('kue'), 
+ var kue  = require('kue'), 
  	 url = require('url'), 
  	 redis = require('redis'),
  	 later  = require('later');
@@ -23,23 +22,11 @@
 	};
 }
 
- 	// Prepend the Kue routes with '/kue'
-	lodash.each(['get', 'put', 'delete'], function(verb) {
-	  lodash.each(kue.app.routes[verb], function(route, index, routes) {
-	    routes[index].path = '/kue' + route.path;
-	    routes[index].regexp = new RegExp(route.regexp.source.replace(/\^\\/, '^\\/kue\\'));
-	  });
-	});
-
-	// The last handler should be for the /public files, pop it off and add a new one which mounts them at '/kue'
-	var handler = kue.app.stack.pop();
-	kue.app.stack.push({ route: '/kue', handle: handler.handle });
-
- 	var jobs = kue.createQueue();
- 	var promoter = jobs.promote();
+ var jobs = kue.createQueue();
+ var promoter = jobs.promote();
 
    kue.app.set('title', 'Colaborativo Jobs');
-   kue.app.listen( process.env.PORT );
+   kue.app.listen(3000);
 
 process.on( 'SIGTERM', function ( sig ) {
   jobs.shutdown(function(err) {
