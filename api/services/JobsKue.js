@@ -39,7 +39,7 @@
  var promoter = jobs.promote();
 
    kue.app.set('title', 'Colaborativo Jobs');
-   kue.app.listen( process.env.PORT );
+   // kue.app.listen( process.env.PORT );
 
 process.on( 'SIGTERM', function ( sig ) {
   jobs.shutdown(function(err) {
