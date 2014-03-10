@@ -17,7 +17,7 @@ module.exports = {
 					Tablero.watch( req );
 					res.send( tableros );
 			    } else {
-			        res.redirect( '/' );;
+			        res.redirect( '/' );
 			    }
 			}
 		});
