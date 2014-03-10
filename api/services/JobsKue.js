@@ -92,7 +92,7 @@ module.exports.aTrabajar = function () {
 		    	if( edad > 20000 ){  		
 			    	kue.Job.get( trabajo[0].id , function (err, job) {
 				        if (err) return;
-				        job.remove(function (err) {
+				        job.failed(function (err) {
 				            if (err) throw err;
 				            console.log("info: ".yellow + 'removed stalled job #%d', job.id);
 				            // JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });

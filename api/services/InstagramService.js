@@ -116,7 +116,12 @@ module.exports.GetRecentFromTag = function( job, done ){
 																}
 															};	
 														}
-													}
+													},
+													 error: function(errorMessage, errorObject, caller){
+												      console.log("error: ".red + "INSTAGRAM Query hizo error: ", errorMessage );
+												      done();
+												    }
+
 												});
 											}
 										});
