@@ -10,10 +10,10 @@
  	 redis = require('redis'),
  	 later  = require('later');
 
- if (process.env.REDISTOGO_URL) {
- 	console.log( "Redis URL: " + process.env.REDISTOGO_URL)
+ if (process.env.REDISCLOUD_URL) {
+ 	console.log( "Redis URL: " + process.env.REDISCLOUD_URL)
     kue.redis.createClient = function() {
-	    var redisUrl = url.parse(process.env.REDISTOGO_URL)
+	    var redisUrl = url.parse(process.env.REDISCLOUD_URL)
 	      , client = redis.createClient(redisUrl.port, redisUrl.hostname);
 	    if (redisUrl.auth) {
 	        client.auth(redisUrl.auth.split(":")[1]);
