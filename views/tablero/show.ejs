@@ -7,10 +7,9 @@
 
 	<h3>Publicaciones</h3>
 	<ul class="publicaciones" ng-view>
-		<li class="publicacion {{publicacion.red}}"ng-repeat="publicacion in publicaciones | limitTo:50">
+		<li class="publicacion {{publicacion.red}} item" ng-repeat="publicacion in publicaciones | limitTo:50">
 
 			<div ng-if="publicacion.red=='twitter'">
-				<h2>Twitter</h2>
 				<h3>
 					<img width="48" height="48" src="{{publicacion.data.user.profile_image_url}}" />
 					<a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank">@{{publicacion.data.user.name}}:</a></h3>
