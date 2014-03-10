@@ -4,6 +4,8 @@
  * For more information on configuration, check out:
  * http://sailsjs.org/#documentation
  */
+var kue = require('kue');
+
 module.exports.express = {
 
 
@@ -68,6 +70,17 @@ module.exports.express = {
 	//
 	// Example override:
 	// methodOverride: (function customMethodOverride (req, res, next) {})()
+	middleware: {
+		custom: true
+	},
+
+	customMiddleware: function(app) {
+		// TODO: This should be worked into the Kue hook and password protected.
+		// Ideally, we'd mount this with Sails' router so that we can apply policies
+		// to it, obviating the need for something like simple auth.
+		console.log( "info: ".green + "Mounting Kue in /kue" );
+		app.use('/kue', kue.app);
+	}
 };
 
 
