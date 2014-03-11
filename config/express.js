@@ -79,7 +79,7 @@ module.exports.express = {
 		// Ideally, we'd mount this with Sails' router so that we can apply policies
 		// to it, obviating the need for something like simple auth.
 		console.log( "info: ".green + "Mounting Kue in /kue" );
-		// app.use('/kue', kue.app);
+		app.use('/kue', kue.app);
 	}
 };
 
