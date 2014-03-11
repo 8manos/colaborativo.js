@@ -86,10 +86,10 @@ module.exports.listenToStream = function( job, done ){
 		 				i++;
 			 			job.progress( i, 330 );
 			 			if( i === 330 ){
-			 				clearInterval(I);
 		 					TwitterStream.closeStream( job.data.id );
 		 					console.log( "DESCONECTANDO".red, job.data.id );
 		 					done();
+			 				clearInterval(I);
 			 			}
 		 			}
 		 		, 1000 );
