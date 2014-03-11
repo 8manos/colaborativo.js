@@ -43,9 +43,10 @@ module.exports.create = function( type, params, priority, delay ){
 	return job;
 }
 
-module.exports.process = function( type, callback ){
-	console.log("info: ".green + "Procesando jobs tipo: " + type);
-	jobs.process( type, callback );
+module.exports.process = function( type, concurrency, callback ){
+	var concurrency = concurrency || 1;
+	console.log("info: ".green + "Procesando jobs tipo: " + type + " Concurrency: " + concurrency );
+	jobs.process( type, concurrency, callback );
 }
 
 module.exports.shutdown = function () {
@@ -55,9 +56,9 @@ module.exports.shutdown = function () {
 	}, 0 );
 }
 
-module.exports.aTrabajar = function () {
+module.exports.aTrabajar = function ( jobHandle, concurrency ) {
 
-	console.log("info: ".green + "JobsKue background service starting...");
+	console.log("info: ".green + "JobsKue "+ jobHandle +" background service starting... concurrency: " + concurrency );
 
 	jobs.on('job complete', function (id) {
 		kue.Job.get(id, function (err, job) {
@@ -74,26 +75,38 @@ module.exports.aTrabajar = function () {
 
 	// aTrabajar();
 
-	var sched       = later.parse.text('every 10 seconds'),
-		timer 		= later.setInterval( aTrabajar, sched );
+	var sched       = later.parse.text('every 10 seconds');
+		timer 		= later.setInterval( function(){ aTrabajar( jobHandle, concurrency ) }, sched );
 
 	var flag = false; // Para evitar process repetidos
 
-	function aTrabajar(){ 
+	function aTrabajar( jobHandle, concurrency ){ 
 
-		kue.Job.rangeByType('instagramRecentFromTag','active', 0, 10, '', function (err, trabajo) {
+		var concurrency = concurrency || 1;
+
+		kue.Job.rangeByType(jobHandle,'active', 0, 10, '', function (err, trabajo) {
 		   
 			if (err) { console.log(err) }
 
 			if (!trabajo.length) {
 
 				if( flag ){
-					console.log("info: ".grey + "Ya se ha iniciado el process".grey );
+					console.log("info: ".grey + "Ya se ha iniciado el process de: ".grey + jobHandle );
 				}else{
 					flag = true;
 					console.log("info: ".green + "No hay trabajos pendientes" );
-					console.log("info: ".green + "Iniciando process" );
-					JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+					console.log("info: ".green + "Iniciando process: " + jobHandle );
+					JobsKue.process( jobHandle, concurrency, function( job, done ){ 
+
+						if( jobHandle === "instagramRecentFromTag" ){
+							InstagramService.GetRecentFromTag( job, done ) 
+						}
+
+						if( jobHandle === "twitterStream" ){
+							TwitterStream.listenToStream( job, done ) 
+						}
+
+					});
 				}
 
 			}else{
@@ -108,7 +121,7 @@ module.exports.aTrabajar = function () {
 						job.failed(function (err) {
 							if (err) throw err;
 							console.log("info: ".yellow + 'removed stalled job #%d', job.id);
-							// JobsKue.process( 'instagramRecentFromTag', function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
+							// JobsKue.process( jobHandle, function( job, done ){ InstagramService.GetRecentFromTag( job, done ) });
 						});
 					});
 				}

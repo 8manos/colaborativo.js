@@ -37,8 +37,29 @@ module.exports.bootstrap = function (cb) {
 
 	
 	/* We will check for needed connections after app starts */ 
-	setTimeout( function() { var C = FuentesService.start() } , 5000 );	
-	setTimeout( function() { var C = JobsKue.aTrabajar() } , 5000 );																					   
+	setTimeout( function() { var C = FuentesService.start() } , 5000 );
+
+	setTimeout( function() { 
+		var jobHandles = {
+				"twitter": {
+					handle:	"twitterStream",
+					concurrency: 2
+				},
+				"instagram": {
+					handle: "instagramRecentFromTag",
+					concurrency: 1
+				}
+		};
+
+		// console.log( "LENGTH: " + jobHandles.length);
+
+		for ( key in jobHandles ) {
+			if (jobHandles.hasOwnProperty(key)){
+				var C = JobsKue.aTrabajar( jobHandles[key].handle, jobHandles[key].concurrency );
+			}
+		};
+
+	} , 5000 );																					   
 
 	cb();
 };

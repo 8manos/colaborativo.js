@@ -39,10 +39,10 @@ module.exports.start = function(){
 								ActivarDesactivarFuente( fuentes[i] );
 		
 							}
+							console.log( "========".grey );
+							console.log(" ");
 						}
 					});
-					console.log( "========".grey );
-					console.log(" ");
 				}
 			}
 		});
@@ -72,10 +72,10 @@ module.exports.start = function(){
 								DesactivarFuente( fuentes[i].id, fuentes[i].network, fuentes[i].query );
 		
 							}
+							console.log( "========".grey );
+							console.log(" ");
 						}
 					});
-					console.log( "========".grey );
-					console.log(" ");
 				}
 			}
 		});
@@ -98,7 +98,7 @@ module.exports.start = function(){
 
 	function ActivarFuente( id, network, query, tablero ){
 		if( network === "twitter" ){
-			var activar = TwitterStream.listenToStream( id, 'statuses/filter', 'tweet' , { track: query }, tablero );
+			var activar = TwitterStream.requestStream( id, 'statuses/filter', 'tweet' , { track: query }, tablero );
 		}
 
 		if( network === "instagram" ){
@@ -121,4 +121,51 @@ module.exports.start = function(){
 		console.log("  Query: ".magenta + fuente.query );
 		console.log(" ");
 	}
+}
+
+module.exports.checkActive = function( id, callback, done ){
+		Fuente.find().where({ id: id }).limit(1).exec( function( err, fuente ){
+		if( err ){
+			return console.log( err );
+		}else{
+			if( typeof fuente[0] != 'undefined' ){	
+
+				if( fuente[0].active ){
+					
+					console.log("info: ".green + "La fuente está activa: " + fuente[0].active);
+
+					Tablero.find().where({ id: fuente[0].entablero }).limit(1).exec( function( err, tablero ){
+
+						if( err ){
+							return console.log( err );
+						}else{
+							if( typeof tablero[0] != 'undefined' ){	
+								console.log("info: ".green + "El tablero está activo: " + tablero[0].active);
+
+								if( tablero[0].active ){
+
+									callback();
+
+								}else{
+									console.log("info: ".green + "El tablero ya no está activo" );
+									done();
+								}
+
+							}else{
+								console.log("info: ".green + "El tablero ya no existe" );
+								done();
+							}
+						}
+
+					});
+
+				}else{
+					done();
+				}
+			}else{
+				console.log("info: ".green + "La fuente ya no existe" );
+				done();
+			}
+		}
+	});
 }

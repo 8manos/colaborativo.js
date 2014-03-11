@@ -16,103 +16,161 @@ var twitterConnection = new Twit({
 })
  
  
-var openStreams = {}
+var openStreams = {};
+var requestedStreams = {};
+
+module.exports.requestStream = function( id, url , event , options, tablero ){
+	console.log("info: ".green + "Twitter Stream Job: " + id + " Requested With Options:", options );
+
+	// already in kue
+	if( requestedStreams[id] ){
+
+		console.log("info: ".yellow + "Twitter stream: " + id + " is already requested.")
+
+
+	}else{
+		//already an open listener
+		if( openStreams[id] ){
+
+			console.log("info: ".yellow + "Twitter stream: " + id + " is already active.")
+
+		}else{
+			console.log("info: ".yellow + "Creating Twitter stream job: " + id );
+			JobsKue.create( 'twitterStream', { 
+				title: 'twitterStream: ' + options.track,
+				id: id, 
+				options: options, 
+				tablero: tablero,
+				url: url,
+				event: event 
+			}, 0, 3000 );
+
+			requestedStreams[id] = id;
+		}	
+	}
+
+}
  
 // id : the id of the requested stream
 // url : what path to listen to
 // event : stream event to listen for
 // options : parameters for the stram API
 // tablero : the tablero where current stream belongs
-module.exports.listenToStream = function( id, url , event , options, tablero ){
+module.exports.listenToStream = function( job, done ){
 
-	console.log("info: ".green + "Twitter Stream: " + id + " Requested With Options:", options );
-	
-	//already an open listener
-	if( openStreams[id] ){
+	FuentesService.checkActive( job.data.id, function(){
+		console.log("info: ".green + "Twitter Stream: " + job.data.id + " Requested With Options:", job.data.options );
+		
+		//already an open listener
+		if( openStreams[job.data.id] ){
 
-		console.log("info: ".yellow + "Twitter stream: " + id + " is already active.")
-		return openStreams[id];	
+			console.log("info: ".yellow + "Twitter stream: " + job.data.id + " is already active.")
+			done();
 
-	}else{
+		}else{
 
-		console.log("info: ".green + "Connecting to twitter stream: "+ id );
+			console.log("info: ".green + "Connecting to twitter stream: "+ job.data.id );
 
-		var stream = twitterConnection.stream( url , options );
-	 
-	 	/* On Stream Connect */
-	 	stream.on( 'connect' , function( request ){
-	 		console.log( "info: ".green + "Connected to twitter stream: "+ id );
-	 	});
+			var stream = twitterConnection.stream( job.data.url , job.data.options );
+		 
+		 	var i = 0;
 
-	 	/* On Stream Reconnect */
-	 	stream.on( 'reconnect' , function (request, response, connectInterval) {
-			console.log( "info: ".green + "Reconnected to twitter stream: "+ id );
-		});
+		 	/* On Stream Connect */
+		 	stream.on( 'connect' , function( request ){
+		 		console.log( "info: ".green + "Connected to twitter stream: "+ job.data.id );
 
-	 	/* On New Tweet from stream */
-		stream.on( event , function ( tweet ){
-			Publicacion.create({
-				entablero: tablero,
-				defuente: id,
-				red: 'twitter',
-				tipo: 'tweet',
-				data: tweet
-			}).done(function(err, publicacion) {
-				if (err) {
-					return console.log(err);
+		 		delete requestedStreams[job.data.id];
 
-				}else {
-					console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + id + ". Author: @" + publicacion.data.user.screen_name );
-						Publicacion.publishCreate({
-						  id: tablero,
-						  data: publicacion
-						});
-				}
+		 		var I = setInterval(
+		 			function (){
+		 				i++;
+			 			job.progress( i, 120 );
+			 			if( i === 120 ){
+			 				clearInterval(I);
+		 					TwitterStream.closeStream( job.data.id );
+		 					console.log( "DESCONECTANDO".red, job.data.id );
+		 					done();
+			 			}
+		 			}
+		 		, 1000 );
+
+
+		 	});
+
+		 	/* On Stream Reconnect */
+		 	stream.on( 'reconnect' , function (request, response, connectInterval) {
+				console.log( "info: ".green + "Reconnected to twitter stream: "+ job.data.id );
 			});
-		});
 
-		/* On Stream Tweet Delete */
-		stream.on( 'delete' , function ( deleteMessage ) {
-			console.log( "info: ".red + "Tweet Deleted from Twitter: ", deleteMessage );
-		});
+		 	/* On New Tweet from stream */
+			stream.on( job.data.event , function ( tweet ){
+				Publicacion.create({
+					entablero: job.data.tablero,
+					defuente: job.data.id,
+					red: 'twitter',
+					tipo: 'tweet',
+					data: tweet
+				}).done(function(err, publicacion) {
+					if (err) {
+						return console.log(err);
 
-		/* On location deletion message */
-		stream.on( 'scrub_geo' , function ( scrubGeoMessage ) {
-			console.log( "info: ".red + "Tweet Location Deleted from Twitter: ", scrubGeoMessage );
-		});
+					}else {
+						console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id + ". Author: @" + publicacion.data.user.screen_name );
+							Publicacion.publishCreate({
+							  id: job.data.tablero,
+							  data: publicacion
+							});
+					}
+				});
+			});
 
-		/* On tweet was withheld in certain countries. */
-		stream.on( 'status_withheld' , function ( withheldMsg ) {
-		  console.log( "info: ".yellow + "Tweet was withheld in certain countries: ", withheldMsg );
-		});
+			/* On Stream Tweet Delete */
+			stream.on( 'delete' , function ( deleteMessage ) {
+				console.log( "info: ".red + "Tweet Deleted from Twitter: ", deleteMessage );
+			});
 
-		/* On user was withheld in certain countries. */
-		stream.on( 'user_withheld' , function ( withheldMsg ) {
-		  console.log( "info: ".yellow + "User was withheld in certain countries: ", withheldMsg );
-		});
+			/* On location deletion message */
+			stream.on( 'scrub_geo' , function ( scrubGeoMessage ) {
+				console.log( "info: ".red + "Tweet Location Deleted from Twitter: ", scrubGeoMessage );
+			});
 
-		/* On Stream Warning Message */
-		stream.on( 'warning' , function ( warning ) {
-			console.log( "warning: ".red + "Twitter Stream Warning: ", warning );
-		});
+			/* On tweet was withheld in certain countries. */
+			stream.on( 'status_withheld' , function ( withheldMsg ) {
+			  console.log( "info: ".yellow + "Tweet was withheld in certain countries: ", withheldMsg );
+			});
 
-		/* On Stream Limit Message */
-		stream.on( 'limit' , function ( limitMessage ) {
-		  console.log( "info: ".yellow + "Incoming Stream Limit Message: ", limitMessage );
-		});
+			/* On user was withheld in certain countries. */
+			stream.on( 'user_withheld' , function ( withheldMsg ) {
+			  console.log( "info: ".yellow + "User was withheld in certain countries: ", withheldMsg );
+			});
 
-		/* On Stream Disconnect */
-		stream.on( 'disconnect' , function( disconnectMessage ){
-	 		console.log( "info: ".red + "Disconnected from twitter stream: "+ id + " with message: ", disconnectMessage );
-	 		delete openStreams[id];
-	 	});
-	 
-	 	/* Add Stream to Open Streams */ 
-		openStreams[id] = stream;
-	 
-		return stream;	
+			/* On Stream Warning Message */
+			stream.on( 'warning' , function ( warning ) {
+				console.log( "warning: ".red + "Twitter Stream Warning: ", warning );
+			});
 
-	}
+			/* On Stream Limit Message */
+			stream.on( 'limit' , function ( limitMessage ) {
+			  console.log( "info: ".yellow + "Incoming Stream Limit Message: ", limitMessage );
+			});
+
+			/* On Stream Disconnect */
+			stream.on( 'disconnect' , function( disconnectMessage ){
+		 		console.log( "info: ".red + "Disconnected from twitter stream: "+ job.data.id + " with message: ", disconnectMessage );
+		 		delete openStreams[job.data.id];
+
+		 		var err = new Error( disconnectMessage );
+							  job.failed().error(err);
+							  done(err);
+		 	});
+		 
+		 	/* Add Stream to Open Streams */ 
+			openStreams[job.data.id] = stream;
+		 
+			return stream;	
+
+		}
+	}, done );
 	
 }
  
