@@ -56,22 +56,26 @@ module.exports.shutdown = function () {
 	}, 0 );
 }
 
+var JobsComplete = false;
+
 module.exports.aTrabajar = function ( jobHandle, concurrency ) {
 
 	console.log("info: ".green + "JobsKue "+ jobHandle +" background service starting... concurrency: " + concurrency );
 
-	jobs.on('job complete', function (id) {
-		kue.Job.get(id, function (err, job) {
-			if (err) return;
-			setTimeout( function(){
-				job.remove(function (err) {
-					if (err) throw err;
-					console.log("info: ".green + 'Removed completed job #%d', job.id);
-						
+		if( JobsComplete === false ){
+			JobsComplete = jobs.on('job complete', function (id) {
+				kue.Job.get(id, function (err, job) {
+					if (err) return;
+					setTimeout( function(){
+						job.remove(function (err) {
+							if (err) throw err;
+							console.log("info: ".green + 'Removed completed job #%d', job.id);
+								
+						});
+					}, 60000 );
 				});
-			}, 60000 );
-		});
-	});
+			});
+		}
 
 	// aTrabajar();
 
