@@ -35,7 +35,7 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
 	  if (message.verb === "created") {
 	  	if(message.id === tablero_id ){
 	  		console.log(message);
-			$scope.publicaciones.push( message.data.data );
+			$scope.publicaciones.unshift( message.data.data );
 	  	}
 	  }
 	});

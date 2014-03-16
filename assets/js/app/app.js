@@ -24,7 +24,7 @@
                     var timeout = setTimeout( function(){
                         console.log("scrolling");
                         el.scrollTop = el.scrollHeight;
-                    }, 1500);
+                    }, 100);
                 }
 
                 function shouldActivateAutoScroll(){
