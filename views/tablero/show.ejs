@@ -1,29 +1,52 @@
-<h1><%= tablero.name %></h1>
-<div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl"> 
-	{{tablero.length}} Tablero
-	<ul ng-view>
-		<li ng-repeat="tablero in tablero"><a href="/tablero/show/{{tablero.id}}">{{tablero.name}}</a></li>
-	</ul>
+<header id="header">
+	<h1><%= tablero.name %></h1>
+	<h2><small><%= __('Powered by') %>: </small><a href="/">Colaborativo</a></h2>	
+</header>
+<div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl" scroll-glue> 
 
-	<h3>Publicaciones</h3>
 	<ul class="publicaciones" ng-view>
-		<li class="publicacion {{publicacion.red}} item" ng-repeat="publicacion in publicaciones | limitTo:50">
+		<li id="{{publicacion.id}}" class="publicacion {{publicacion.red}} item" ng-repeat="publicacion in publicaciones | limitTo:50">
 
-			<div ng-if="publicacion.red=='twitter'">
-				<h3>
-					<img width="48" height="48" src="{{publicacion.data.user.profile_image_url}}" />
-					<a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank">@{{publicacion.data.user.name}}:</a></h3>
+			<article ng-if="publicacion.red=='twitter'">
 				<blockquote>
 					{{publicacion.data.text}}
 				</blockquote>
-			</div>
+				<div class="article-meta">
+					<div class="autor">
+						<img width="48" height="48" src="{{publicacion.data.user.profile_image_url}}" />
+						<span><%= __('by') %>: <a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank">@{{publicacion.data.user.name}}</a></span>
+					</div>
+					<div class="date">
+						{{publicacion.data.created_at }}
+					</div>
+					<div nam-time-ago="publicacion.data.created_at" class="time">
+						{{publicacion.createdAt}}
+					</div>
+					<div class="fuente fuente-{{publicacion.data.defuente}}">
+						#
+					</div>
+				</div>
+			</article>
 
-			<div ng-if="publicacion.red=='instagram'">
-				<img src="{{publicacion.data.images.low_resolution.url}}" width="306" height="306" />
+			<article ng-if="publicacion.red=='instagram'">
+				<img src="{{publicacion.data.images.standard_resolution.url}}" width="{{publicacion.data.images.standard_resolution.width}}" height="{{publicacion.data.images.standard_resolution.height}}" />
 				<h2>{{publicacion.data.caption.text}}</h2>
-			</div>
 
-			<pre>{{publicacion.red}}: {{publicacion.data.id}}</pre>
+				<div class="article-meta">
+					<div class="autor">
+
+					</div>
+					<div class="date">
+
+					</div>
+					<div class="time">
+						{{publicacion.createdAt}}
+					</div>
+					<div class="fuente fuente-{{publicacion.data.defuente}}">
+					
+					</div>
+				</div>
+			</article>
 		</li>
 	</ul>
 </div>
