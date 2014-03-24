@@ -5,7 +5,7 @@
 <div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl" scroll-glue> 
 
 	<ul class="publicaciones" ng-view>
-		<li id="{{publicacion.id}}" class="publicacion {{publicacion.red}} item" ng-repeat="publicacion in publicaciones | limitTo:50">
+		<li id="{{publicacion.id}}" class="publicacion {{publicacion.red}} item" ng-repeat="publicacion in publicaciones | limitTo:50" danny-packery>
 
 			<article ng-if="publicacion.red=='twitter'">
 				<blockquote>
@@ -30,14 +30,14 @@
 
 			<article ng-if="publicacion.red=='instagram'">
 				<img src="{{publicacion.data.images.standard_resolution.url}}" width="{{publicacion.data.images.standard_resolution.width}}" height="{{publicacion.data.images.standard_resolution.height}}" />
-				<h2>{{publicacion.data.caption.text}}</h2>
+				<!-- <h2>{{publicacion.data.caption.text}}</h2> -->
 
 				<div class="article-meta">
 					<div class="autor">
 
 					</div>
 					<div class="date">
-
+						{{publicacion.createdAt}}
 					</div>
 					<div class="time">
 						{{publicacion.createdAt}}

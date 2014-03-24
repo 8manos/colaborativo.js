@@ -116,10 +116,15 @@ module.exports.listenToStream = function( job, done ){
 
 					}else {
 						console.log("info: ".green + "Publicacion saved:", publicacion.id + " from fuente: " + job.data.id + ". Author: @" + publicacion.data.user.screen_name );
-							Publicacion.publishCreate({
-							  id: job.data.tablero,
-							  data: publicacion
-							});
+
+							if( !publicacion.data.retweeted_status ){
+								Publicacion.publishCreate({
+								  id: job.data.tablero,
+								  data: publicacion
+								});
+							}else{
+								console.log("info: ".green + "Omitiendo anuncio de retweet");
+							}
 					}
 				});
 			});

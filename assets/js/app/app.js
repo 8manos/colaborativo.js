@@ -37,14 +37,14 @@ var dannyPackery = app.directive('dannyPackery', ['$rootScope', function($rootSc
                 console.log('making packery!');
                 $rootScope.packery = new Packery(element[0].parentElement, {
                 													gutter: 0,
-                                                                    transitionDuration: 0
+                                                                    transitionDuration: '0.3s'
                 												});
                 $rootScope.packery.bindResize();
-                $rootScope.packery.appended(element[0]);
+                $rootScope.packery.prepended(element[0]);
                 $rootScope.packery.items.splice(1,1); // hack to fix a bug where the first element was added twice in two different positions
             }
             else{
-                $rootScope.packery.appended(element[0]);
+                $rootScope.packery.prepended(element[0]);
             }
             $rootScope.packery.layout();
         }
