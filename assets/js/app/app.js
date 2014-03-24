@@ -46,6 +46,12 @@ var dannyPackery = app.directive('dannyPackery', ['$rootScope', function($rootSc
             else{
                 $rootScope.packery.prepended(element[0]);
             }
+            setInterval(
+                function(){
+                    $rootScope.packery.layout();
+                },
+                100
+                );
             $rootScope.packery.layout();
         }
     };
