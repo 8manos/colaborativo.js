@@ -60,7 +60,7 @@ img {
 		margin: 0; 
 		overflow: hidden;
 		vertical-align:  top;
-		width: 20%;
+		width: 100%;
 
 		article {
 			background-color: @blanco;
@@ -114,60 +114,11 @@ img {
 		}
 	}
 
-	li.one {
-		width: 8.333%;
-	}
-
-	li.two,
-	li.twitter {
-		width: 16.667%;
-	}
-
-	li.three {
-		width: 25%;
-	}
-
-	li.four {
-		width: 33.333%;
-	}
-
-	li.five {
-		width: 41.667%;
-	}
-
-	li.six {
-		width: 50%;
-	}
-
-	li.seven {
-		width: 58.333%;
-	}
-
-	li.eight {
-		width: 66.667%;
-	}
-
-	li.nine {
-		width: 75%;
-	}
-
-	li.ten {
-		width: 83.333%;
-	}
-
-	li.eleven {
-		width: 91.667%;
-	}
-
-	li.twelve {
-	    width: 100%;
-	}
-
 	.twitter blockquote {
 		font-size: 1em;
 	}
 
-	.twitter.six {
+	.twitter.four {
 		blockquote {
 			font-size: 1.5em;
 		}
@@ -211,4 +162,79 @@ img {
 	overflow-x: hidden;
 	overflow-y: scroll;
 	padding-top: 50px;
+}
+
+@media all and (min-width: 650px) {
+	li.one,
+	li.two,
+	li.twitter,
+	li.three {
+		width: 33.333%;
+	}
+
+	li.four,
+	li.five,
+	li.six,
+	li.seven,
+	li.eight {
+		width: 66.667%;
+	}
+
+	li.nine,
+	li.ten,
+	li.eleven,
+	li.twelve {
+	    width: 100%;
+	}
+}
+
+@media all and (min-width: 980px) {
+	li.one {
+		width: 8.333%;
+	}
+
+	li.two,
+	li.twitter {
+		width: 16.66%;
+	}
+
+	li.three {
+		width: 25%;
+	}
+
+	li.four {
+		width: 33.333%;
+	}
+
+	li.five {
+		width: 41.667%;
+	}
+
+	li.six {
+		width: 50%;
+	}
+
+	li.seven {
+		width: 58.333%;
+	}
+
+	li.eight {
+		width: 66.667%;
+	}
+
+	li.nine {
+		width: 75%;
+	}
+
+	li.ten {
+		width: 83.333%;
+	}
+
+	li.eleven {
+		width: 91.667%;
+	}
+
+	li.twelve {
+	    width: 100%;
+	}
 }
