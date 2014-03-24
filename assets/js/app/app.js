@@ -10,40 +10,8 @@
         };
     }
 
-    angular.module('luegg.directives', [])
-    .directive('scrollGlue', function(){
-        return {
-            priority: 1,
-            require: ['?ngModel'],
-            restrict: 'A',
-            link: function(scope, $el, attrs, ctrls){
-                var el = $el[0],
-                    ngModel = ctrls[0] || fakeNgModel(true);
-
-                function scrollToBottom(){
-                    var timeout = setTimeout( function(){
-                        console.log("scrolling");
-                        el.scrollTop = el.scrollHeight;
-                    }, 100);
-                }
-
-                function shouldActivateAutoScroll(){
-                    // + 1 catches off by one errors in chrome
-                    return el.scrollTop + el.clientHeight + 1 >= el.scrollHeight;
-                }
-
-                scope.$watch(function(){
-                    if(ngModel.$viewValue){
-                        scrollToBottom();
-                    }
-                });
-
-                $el.bind('scroll', function(){
-                    scope.$apply(ngModel.$setViewValue.bind(ngModel, shouldActivateAutoScroll()));
-                });
-            }
-        };
-    });
+    angular.module('luegg.directives', []);
+    
 }(angular));
 
 var app = angular.module('colaborativo', [ 'ngResource', 'luegg.directives', 'angularMoment', 'colaborativo.controllers' ]);
