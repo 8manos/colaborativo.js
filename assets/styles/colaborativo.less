@@ -15,6 +15,7 @@ blockquote {
 body {
 	background-color: @grisClaro;
 	font-family: 'Open Sans', sans-serif;
+	font-weight: 100;
 }
 
 figure {
@@ -78,11 +79,21 @@ img {
 
 			.article-meta {
 				.box-sizing;
-				background-color: darken(@blanco, 5%);
+				background-color: #f8f8f8;
+				color: #929292;
 				display: table;
 				float: none;
-				font-size: 0.8em;
+				font-size: 1em;
+				font-weight: 300;
 				width: 100%;
+
+				a {
+					color: #929292;
+				}
+
+				a:hover {
+					color: darken(#929292, 20%);
+				}
 
 				.table-row {
 					margin:0;
