@@ -14,7 +14,7 @@
     
 }(angular));
 
-var app = angular.module('colaborativo', [ 'ngResource', 'luegg.directives', 'angularMoment', 'colaborativo.controllers' ]);
+var app = angular.module('colaborativo', [ 'ngResource', 'ngSanitize', 'twitterFilters', 'luegg.directives', 'angularMoment', 'colaborativo.controllers' ]);
 
 
 // Factories
@@ -37,7 +37,7 @@ var dannyPackery = app.directive('dannyPackery', ['$rootScope', function($rootSc
                 console.log('making packery!');
                 $rootScope.packery = new Packery(element[0].parentElement, {
                 													gutter: 0,
-                                                                    transitionDuration: '0.3s'
+                                                                    transitionDuration: '0.2s'
                 												});
                 $rootScope.packery.bindResize();
                 $rootScope.packery.prepended(element[0]);
