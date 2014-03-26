@@ -78,7 +78,16 @@ img {
 
 			blockquote {
 				font-size: 1.1em;
-				padding: 1em;
+				padding: 1.56em;
+			}
+
+			i.red-icon {
+				color: #929292;
+				font-size: 1em;
+				position: absolute;
+				top: 0.5em;
+				right: 0.5em;
+				z-index: 5;
 			}
 
 			.article-meta {
@@ -137,6 +146,19 @@ img {
 				}
 			}
 		}
+
+		article:after {
+			background: #f8f8f8;
+			content: "";
+			width: 5em;
+			height: 5em;
+			position: absolute;
+			top: -2.5em;
+			right: -2.5em;
+			transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+		}
 	}
 
 	.twitter blockquote {
@@ -145,7 +167,7 @@ img {
 
 	.twitter.four {
 		blockquote {
-			font-size: 1.5em;
+			font-size: 1.563em;
 		}
 
 		.article-meta {
