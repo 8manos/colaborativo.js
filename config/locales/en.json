@@ -7,5 +7,7 @@
   "Is Public" : "Is Public",
   "Board Sources" : "Board Sources",
   "ID" : "ID",
-  "Query": "Query"
+  "Query": "Query",
+  "Yes" : "Yes",
+  "No" : "No"
 }

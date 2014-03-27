@@ -2,7 +2,7 @@
 
 <div class="tablero" id="<%= tablero.id %>">
 
-	<form>
+	<form action="/tablero/update/<%= tablero.id %>" method="GET">
 		<fieldset>
 			<h2><%= __('Board Settings') %></h2>
 
@@ -14,12 +14,24 @@
 
 			<label for="active">
 				<%= __('Active') %>:
-				<input type="checkbox" name="active" id="active" <% if ( tablero.active ) %> checked <% %> />
+
+				<input type="radio" name="active" id="active_true" value="true" <% if ( tablero.active == true ) { %> checked <% } %> />
+				<label for="active_true"><%= __('Yes') %></label>
+
+				<input type="radio" name="active" id="active_false" value="false" <% if ( tablero.active == false ) { %> checked <% } %> />
+				<label for="active_false"><%= __('No') %></label>
+
 			</label>
 
 			<label for="ispublic">
 				<%= __('Is Public') %>:
-				<input type="checkbox" name="ispublic" id="ispublic" <% if ( tablero.ispublic ) %> checked <% %> />
+				
+				<input type="radio" name="ispublic" id="ispublic_true" value="true" <% if ( tablero.ispublic == true ) { %> checked <% } %> />
+				<label for="active_true"><%= __('Yes') %></label>
+
+				<input type="radio" name="ispublic" id="ispublic_false" value="false" <% if ( tablero.ispublic == false ) { %> checked <% } %> />
+				<label for="active_false"><%= __('No') %></label>
+				
 			</label>
 
 		</fieldset>
@@ -28,7 +40,7 @@
 
 			<h2><%= fuentes.length %> <%= __('Board Sources') %></h2>
 
-			<% if ( fuentes.length > 0 ) %>
+			<% if ( fuentes.length > 0 ){ %>
 				<dl>
 					<% for( var i=0; i < fuentes.length; i++ ) {%>
 						<dt><%=  fuentes[i].network %>: <%=  fuentes[i].query %></dt>
@@ -48,7 +60,7 @@
 						</dd>
 					<% } %>
 				</dl>
-			<% %>
+			<% } %>
 		</fieldset>
 		
 		<input type="submit" value="<%= __('Save') %>" />
