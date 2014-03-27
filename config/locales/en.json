@@ -1,4 +1,11 @@
 {
   "Welcome": "Welcome",
-  "Nothing": "Nothing here!!"
+  "Nothing": "Nothing here!!",
+  "Board Settings": "Board Settings",
+  "Name" : "Name",
+  "Active" : "Active",
+  "Is Public" : "Is Public",
+  "Board Sources" : "Board Sources",
+  "ID" : "ID",
+  "Query": "Query"
 }

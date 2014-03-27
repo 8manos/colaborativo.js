@@ -1,0 +1,56 @@
+<%- include parts/header.ejs %>
+
+<div class="tablero" id="<%= tablero.id %>">
+
+	<form>
+		<fieldset>
+			<h2><%= __('Board Settings') %></h2>
+
+			<label for="id"><%= __('ID') %>:</label>
+			<input required readonly type="text" name="id" id="id" value="<%= tablero.id %>" />
+
+			<label for="name"><%= __('Name') %>:</label>
+			<input required type="text" name="name" id="name" value="<%= tablero.name %>" />
+
+			<label for="active">
+				<%= __('Active') %>:
+				<input type="checkbox" name="active" id="active" <% if ( tablero.active ) %> checked <% %> />
+			</label>
+
+			<label for="ispublic">
+				<%= __('Is Public') %>:
+				<input type="checkbox" name="ispublic" id="ispublic" <% if ( tablero.ispublic ) %> checked <% %> />
+			</label>
+
+		</fieldset>
+
+		<fieldset>
+
+			<h2><%= fuentes.length %> <%= __('Board Sources') %></h2>
+
+			<% if ( fuentes.length > 0 ) %>
+				<dl>
+					<% for( var i=0; i < fuentes.length; i++ ) {%>
+						<dt><%=  fuentes[i].network %>: <%=  fuentes[i].query %></dt>
+						<dd>
+							<ul>
+								<li>
+									<%= __('ID') %>: <%=  fuentes[i].id %>
+								</li>
+								<li>
+									<%= __('Query') %>: <%=  fuentes[i].query %>
+								</li>
+								<li>
+									<%= __('Active') %>: <%=  fuentes[i].active %>
+								</li>
+
+							</ul>
+						</dd>
+					<% } %>
+				</dl>
+			<% %>
+		</fieldset>
+		
+		<input type="submit" value="<%= __('Save') %>" />
+	</form>
+</div>

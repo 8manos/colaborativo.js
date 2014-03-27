@@ -1,7 +1,4 @@
-<header id="header">
-	<h1><%= tablero.name %></h1>
-	<h2><small><%= __('Powered by') %>: </small><a href="/">Colaborativo</a></h2>	
-</header>
+<%- include parts/header.ejs %>
 <div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl" scroll-glue> 
 
 	<ul class="publicaciones" ng-view>

@@ -46,5 +46,34 @@ module.exports = {
 				res.redirect('/');
 			}
 		});
+	}, 
+
+	edit: function (req, res) {
+		var id = req.param( 'id' ),
+			fuentes = [];
+
+		Tablero.findByID(id, function ( tablero ) {
+
+			if ( tablero ) {
+
+				Fuente.find({ entablero: tablero.id }).done( function( err, fuentes ) { 
+
+					if( fuentes ){
+						fuentes = fuentes;
+					}
+
+					if ( req.wantsJSON ) {
+						res.send( tablero );
+					} else {
+						res.view({ tablero: tablero, fuentes: fuentes });
+					}
+
+				});
+
+				
+			} else {
+				res.redirect('/');
+			}
+		});
 	}
 };
