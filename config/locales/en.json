@@ -1,13 +1,17 @@
 {
-  "Welcome": "Welcome",
-  "Nothing": "Nothing here!!",
-  "Board Settings": "Board Settings",
-  "Name" : "Name",
   "Active" : "Active",
-  "Is Public" : "Is Public",
+  "Board Settings": "Board Settings",
   "Board Sources" : "Board Sources",
+  "by" : "by",
   "ID" : "ID",
+  "Is Public" : "Is Public",
+  "Name" : "Name",
+  "No" : "No",
+  "Nothing": "Nothing here!!",
+  "Powered by": "Powered by",
   "Query": "Query",
+  "Save": "Save",
+  "Welcome": "Welcome",
   "Yes" : "Yes",
-  "No" : "No"
+  "Yet": "Yet"
 }

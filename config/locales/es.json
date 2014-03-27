@@ -1,7 +1,17 @@
 {
+  "Active" : "Activo",
+  "Board Settings": "Configuración de Tablero",
+  "Board Sources" : "Fuentes de Tablero",
   "by" : "por",
-  "Welcome": "Bienvenido",
+  "ID" : "ID",
+  "Is Public" : "Es público",
+  "Name" : "Nombre",
+  "No" : "No",
   "Nothing": "Nada",
   "Powered by": "Gracias a",
+  "Query": "Búsqueda",
+  "Save": "Guardar",
+  "Welcome": "Bienvenido",
+  "Yes" : "Si",
   "Yet": "Aún"
 }
