@@ -1,0 +1,44 @@
+<%- include parts/header.ejs %>
+<div class="tablero" id="<%= theme.id %>">
+	<form action="/theme/update/<%= theme.id %>" method="GET">
+		<fieldset>
+			<h2><%= __('Editing Theme') %>: <%= theme.name %></h2>
+
+			<label for="name"><%= __('Name') %>:</label>	
+			<input name="name" id="name" type="text" value="<%= theme.name %>" required />
+
+		</fieldset>
+
+		<fieldset>
+			<h2><%= __('Colors') %></h2>
+
+			<label for="header_bg_color"><%= __('Header Background Color') %>:</label>
+			<input name="header_bg_color" id="header_bg_color" type="color" value="<%= theme.header_bg_color %>" />
+
+			<label for="header_bg_url"><%= __('Header Background URL') %>:</label>
+			<input name="header_bg_url" id="header_bg_url" type="text" value="<%= theme.header_bg_url %>" />
+
+			<label for="header_bg_size"><%= __('Header Background Size') %>:</label>
+			<select name="header_bg_size" id="header_bg_size">
+				<option <% if( theme.header_bg_size == 'auto' ){ %>selected<% } %> value="auto"><%= __('Auto') %></option>
+				<option <% if( theme.header_bg_size == 'contain' ){ %>selected<% } %> value="contain"><%= __('Contain') %></option>
+				<option <% if( theme.header_bg_size == 'cover' ){ %>selected<% } %> value="cover"><%= __('Cover') %></option>
+			</select>
+
+			<label for="body_bg_color"><%= __('Body Background Color') %>:</label>
+			<input name="body_bg_color" id="body_bg_color" type="color" value="<%= theme.body_bg_color %>" />
+
+			<label for="body_bg_url"><%= __('Body Background URL') %>:</label>
+			<input name="body_bg_url" id="body_bg_url" type="text" value="<%= theme.body_bg_url %>" />
+
+			<label for="body_bg_size"><%= __('Body Background Size') %>:</label>
+			<select name="body_bg_size" id="body_bg_size">
+				<option <% if( theme.body_bg_size == 'auto' ){ %>selected<% } %> value="auto"><%= __('Auto') %></option>
+				<option <% if( theme.body_bg_size == 'contain' ){ %>selected<% } %> value="contain"><%= __('Contain') %></option>
+				<option <% if( theme.body_bg_size == 'cover' ){ %>selected<% } %> value="cover"><%= __('Cover') %></option>
+			</select>
+		</fieldset>
+
+		<input type="submit" value="<%= __('Save') %>" />
+	</form>
+</div>
