@@ -1,0 +1,25 @@
+<% if( theme !== null ) { %>
+<style>
+ /* Theme: <%= theme.name %> */
+ body {
+ 	background-color: <%= theme.body_bg_color %>;
+ 	<% if( theme.body_bg_url !== 'undefined' ){ %>
+ 		background-image: url( <%= theme.body_bg_url%>);
+	 	-webkit-background-size: <%= theme.body_bg_size%>;
+	 	-moz-background-size: <%= theme.body_bg_size%>;
+	 	background-size: <%= theme.body_bg_size%>;
+ 	<% } %>
+ }
+ #header {
+ 	background-color: <%= theme.header_bg_color %>;
+ 	<% if( theme.header_bg_url !== 'undefined' ){ %>
+ 		background-image: url( <%= theme.header_bg_url%>);
+	 	-webkit-background-size: <%= theme.header_bg_size%>;
+	 	-moz-background-size: <%= theme.header_bg_size%>;
+	 	background-size: <%= theme.header_bg_size%>;
+ 	<% } %>
+ }
+</style>
+<% }else{ %>
+	<!-- No Theme -->
+<% } %>

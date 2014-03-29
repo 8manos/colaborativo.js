@@ -26,7 +26,8 @@ module.exports = {
 
 	show: function (req, res) {
 		var id = req.param( 'id' ),
-			publicaciones = [];
+			publicaciones = [],
+			theme = '';
 
 		Tablero.findByID(id, function ( tablero ) {
 
@@ -36,11 +37,19 @@ module.exports = {
 						publicaciones = publicaciones;
 					}
 
-					if ( req.wantsJSON ) {
-						res.send( tablero );
-					} else {
-						res.view({ tablero: tablero, publicaciones: publicaciones });
-					}
+					Theme.findByID( tablero.theme, function( theme ) {
+
+						if( theme ){
+							theme = theme;
+						}
+	
+						if ( req.wantsJSON ) {
+							res.send( tablero );
+						} else {
+							res.view({ tablero: tablero, publicaciones: publicaciones, theme: theme });
+						}
+					});
+
 				});
 			} else {
 				res.redirect('/');
