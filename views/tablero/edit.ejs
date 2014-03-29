@@ -6,33 +6,36 @@
 		<fieldset>
 			<h2><%= __('Board Settings') %></h2>
 
-			<label for="id"><%= __('ID') %>:</label>
-			<input required readonly type="text" name="id" id="id" value="<%= tablero.id %>" />
+			<div class="field">
+				<label for="name"><%= __('Name') %>:</label>
+				<input required type="text" name="name" id="name" value="<%= tablero.name %>" />
+			</div>
 
-			<label for="name"><%= __('Name') %>:</label>
-			<input required type="text" name="name" id="name" value="<%= tablero.name %>" />
+			<div class="field">
+				<label for="active">
+					<%= __('Active') %>:
 
-			<label for="active">
-				<%= __('Active') %>:
+					<input type="radio" name="active" id="active_true" value="true" <% if ( tablero.active == true ) { %> checked <% } %> />
+					<label for="active_true"><%= __('Yes') %></label>
 
-				<input type="radio" name="active" id="active_true" value="true" <% if ( tablero.active == true ) { %> checked <% } %> />
-				<label for="active_true"><%= __('Yes') %></label>
+					<input type="radio" name="active" id="active_false" value="false" <% if ( tablero.active == false ) { %> checked <% } %> />
+					<label for="active_false"><%= __('No') %></label>
 
-				<input type="radio" name="active" id="active_false" value="false" <% if ( tablero.active == false ) { %> checked <% } %> />
-				<label for="active_false"><%= __('No') %></label>
+				</label>
+			</div>
 
-			</label>
+			<div class="field">			
+				<label for="ispublic">
+					<%= __('Is Public') %>:
+					
+					<input type="radio" name="ispublic" id="ispublic_true" value="true" <% if ( tablero.ispublic == true ) { %> checked <% } %> />
+					<label for="ispublic_true"><%= __('Yes') %></label>
 
-			<label for="ispublic">
-				<%= __('Is Public') %>:
-				
-				<input type="radio" name="ispublic" id="ispublic_true" value="true" <% if ( tablero.ispublic == true ) { %> checked <% } %> />
-				<label for="ispublic_true"><%= __('Yes') %></label>
-
-				<input type="radio" name="ispublic" id="ispublic_false" value="false" <% if ( tablero.ispublic == false ) { %> checked <% } %> />
-				<label for="ispublic_false"><%= __('No') %></label>
-				
-			</label>
+					<input type="radio" name="ispublic" id="ispublic_false" value="false" <% if ( tablero.ispublic == false ) { %> checked <% } %> />
+					<label for="ispublic_false"><%= __('No') %></label>
+					
+				</label>
+			</div>
 
 		</fieldset>
 

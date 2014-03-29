@@ -4,39 +4,54 @@
 		<fieldset>
 			<h2><%= __('Editing Theme') %>: <%= theme.name %></h2>
 
-			<label for="name"><%= __('Name') %>:</label>	
-			<input name="name" id="name" type="text" value="<%= theme.name %>" required />
+			<div class="field">
+				<label for="name"><%= __('Name') %>:</label>	
+				<input name="name" id="name" type="text" value="<%= theme.name %>" required />
+			</div>
 
 		</fieldset>
 
 		<fieldset>
 			<h2><%= __('Colors and Backgrounds') %></h2>
 
-			<label for="header_bg_color"><%= __('Header Background Color') %>:</label>
-			<input name="header_bg_color" id="header_bg_color" type="color" value="<%= theme.header_bg_color %>" />
+			<div class="field">
+				<label for="header_bg_color"><%= __('Header Background Color') %>:</label>
+				<input name="header_bg_color" id="header_bg_color" type="color" value="<%= theme.header_bg_color %>" />
+			</div>
 
-			<label for="header_bg_url"><%= __('Header Background URL') %>:</label>
-			<input name="header_bg_url" id="header_bg_url" type="text" value="<%= theme.header_bg_url %>" />
+			<div class="field">
+				<label for="header_bg_url"><%= __('Header Background URL') %>:</label>
+				<input name="header_bg_url" id="header_bg_url" type="text" value="<%= theme.header_bg_url %>" />
+			</div>
 
-			<label for="header_bg_size"><%= __('Header Background Size') %>:</label>
-			<select name="header_bg_size" id="header_bg_size">
-				<option <% if( theme.header_bg_size == 'auto' ){ %>selected<% } %> value="auto"><%= __('Auto') %></option>
-				<option <% if( theme.header_bg_size == 'contain' ){ %>selected<% } %> value="contain"><%= __('Contain') %></option>
-				<option <% if( theme.header_bg_size == 'cover' ){ %>selected<% } %> value="cover"><%= __('Cover') %></option>
-			</select>
+			<div class="field">
+				<label for="header_bg_size"><%= __('Header Background Size') %>:</label>
+				<select name="header_bg_size" id="header_bg_size">
+					<option <% if( theme.header_bg_size == 'auto' ){ %>selected<% } %> value="auto"><%= __('Auto') %></option>
+					<option <% if( theme.header_bg_size == 'contain' ){ %>selected<% } %> value="contain"><%= __('Contain') %></option>
+					<option <% if( theme.header_bg_size == 'cover' ){ %>selected<% } %> value="cover"><%= __('Cover') %></option>
+				</select>
+			</div>
 
-			<label for="body_bg_color"><%= __('Body Background Color') %>:</label>
-			<input name="body_bg_color" id="body_bg_color" type="color" value="<%= theme.body_bg_color %>" />
+			<div class="field">
+				<label for="body_bg_color"><%= __('Body Background Color') %>:</label>
+				<input name="body_bg_color" id="body_bg_color" type="color" value="<%= theme.body_bg_color %>" />
+			</div>
 
-			<label for="body_bg_url"><%= __('Body Background URL') %>:</label>
-			<input name="body_bg_url" id="body_bg_url" type="text" value="<%= theme.body_bg_url %>" />
+			<div class="field">
+				<label for="body_bg_url"><%= __('Body Background URL') %>:</label>
+				<input name="body_bg_url" id="body_bg_url" type="text" value="<%= theme.body_bg_url %>" />
+			</div>
 
-			<label for="body_bg_size"><%= __('Body Background Size') %>:</label>
-			<select name="body_bg_size" id="body_bg_size">
-				<option <% if( theme.body_bg_size == 'auto' ){ %>selected<% } %> value="auto"><%= __('Auto') %></option>
-				<option <% if( theme.body_bg_size == 'contain' ){ %>selected<% } %> value="contain"><%= __('Contain') %></option>
-				<option <% if( theme.body_bg_size == 'cover' ){ %>selected<% } %> value="cover"><%= __('Cover') %></option>
-			</select>
+
+			<div class="field">
+				<label for="body_bg_size"><%= __('Body Background Size') %>:</label>
+				<select name="body_bg_size" id="body_bg_size">
+					<option <% if( theme.body_bg_size == 'auto' ){ %>selected<% } %> value="auto"><%= __('Auto') %></option>
+					<option <% if( theme.body_bg_size == 'contain' ){ %>selected<% } %> value="contain"><%= __('Contain') %></option>
+					<option <% if( theme.body_bg_size == 'cover' ){ %>selected<% } %> value="cover"><%= __('Cover') %></option>
+				</select>
+			</div>
 		</fieldset>
 
 		<input type="submit" value="<%= __('Save') %>" />
