@@ -39,12 +39,16 @@
 		<fieldset>
 			<h2><%= __('Theme') %></h2>
 
-			<select name="theme" id="theme">
-				<% for( var i=0, selected=''; i < themes.length; i++ ) { %>
-					<% selected=''; if( tablero.theme === themes[i].id ){ selected = 'selected' } %>
-					<option <%= selected %> value="<%= themes[i].id%>"><%= themes[i].name %></option>
-				<% } %>
-			</select>
+			<% if( themes.length > 0 ){ %>
+				<select name="theme" id="theme">
+					<% for( var i=0, selected=''; i < themes.length; i++ ) { %>
+						<% selected=''; if( tablero.theme === themes[i].id ){ selected = 'selected' } %>
+						<option <%= selected %> value="<%= themes[i].id%>"><%= themes[i].name %></option>
+					<% } %>
+				</select>
+			<% }else{ %>
+				<pre>No hay Themes</pre>
+			<% } %>
 
 		</fieldset>
 
