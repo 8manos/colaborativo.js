@@ -50,7 +50,9 @@ module.exports = {
 
 	edit: function (req, res) {
 		var id = req.param( 'id' ),
-			fuentes = [];
+			fuentes = [],
+			theme = null,
+			themes = [];
 
 		Tablero.findByID(id, function ( tablero ) {
 
@@ -62,11 +64,26 @@ module.exports = {
 						fuentes = fuentes;
 					}
 
-					if ( req.wantsJSON ) {
-						res.send( tablero );
-					} else {
-						res.view({ tablero: tablero, fuentes: fuentes });
-					}
+					Theme.findByID( tablero.theme, function( theme ) {
+
+						if( theme ){
+							theme = theme;
+						}
+
+						Theme.find().done( function( err, themes ){
+							themes = themes;
+
+							if ( req.wantsJSON ) {
+								res.send( tablero );
+							} else {
+								res.view({ tablero: tablero, fuentes: fuentes, theme: theme, themes: themes });
+							}
+							
+						});
+
+
+					});
+
 
 				});
 

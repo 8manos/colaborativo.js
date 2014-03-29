@@ -37,12 +37,24 @@
 		</fieldset>
 
 		<fieldset>
+			<h2><%= __('Theme') %></h2>
+
+			<select name="theme" id="theme">
+				<% for( var i=0, selected=''; i < themes.length; i++ ) { %>
+					<% selected=''; if( tablero.theme === themes[i].id ){ selected = 'selected' } %>
+					<option <%= selected %> value="<%= themes[i].id%>"><%= themes[i].name %></option>
+				<% } %>
+			</select>
+
+		</fieldset>
+
+		<fieldset>
 
 			<h2><%= fuentes.length %> <%= __('Board Sources') %></h2>
 
 			<% if ( fuentes.length > 0 ){ %>
 				<dl>
-					<% for( var i=0; i < fuentes.length; i++ ) {%>
+					<% for( var i=0; i < fuentes.length; i++ ) { %>
 						<dt><%=  fuentes[i].network %>: <%=  fuentes[i].query %></dt>
 						<dd>
 							<ul>

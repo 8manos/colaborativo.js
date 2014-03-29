@@ -53,6 +53,17 @@ module.exports = {
 			collection: 'tablero',
 			via: 'theme'
 		},
+	},
+
+	findByID: function (id, cb) {
+		this.findOne(id).done(function (err, theme) {
+			if (err) {
+				theme = null;
+				cb(theme);
+			} else {
+				cb(theme);
+			}
+		});
 	}
 
 };
