@@ -22,13 +22,16 @@ module.exports = {
 			defaultsTo: true,
 			required: true
 		},
-			fuentes: {
+		fuentes: {
 			collection: 'fuente',
 			via: 'entablero'
 		},
-			publicaciones: {
+		publicaciones: {
 			collection: 'publicacion',
 			via: 'entablero'
+		},
+		theme: {
+			model: 'theme'
 		}
 	},
 

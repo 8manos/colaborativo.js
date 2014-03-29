@@ -48,7 +48,11 @@ module.exports = {
 		body_bg_size: {
 			type: 'STRING',
 			required: false
-		}
+		},
+		tableros: {
+			collection: 'tablero',
+			via: 'theme'
+		},
 	}
 
 };
