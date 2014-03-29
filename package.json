@@ -29,7 +29,8 @@
     "kue": "^0.7.5",
     "redis": "^0.10.1",
     "sails-mongo": "^0.10.0-rc1",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "newrelic": "^1.4.0"
   },
   "scripts": {
     "start": "node app.js",

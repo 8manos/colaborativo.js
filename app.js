@@ -18,6 +18,7 @@
  * `node app.js --silent --port=80 --prod`
  */
 
+require('newrelic');
 // Ensure a "sails" can be located:
 var sails, rc;
 try {
