@@ -10,6 +10,24 @@
  * http://sailsjs.org/#documentation
  */
 
+var url = require('url'),
+    host = '',
+    port = '',
+    auth = '',
+    db = '';
+
+if (process.env.REDISCLOUD_URL) {
+  //console.log( "Redis URL: " + process.env.REDISCLOUD_URL)
+    var redisUrl = url.parse(process.env.REDISCLOUD_URL);
+    host = redisUrl.hostname,
+    port = redisUrl.port;
+
+    if (redisUrl.auth) {
+      db = 
+      auth = redisUrl.auth.split(":")[1];
+    }
+}
+
 module.exports.session = {
 
   // Session secret is automatically generated when your new app is created
@@ -28,18 +46,18 @@ module.exports.session = {
 
   // In production, uncomment the following lines to set up a shared redis session store
   // that can be shared across multiple Sails.js servers
-  // adapter: 'redis',
+  adapter: 'redis',
   //
   // The following values are optional, if no options are set a redis instance running
   // on localhost is expected.
   // Read more about options at: https://github.com/visionmedia/connect-redis
   //
-  // host: 'localhost',
-  // port: 6379,
-  // ttl: <redis session TTL in seconds>,
-  // db: 0,
-  // pass: <redis auth password>
-  // prefix: 'sess:'
+  host: host,
+  port: port,
+  ttl: 24 * 60 * 60 * 1000,
+  db: db,
+  pass: auth,
+  prefix: 'sess:'
 
 
   // Uncomment the following lines to use your Mongo adapter as a session store

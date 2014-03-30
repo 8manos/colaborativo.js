@@ -7,6 +7,23 @@
  * For more information on using Sails with Sockets, check out:
  * http://sailsjs.org/#documentation
  */
+var url = require('url'),
+    host = '',
+    port = '',
+    auth = '',
+    db = '';
+
+if (process.env.REDISCLOUD_URL) {
+  //console.log( "Redis URL: " + process.env.REDISCLOUD_URL)
+    var redisUrl = url.parse(process.env.REDISCLOUD_URL);
+    host = redisUrl.hostname,
+    port = redisUrl.port;
+
+    if (redisUrl.auth) {
+      db = 
+      auth = redisUrl.auth.split(":")[1];
+    }
+}
 
 module.exports.sockets = {
 
@@ -45,7 +62,7 @@ module.exports.sockets = {
 
   // Use this option to set the datastore socket.io will use to manage rooms/sockets/subscriptions:
   // default: memory
-  adapter: 'memory',
+  adapter: 'redis',
 
   
   // Node.js (and consequently Sails.js) apps scale horizontally.
@@ -63,10 +80,10 @@ module.exports.sockets = {
   // Luckily, Socket.io (and consequently Sails.js) apps support Redis for sockets by default.
   // To enable a remote redis pubsub server: 
   // adapter: 'redis',
-  // host: '127.0.0.1',
-  // port: 6379,
-  // db: 'sails',
-  // pass: '<redis auth password>'
+  host: host,
+  port: port,
+  db: 'sails',
+  pass: auth,
   // Worth mentioning is that, if `adapter` config is `redis`, 
   // but host/port is left unset, Sails will try to connect to redis 
   // running on localhost via port 6379 
