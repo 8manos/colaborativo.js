@@ -7,8 +7,18 @@
 			<h2><%= __('Board Settings') %></h2>
 
 			<div class="field">
+				<label for="logo"><%= __('Logo URL') %>:</label>
+				<input type="text" name="logo" id="logo" value="<%= tablero.logo %>" />
+			</div>
+
+			<div class="field">
 				<label for="name"><%= __('Name') %>:</label>
 				<input required type="text" name="name" id="name" value="<%= tablero.name %>" />
+			</div>
+
+			<div class="field">
+				<label for="slogan"><%= __('Slogan') %>:</label>
+				<input type="text" name="slogan" id="slogan" value="<%= tablero.slogan %>" />
 			</div>
 
 			<div class="field">

@@ -22,6 +22,9 @@ module.exports = {
 			defaultsTo: true,
 			required: true
 		},
+		logo: {
+			type: 'STRING'
+		},
 		fuentes: {
 			collection: 'fuente',
 			via: 'entablero'
