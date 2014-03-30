@@ -25,6 +25,9 @@ module.exports = {
 		logo: {
 			type: 'STRING'
 		},
+		slogan: {
+			type: 'STRING'
+		},
 		fuentes: {
 			collection: 'fuente',
 			via: 'entablero'
