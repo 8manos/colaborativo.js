@@ -8,7 +8,7 @@
 
 			<div class="field">
 				<label for="logo"><%= __('Logo URL') %>:</label>
-				<input type="text" name="logo" id="logo" value="<%= tablero.logo %>" />
+				<input type="text" name="logo" id="logo" value="<% if( tablero.logo ){ %><%= tablero.logo %><% } %>" />
 			</div>
 
 			<div class="field">
@@ -18,7 +18,7 @@
 
 			<div class="field">
 				<label for="slogan"><%= __('Slogan') %>:</label>
-				<input type="text" name="slogan" id="slogan" value="<%= tablero.slogan %>" />
+				<input type="text" name="slogan" id="slogan" value="<% if( tablero.slogan ){ %><%= tablero.slogan %><% } %>" />
 			</div>
 
 			<div class="field">

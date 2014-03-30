@@ -1,4 +1,17 @@
 <header id="header">
-	<h1><a href="/tablero/show/<%= tablero.id %>"><%= tablero.name %></a></h1>
-	<h2><small><%= __('Powered by') %>: </small><a href="/">Colaborativo</a></h2>	
+	<h1>
+		<a href="/tablero/show/<%= tablero.id %>">
+			<% if( tablero.logo ){ %>
+				<img src="<%= tablero.logo %>" title="<%= tablero.name %>" />
+			<% }else{ %>
+				<%= tablero.name %>
+			<% } %>
+		</a>
+	</h1>
+	
+	<% if( tablero.slogan ){ %>
+		<h2><%= tablero.slogan %></h2>
+	<% } %>
+	
+	<h3><small><%= __('Powered by') %>: </small><a href="/">Colaborativo</a></h3>	
 </header>
