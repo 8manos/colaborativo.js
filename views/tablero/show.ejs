@@ -39,17 +39,22 @@
 				<!-- <h2>{{publicacion.data.caption.text}}</h2> -->
 
 				<div class="clearfix article-meta">
-					<div class="autor">
+					<div class="table-row">
+						<div class="meta-item autor">
+							<a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank"><i class="fa fa-user"></i> {{publicacion.data.user.full_name}}</a>
+						</div>
+						<div class="meta-item date">
+							<i class="fa fa-calendar"></i> {{publicacion.createdAt | amCalendar }}
+						</div>
+					</div>
 
-					</div>
-					<div class="date">
-						{{publicacion.createdAt}}
-					</div>
-					<div class="time">
-						{{publicacion.createdAt}}
-					</div>
-					<div class="fuente fuente-{{publicacion.data.defuente}}">
-					
+					<div class="table-row">
+						<div class="meta-item time">
+							<i class="fa fa-clock-o"></i> <span am-time-ago="publicacion.data.created_time">{{publicacion.data.created_time}}</span>
+						</div>
+						<div class="meta-item fuente fuente-{{publicacion.data.defuente}}">
+							<i class="fa fa-heart"></i> <span>0</span>
+						</div>
 					</div>
 				</div>
 			</article>
