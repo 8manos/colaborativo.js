@@ -18,7 +18,7 @@ blockquote {
 	padding: 0;
 }
 body {
-	background-color: @grisClaro;
+	background-color: @blanco;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 100;
 }
@@ -79,6 +79,22 @@ img {
 		width: 150px;
 	}
 
+	#main_nav {
+		float: right;
+
+		li {
+			float: left;
+			font-size: 0.85em;
+			list-style: none;
+			padding: 15px 10px 10px;
+			text-transform: uppercase;
+
+			a:hover {
+				color: #c6d935;
+			}
+		}
+	}
+
 	.poweredby {
 		background-image: url(../images/colaborativo.png);
 		display: inline-block;
@@ -91,6 +107,11 @@ img {
 		width: 218px;
 		vertical-align: top;		
 	}
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 960px;
 }
 
 .publicaciones {
