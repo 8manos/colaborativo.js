@@ -58,8 +58,14 @@ img {
 	h3 {
 		float: right;
 		font-weight: normal;
-		line-height: 40px;
+		line-height: 50px;
 		margin: 0;
+		padding-top: 0.3em;
+
+		small {
+			color: #231F20;
+			font-size: 83%;
+		}
 	}
 
 	ul {
@@ -106,6 +112,37 @@ img {
 		text-indent: -9000em;
 		width: 218px;
 		vertical-align: top;		
+	}
+}
+
+#header.tablero_header {
+	padding: 5px 1em 0;
+	text-align: center;
+
+	h1 {
+		float: left;
+	}
+
+	h2 {
+		font-family: 'Open Sans', sans-serif;
+		font-weight: 300;
+		padding-top: 0.6em;
+	}
+
+	h2:before {
+		display: inline-block;
+		height: 100%;
+		width: 1px;
+		background-color: blue;
+		content: "";
+	}
+
+	h3 {
+		float: right;
+
+		small {
+			text-transform: uppercase;
+		}
 	}
 }
 
@@ -411,7 +448,7 @@ img {
 	li {
 		.box-sizing;
 		border: 1em solid transparent;
-		display: inline-block;
+		display: none;
 		margin: 0; 
 		overflow: hidden;
 		vertical-align:  top;
@@ -507,6 +544,11 @@ img {
 			-ms-transform: rotate(45deg);
 			-webkit-transform: rotate(45deg);
 		}
+	}
+
+	li.instagram, 
+	li.twitter {
+		display: inline-block;
 	}
 
 	.twitter blockquote {
