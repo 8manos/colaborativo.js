@@ -106,7 +106,7 @@ module.exports.listenToStream = function( job, done ){
 			stream.on( job.data.event , function ( tweet ){
 				Publicacion.create({
 					entablero: job.data.tablero,
-					origin_id: job.data.tablero + "_" + tweet.id,
+					origin_id: job.data.tablero + "_" + tweet.id_str,
 					defuente: job.data.id,
 					red: 'twitter',
 					tipo: 'tweet',
