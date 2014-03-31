@@ -12,6 +12,11 @@ module.exports = {
 			type: 'STRING',
 			required: true
 		},
+		origin_id: {
+			type: 'STRING',
+			required: true,
+			unique: true
+		},
 		red: {
 			type: 'STRING',
 			required: true

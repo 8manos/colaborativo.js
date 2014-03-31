@@ -78,6 +78,7 @@ module.exports.GetRecentFromTag = function( job, done ){
 
 									Publicacion.create({
 										entablero: job.data.tablero,
+										origin_id: job.data.tablero + "_" + data[i].id,
 										defuente: job.data.id,
 										red: 'instagram',
 										tipo: data[i].type ,
