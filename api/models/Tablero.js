@@ -36,6 +36,10 @@ module.exports = {
 			collection: 'publicacion',
 			via: 'entablero'
 		},
+		patrocinadores: {
+			collection: 'patrocinadores',
+			via: 'entablero'
+		},
 		theme: {
 			model: 'theme'
 		}
