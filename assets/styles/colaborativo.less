@@ -123,6 +123,7 @@ img {
 	h4,
 	h5,
 	h6 {
+		color: @negro;
 		font-family: 'Bitter',serif;
 		font-weight: normal;
 	}
@@ -130,12 +131,198 @@ img {
 
 .home {	
 
-	#about_us h2 {
-		font-size: 27px;
-		padding: 30px 0px 17px;
-		color: #c6d935;
+	#about_us {
+		h2 {
+			font-size: 27px;
+			padding: 30px 0px 17px;
+			color: #c6d935;
+		}
+		p {
+			line-height: 135%;
+			margin: 0px auto;
+			width: 70%;
+		}
 	}
-	
+
+	#fourth_wrapper {
+		-moz-box-shadow: inset 0 0 6px -1px #444;
+		-webkit-box-shadow: inset 0 0 6px -1px #444;
+		background-color: #222;
+		box-shadow: inset 0 0 6px -1px #444;
+		float: left;
+		margin-top: 45px;
+		padding: 60px 0 60px;
+		text-align: center;
+		width: 100%;
+
+		.fourth {
+			a {
+				-moz-border-radius: 4px;
+				-webkit-border-radius: 4px;
+				-webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+				background-color: #c6d935;
+				border-bottom: 1px #fff solid;
+				border-left: 2px #fff solid;
+				border-radius: 4px;
+				border-right: 2px #fff solid;
+				border-top: 2px #fff solid;
+				box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+				color: #fff;
+				display: inline-block;
+				font-family: 'Bitter',serif;
+				margin-top: 40px;
+				margin: 20px auto 0;
+				padding: 10px 30px;
+				text-align: center;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+			h2 {
+				color: #C6D935;
+				font-size: 27px;
+			}
+			p {
+				color: #ccc;
+				font-size: 100%;
+				line-height: 135%;
+				margin-bottom: 30px;
+				margin: 20px auto;
+				width: 80%;
+			}
+		}
+	}
+
+	#en_linea {
+		float: left;
+		width: 100%;
+		background-color: #fbfbfb;
+		background-repeat: repeat-x;
+		background-position: top;
+		padding-top: 30px;
+
+		h2 {
+			font-size: 27px;
+			padding-top: 60px;
+		}
+		img {
+			float: left;
+			margin-right: 15px;
+			margin-left: 10%;
+			padding-top: 30px;
+		}
+		p {
+			line-height: 135%;
+			margin-top: 15px;
+			padding-bottom: 60px;
+			width: 90%;
+		}
+
+		.container {
+			text-align: left;
+		}
+	}
+
+	#footer {
+		width: 100%;
+		float: left;
+		background-color: #000;
+		border-top: #444 1px solid;
+		margin-top: 50px;
+
+		h1 {
+			float: left;
+			margin: 0;
+			padding: 0;
+			a {
+				background-image: url(../images/logo_colaborativo_fondo.jpg);
+				display: block;
+				font-size: 0;
+				color: transparent;
+				height: 37px;
+				margin-top: 5px;
+				overflow: hidden;
+				text-indent: -9000em;
+				width: 150px;
+			}
+		}
+
+		p {
+			float: right;
+			font-size: 11px;
+			color: #fff;
+			text-transform: uppercase;
+			padding: 0px;
+		}
+	}
+
+	#objectives {
+		h2 {
+			padding: 70px 0 15px;
+			font-size: 30px;
+		}
+		img {
+			float: left;
+			margin: 0px 15px;
+		}
+		 p {
+			line-height: 135%;
+			padding-bottom: 90px;
+		}
+		.container {
+			width: 50%;
+			border-bottom: 1px solid #e8e8e8;
+		}
+		.container.first {
+			border-top: 1px solid #e8e8e8;
+			padding-top: 30px;
+		}
+		.container.second img {
+			float: right;
+			margin-top: 4%;
+		}
+		.container.third {
+			border: 0px;
+		}
+		.container.third img {
+			margin-top: 3%;
+		}
+	}
+
+	#quien_sirve {
+		background-position: top;
+		background-repeat: repeat-x;
+		float: left;
+		margin-top: -4px;
+		padding-top: 50px;
+		width: 100%;
+
+		.container {
+			width: 60%;
+			margin: 0px auto;
+			text-align: center;
+		}
+
+		.who_wrapper {
+			div {
+				width: 30%;
+				float: left;
+				margin-top: 40px;
+			}
+			div.first_item {
+				margin-left: 5%;
+			}
+
+			ul {
+				padding: 0;
+
+				li {
+					list-style: none;
+					line-height: 130%;
+				}
+			}
+		} 
+	}
+
 	#quote {
 
 		h1 {
@@ -151,6 +338,64 @@ img {
 			background-repeat: no-repeat;
 			padding: 0px 0px 18px;
 			margin: 14px auto 0px;
+		}
+	}
+
+	#nuestra_plataforma {
+		width: 100%;
+		float: left;
+		background-color: #fbfbfb;
+		background-position: top;
+		background-repeat: repeat-x;
+		margin-top: 60px;
+		padding-top: 50px;
+		text-align: center;
+	}
+
+	.casos {
+		margin-left: 170px;
+
+		li {
+			background-image: url(http://colaborativo.co/wp-content/themes/colaborativo-landing/images/logos_casos.jpg);
+			background-repeat: no-repeat;
+			float: left;
+			height: 145px;
+			list-style: none;
+			margin: 20px;
+			width: 145px;
+
+			a {
+				width: 145px;
+				height: 145px;
+				display: block;
+				background-image: url(http://colaborativo.co/wp-content/themes/colaborativo-landing/images/logos_casos.jpg);
+				opacity: 0;
+			}
+
+			a:hover {
+				opacity: 1;
+			}
+		}
+
+		li.logo_2 {
+			background-position: -306px -75px;
+			a {
+				background-position: -306px -375px;
+			}
+		}
+
+		li.logo_3 {
+			background-position: -505px -75px;
+			a {
+				background-position: -505px -375px;
+			}
+		}
+
+		li.logo_4 {
+			background-position: -705px -75px;
+			a {
+				background-position: -705px -375px;
+			}
 		}
 	}
 }
