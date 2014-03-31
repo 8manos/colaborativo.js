@@ -9,13 +9,6 @@
 	</ul>
 </header>
 <div class="tablero home" id="tableros" ng-controller="AppCtrl"> 
-	<!-- <ul>
-		<% tableros.forEach(function(tablero) { %>
-			<li><a href="/tablero/show/<%= tablero.id %>"><%= tablero.name %></a></li>
-		<% }) %>
-	</ul> -->
-
-
 
 	<div id="quote">
 		<div class="container">
@@ -50,6 +43,14 @@
 
 		<div class="container second">
 			<h2>Conozca algunos casos de éxito</h2>
+
+			<p>Los siguientes tableros están activos ahora mismo:</p>
+
+			<ul class="activos">
+				<% tableros.forEach(function(tablero) { %>
+					<li><a href="/tablero/show/<%= tablero.id %>"><%= tablero.name %></a></li>
+				<% }) %>
+			</ul>
 
 			<p>Hemos usado Colaborativo en grandes eventos en Colombia. Conozca
 			aquí algunos ejemplos:</p>
