@@ -29,6 +29,10 @@ module.exports.routes = {
   '/': {
     controller : 'home'
   },
+  '/:id': {
+    controller: 'tablero',
+    action: 'show'
+  },
   'get /user/login':{
     controller: 'user',
     action: 'login'
