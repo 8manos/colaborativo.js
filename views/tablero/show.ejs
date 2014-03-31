@@ -2,7 +2,7 @@
 <div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl" scroll-glue> 
 
 	<ul class="publicaciones" ng-view>
-		<li id="p-{{publicacion.id}}" class="publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones | limitTo:50" danny-packery>
+		<li id="p-{{publicacion.id}}" class="module {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones | limitTo:50" danny-packery>
 
 			<article ng-if="publicacion.red=='twitter'">
 				<a href="https://twitter.com/{{publicacion.data.user.screen_name}}/status/{{publicacion.data.id_str}}" target="_blank">
@@ -28,7 +28,7 @@
 						<div class="meta-item time">
 							<i class="fa fa-clock-o"></i> <span am-time-ago="publicacion.data.created_at">{{publicacion.createdAt}}</span>
 						</div>
-						<div class="meta-item fuente fuente-{{publicacion.data.defuente}}">
+						<div class="favs meta-item fuente fuente-{{publicacion.data.defuente}}">
 							<i class="fa fa-heart"></i> <span>0</span>
 						</div>
 					</div>
@@ -57,7 +57,7 @@
 						<div class="meta-item time">
 							<i class="fa fa-clock-o"></i> <span am-time-ago="publicacion.createdAt">{{publicacion.createdAt}}</span>
 						</div>
-						<div class="meta-item fuente fuente-{{publicacion.data.defuente}}">
+						<div class="favs meta-item fuente fuente-{{publicacion.data.defuente}}">
 							<i class="fa fa-heart"></i> <span>0</span>
 						</div>
 					</div>

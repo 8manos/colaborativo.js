@@ -75,12 +75,17 @@ module.exports.GetRecentFromTag = function( job, done ){
 							}else{
 								for (var i = data.length - 1; i >= 0; i--) {
 									// console.log("info: ".green + "Saving image from fuente: " + job.data.id + " from user: " + data[i].user.username + " in tablero: " + job.data.tablero );
+									var options = [ 'no-color-block', 'no-color-block', 'color-block' ];
+									var color = Math.floor((Math.random()*7));
+									var value = Math.floor((Math.random()*3));
 
 									Publicacion.create({
 										entablero: job.data.tablero,
 										origin_id: job.data.tablero + "_" + data[i].id,
 										defuente: job.data.id,
+										color_class: options[ value ] + ' color-' + color,
 										red: 'instagram',
+
 										tipo: data[i].type ,
 										data: data[i],
 										paging: paging,

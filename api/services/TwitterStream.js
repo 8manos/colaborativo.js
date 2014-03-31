@@ -104,12 +104,18 @@ module.exports.listenToStream = function( job, done ){
 
 		 	/* On New Tweet from stream */
 			stream.on( job.data.event , function ( tweet ){
+
+				var options = [ 'no-color-block', 'no-color-block', 'color-block' ];
+				var color = Math.floor((Math.random()*7));
+				var value = Math.floor((Math.random()*3));
+	 
 				Publicacion.create({
 					entablero: job.data.tablero,
 					origin_id: job.data.tablero + "_" + tweet.id_str,
 					defuente: job.data.id,
 					red: 'twitter',
 					tipo: 'tweet',
+					color_class: options[ value ] + ' color-' + color,
 					data: tweet
 				}).done(function(err, publicacion) {
 					if (err) {

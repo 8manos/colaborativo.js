@@ -467,7 +467,6 @@ img {
 			}
 
 			i.red-icon {
-				color: #929292;
 				font-size: 1em;
 				position: absolute;
 				top: 0.5em;
@@ -495,6 +494,10 @@ img {
 
 				i {
 					font-size: 0.9em;
+				}
+
+				.favs {
+					color: @blanco;
 				}
 
 				.table-row {
@@ -546,6 +549,17 @@ img {
 		}
 	}
 
+	li.color-block {
+		article {
+			a {
+				color: @blanco;
+			}
+			.article-meta {
+				color: @blanco;
+			}
+		}
+	}
+
 	li.instagram, 
 	li.twitter {
 		display: inline-block;
@@ -590,7 +604,6 @@ img {
 			}
 		}
 	}
-
 }
 
 .tablero {
@@ -623,6 +636,206 @@ img {
 			margin-bottom: 1em;
 		}
 	}
+}
+
+/* COLOR */
+.color-0 article {
+    background: #fff;
+}
+
+.color-0.color-1 {
+    color: #43a3a1;
+}
+
+.color-0.color-4 {
+    color: #1e4d79;
+}
+
+.color-0.color-5 {
+    color: #ea826c;
+}
+
+.color-0 .article-meta {
+    color: #929292;
+    background: #f8f8f8;
+}
+
+.color-* .favs {
+	color: #fff;
+}
+
+.color-1 .favs{
+    background: #43a3a1;
+}
+
+.color-4 .favs{
+    background: #1e4d79;
+}
+
+.color-5 .favs{
+    background: #ea826c;
+}
+
+.color-6 .favs{
+    background: #be404e;
+}
+
+.module.color-1 article:after{
+    background: #43a3a1;
+}
+
+i.red-icon{
+    color: #fff;
+}
+
+.color-0 i.red-icon{
+    color: #fff;
+}
+
+.color-0.color-2 {
+    color: #862546;
+}
+
+.color-0.color-6 {
+    color: #be404e;
+}
+
+.module.color-2 article:after{
+    background: #862546;
+}
+
+.color-0 .favs{
+    color: #fff;
+}
+
+.color-2 .favs{
+    background: #862546;
+}
+
+.module.color-2 article:after{
+    background:#862546;
+}
+
+.module.color-3 article:after{
+    background:#70d3b7;
+}
+
+.module.color-4 article:after{
+    background:#1e4d79;
+}
+
+.module.color-5 article:after{
+    background:#ea826c;
+}
+
+.module.color-6 article:after{
+    background:#be404e;
+}
+
+.color-3 .favs{
+    background: #70d3b7;
+}
+
+
+.color-0.small p{
+    color: #70d3b7;
+}
+
+.color-block p{
+    color: #fff;
+}
+
+.color-block.color-1 article {
+    background: #43a3a1;
+}
+
+.color-block.color-2 article {
+    background: #862546;
+}
+
+.color-block.color-3 article {
+    background: #70d3b7;
+}
+
+.color-block.color-4 article {
+    background: #1e4d79;
+}
+
+.color-block.color-5 article {
+    background: #ea826c;
+}
+
+.color-block.color-6 article {
+    background: #be404e;
+}
+
+.color-block article {
+    color: #fff;
+}
+
+.color-block.color-1 .article-meta {
+    background: #50b8b6;
+}
+
+.large.color-block li{
+    border-right:1px solid rgba(255, 255, 255, 0.2);
+}
+
+.color-block li, .small.color-block li{
+    border-right:1px solid rgba(255, 255, 255, 0.2);
+    border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+.color-block li.favs{
+    border-top:1px solid rgba(255, 255, 255, 0.3);
+}
+
+.module.color-block article:after{
+    background: #fff;
+}
+
+.color-block.color-1 i.red-icon{
+    color: #43a3a1;
+}
+
+.color-block.color-4 i.red-icon{
+    color: #1e4d79;
+}
+
+.color-block.color-5 i.red-icon{
+    color: #ea826c;
+}
+
+.color-block.color-6 i.red-icon{
+    color: #be404e;
+}
+
+.color-block.color-2 i.red-icon{
+    color: #862546;
+}
+
+.color-block.color-3 i.red-icon{
+    color: #70d3b7;
+}
+
+.color-block.color-2 .article-meta {
+    background: #912d4f;
+}
+
+.color-block.color-3 .article-meta {
+    background: #7cdcc1;
+}
+
+.color-block.color-4 .article-meta {
+    background: #245583;
+}
+
+.color-block.color-5 .article-meta {
+    background: #ef8b76;
+}
+
+.color-block.color-6 .article-meta {
+    background: #c64654;
 }
 
 @media all and (min-width: 650px) {
