@@ -3,6 +3,7 @@
 /* Colores */
 @blanco: #fff;
 @grisClaro: #E5E5E5;
+@negro: #000000;
 
 a {
 	text-decoration: none;
@@ -33,7 +34,7 @@ img {
 
 #header {
 	.box-sizing;
-	background-color: darken(@grisClaro, 60%);
+	background-color: @negro;
 	color: @blanco;
 	padding: 0 1em;
 	position: fixed;
@@ -57,7 +58,38 @@ img {
 	h3 {
 		float: right;
 		font-weight: normal;
+		line-height: 40px;
 		margin: 0;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	#colaborativo a {
+		background-image: url(../images/logo_colaborativo_fondo.jpg);
+		display: block;
+		font-size: 0;
+		color: transparent;
+		height: 37px;
+		margin-top: 5px;
+		overflow: hidden;
+		text-indent: -9000em;
+		width: 150px;
+	}
+
+	.poweredby {
+		background-image: url(../images/colaborativo.png);
+		display: inline-block;
+		font-size: 0;
+		color: transparent;
+		height: 36px;
+		margin-top: 5px;
+		overflow: hidden;
+		text-indent: -9000em;
+		width: 218px;
+		vertical-align: top;		
 	}
 }
 

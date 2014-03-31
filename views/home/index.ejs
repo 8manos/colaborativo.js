@@ -1,9 +1,7 @@
 <header id="header">
-	<h1>COLABORATIVO</h1>
+	<h1 id="colaborativo"><a href="/">COLABORATIVO</a></h1>
 </header>
-<p><%= __('Nothing') %> {{'yet' + '!'}}</p>
-<div id="tableros" ng-controller="AppCtrl"> 
-	{{tableros.length}} Tableros
+<div class="tablero" id="tableros" ng-controller="AppCtrl"> 
 	<ul>
 		<% tableros.forEach(function(tablero) { %>
 			<li><a href="/tablero/show/<%= tablero.id %>"><%= tablero.name %></a></li>
