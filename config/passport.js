@@ -1,5 +1,6 @@
 var passport = require('passport'),
 LocalStrategy = require('passport-local').Strategy;
+var passwordHash = require('password-hash');
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -19,7 +20,7 @@ passport.use(new LocalStrategy({
     User.findOne({ email: email}).done(function(err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false, { message: 'Unknown user ' + email }); }
-      if (user.password != password) { return done(null, false, { message: 'Invalid password' }); }
+      if ( ! passwordHash.verify(password, user.password) ) { return done(null, false, { message: 'Invalid password' }); }
       return done(null, user);
     });
   }

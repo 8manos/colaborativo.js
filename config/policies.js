@@ -26,8 +26,8 @@ module.exports.policies = {
   },
   'user': {
     'login': true,
-    'passport_local': true
-    // 'create': true //should be disabled in production
+    'passport_local': true,
+    'create': true //should be disabled in production
   }
 
   /*
