@@ -43,7 +43,7 @@ module.exports.bootstrap = function (cb) {
 		var jobHandles = {
 				"twitter": {
 					handle:	"twitterStream",
-					concurrency: 2
+					concurrency: 3
 				},
 				"instagram": {
 					handle: "instagramRecentFromTag",
