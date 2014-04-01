@@ -16,7 +16,7 @@ module.exports = {
 			if ( tablero ) {
 				Publicacion.find({ entablero: tablero.id }).limit( 10 ).sort({ createdAt: 'desc' }).done( function( err, publicaciones ){
 					if( publicaciones ){
-						publicaciones = publicaciones;
+						publicaciones = publicaciones.reverse();
 
 						if ( req.wantsJSON ) {
 							Publicacion.watch( req , {id: tablero.id} );
