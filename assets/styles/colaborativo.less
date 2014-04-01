@@ -52,10 +52,12 @@ img {
 	}
 
 	h2 {
+		display: none;
 		margin-left: 3em;
 	}
 
 	h3 {
+		display: none;
 		float: right;
 		font-weight: normal;
 		line-height: 50px;
@@ -63,6 +65,7 @@ img {
 		padding-top: 0.3em;
 
 		small {
+			display: none;
 			color: #231F20;
 			font-size: 83%;
 		}
@@ -848,7 +851,25 @@ i.red-icon{
     background: #c64654;
 }
 
+@media all and (min-width: 370px) {
+	#header {
+		h3 {
+			display: inline-block;
+		}
+	}
+}
+
 @media all and (min-width: 650px) {
+
+	#header {
+
+		h3 {
+			small {
+				display: inline-block;
+			}
+		}
+	}
+
 	li.one,
 	li.two,
 	li.twitter,
@@ -874,6 +895,13 @@ i.red-icon{
 }
 
 @media all and (min-width: 980px) {
+
+	#header {
+		h2 {
+			display: inline-block;
+		}
+	}
+	
 	li.one {
 		width: 8.333%;
 	}
