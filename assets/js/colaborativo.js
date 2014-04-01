@@ -53,5 +53,5 @@ $( document ).ready(function() {
 		e.preventDefault();
 	});
 
- 
+ 	window.moment.lang( $('html').attr('lang') );
 });
