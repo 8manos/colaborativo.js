@@ -65,4 +65,12 @@
 			</article>
 		</li>
 	</ul>
+
+	<% if( patrocinadores.length > 0 ) { %>
+		<ul class="patrocinadores">
+			<% patrocinadores.forEach(function(patrocinador) { %>
+				<li><a href="<%= patrocinador.url %>"><img src="<%= patrocinador.image %>" title="<%= patrocinador.name %>"/></a></li>
+			<% }) %>
+		</ul>
+	<% } %>
 </div>

@@ -27,7 +27,8 @@ module.exports = {
 	show: function (req, res) {
 		var id = req.param( 'id' ),
 			publicaciones = [],
-			theme = '';
+			theme = '',
+			patrocinadores = '';
 
 		Tablero.findByID(id, function ( tablero ) {
 
@@ -42,12 +43,20 @@ module.exports = {
 						if( theme ){
 							theme = theme;
 						}
+
+						Patrocinadores.find({ entablero: tablero.id }).done( function( err, patrocinadores ){
+
+							if( patrocinadores ){
+								patrocinadores = patrocinadores;
+							}
+							
+							if ( req.wantsJSON ) {
+								res.send( tablero );
+							} else {
+								res.view({ tablero: tablero, publicaciones: publicaciones, theme: theme, patrocinadores: patrocinadores });
+							}
+						});
 	
-						if ( req.wantsJSON ) {
-							res.send( tablero );
-						} else {
-							res.view({ tablero: tablero, publicaciones: publicaciones, theme: theme });
-						}
 					});
 
 				});

@@ -21,6 +21,9 @@ module.exports.policies = {
   'tablero': {
     'show': true
   },
+  'publicacion': {
+  	'entablero': true
+  },
   'user': {
     'login': true,
     'passport_local': true,
