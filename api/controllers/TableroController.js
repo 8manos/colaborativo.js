@@ -26,13 +26,17 @@ module.exports = {
 
 	show: function (req, res) {
 		var id = req.param( 'id' ),
+			slug = req.param( 'slug' ),
 			publicaciones = [],
 			theme = '',
 			patrocinadores = '';
 
-		Tablero.findByID(id, function ( tablero ) {
+		Tablero.find({ slug: slug }).done( function ( err, tableros ) {
 
-			if ( tablero ) {
+			if ( tableros.length > 0 ) {
+
+				tablero = tableros[0];
+
 				Publicacion.find({ entablero: tablero.id }).limit(10).sort({ createdAt: 'desc' }).done( function( err, publicaciones ){
 					if( publicaciones ){
 						publicaciones = publicaciones;

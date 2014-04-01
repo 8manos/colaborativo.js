@@ -29,10 +29,6 @@ module.exports.routes = {
   '/': {
     controller : 'home'
   },
-  '/:id': {
-    controller: 'tablero',
-    action: 'show'
-  },
   'get /user/login':{
     controller: 'user',
     action: 'login'
@@ -40,6 +36,10 @@ module.exports.routes = {
   'post /user/login':{
     controller: 'user',
     action: 'passport_local'
+  },
+  '/:slug': {
+    controller: 'tablero',
+    action: 'show'
   }
 
 

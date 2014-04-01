@@ -28,6 +28,11 @@ module.exports = {
 		slogan: {
 			type: 'STRING'
 		},
+		slug: {
+			type: 'STRING',
+			required: true,
+			unique: true
+		},
 		fuentes: {
 			collection: 'fuente',
 			via: 'entablero'
