@@ -37,7 +37,7 @@ module.exports.routes = {
     controller: 'user',
     action: 'passport_local'
   },
-  '/:slug': {
+  '/:slug/': {
     controller: 'tablero',
     action: 'show'
   }
