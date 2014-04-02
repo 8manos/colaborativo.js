@@ -14,7 +14,7 @@ module.exports = {
 		Tablero.findByID(id, function ( tablero ) {
 
 			if ( tablero ) {
-				Publicacion.find({ entablero: tablero.id }).limit( 50 ).sort({ createdAt: 'desc' }).done( function( err, publicaciones ){
+				Publicacion.find({ entablero: tablero.id }).where({"data.retweeted_status": {"$exists": false }}).limit( 50 ).sort({ createdAt: 'desc' }).done( function( err, publicaciones ){
 					if( publicaciones ){
 						publicaciones = publicaciones.reverse();
 
