@@ -669,7 +669,8 @@ img {
     color: #ea826c;
 }
 
-.color-0 .article-meta {
+.color-0 .article-meta,
+.color-block.color-0 .article-meta {
     color: #929292;
     background: #f8f8f8;
 }
@@ -755,8 +756,12 @@ i.red-icon{
     color: #70d3b7;
 }
 
-.color-block p{
+.color-block {
     color: #fff;
+}
+
+.color-block.color-0 {
+    color: #929292;
 }
 
 .color-block.color-1 article {
@@ -787,20 +792,24 @@ i.red-icon{
     color: #fff;
 }
 
+.color-block.color-0 article {
+	color: #929292;
+}
+
 .color-block.color-1 .article-meta {
     background: #50b8b6;
 }
 
-.color-block li{
+.color-block article{
     border-right:1px solid rgba(255, 255, 255, 0.2);
 }
 
-.color-block li, .small.color-block li{
+.color-block article, .small.color-block article{
     border-right:1px solid rgba(255, 255, 255, 0.2);
     border-bottom:1px solid rgba(255, 255, 255, 0.2);
 }
 
-.color-block li.favs{
+.color-block article.favs{
     border-top:1px solid rgba(255, 255, 255, 0.3);
 }
 
