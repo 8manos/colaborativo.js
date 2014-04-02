@@ -17,16 +17,19 @@ function(e){"use strict";e.extend(e.fn.cycle.defaults,{tmplRegex:"{{((.)?.*?)}}"
 
 $( document ).ready(function() {
  
-    topNavSpace = function () {
+    NavSpace = function () {
     	var header_height = $('#header').height();
-    	$('.tablero').css('padding-top', header_height);
+    	var patrocinadores_height = $('.patrocinadores > li img').height();
 
-    	var patrocinadores_height = $('.patrocinadores > img').height();
+    	$('.tablero').css({
+    							'padding-top': header_height ,
+    							'padding-bottom': patrocinadores_height 
+    					});
+
 		$('.patrocinadores').css( 'height', patrocinadores_height );
-
     }
 
-    topNavSpace();
+    NavSpace();
 
     var resizeTimeout;  // global for any pending resizeTimeout
 
@@ -36,7 +39,7 @@ $( document ).ready(function() {
 			clearTimeout(resizeTimeout);
 			resizeTimeout = null;
 		}
-		resizeTimeout = setTimeout(topNavSpace, 250);
+		resizeTimeout = setTimeout(NavSpace, 250);
 	});
 
 	$( window ).on( 'load', function() {
