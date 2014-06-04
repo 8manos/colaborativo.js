@@ -19,7 +19,8 @@ module.exports.policies = {
   '*': 'isAuthenticated',
   'home': true,
   'tablero': {
-    'show': true
+    'show': true,
+    'counts': true
   },
   'publicacion': {
   	'entablero': true

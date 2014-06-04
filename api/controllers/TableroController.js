@@ -114,5 +114,17 @@ module.exports = {
 				res.redirect('/');
 			}
 		});
+	},
+
+	counts: function (req, res) {
+		var counts = {
+			publicaciones: {
+				total: 100,
+				instagram: 25,
+				twitter: 75
+			}
+		}
+
+		res.send( counts );
 	}
 };
