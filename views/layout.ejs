@@ -12,7 +12,7 @@
     <% } %>
   </head>
 
-  <body>
+  <body <% if ( typeof tablero !== 'undefined' ) { %>  class="tablero-<%= tablero.id %>" <% } %>>
     <%- body %>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
