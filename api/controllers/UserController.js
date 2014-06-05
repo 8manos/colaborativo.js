@@ -49,7 +49,7 @@
     var email = req.param('email');
     var hashedPassword = passwordHash.generate(req.param('password'));
 
-    User.find({ email: email }).done(function(err, users) {
+    User.find({ email: email }).exec(function(err, users) {
 
       if (users.length > 0) {
         res.redirect('/');
@@ -59,7 +59,7 @@
       User.create({
         email: email,
         password: hashedPassword
-      }).done(function(err, user) {
+      }).exec(function(err, user) {
         res.send(user);
         return;
       });

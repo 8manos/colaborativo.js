@@ -28,7 +28,7 @@ module.exports.start = function(){
 					console.log(" ");
 					console.log( "========".grey );
 					console.log(" ");
-					console.log("Tablero Active: ".cyan + tableros[i].name );
+					console.log("Tablero Active: ".cyan + tableros[i].name + " id: " + tableros[i].id);
 					console.log(" ");
 					Fuente.find({ entablero: tableros[i].id }).exec( function( err, fuentes ){
 						if( err ){

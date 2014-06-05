@@ -117,7 +117,7 @@ module.exports.listenToStream = function( job, done ){
 					tipo: 'tweet',
 					color_class: options[ value ] + ' color-' + color,
 					data: tweet
-				}).done(function(err, publicacion) {
+				}).exec(function(err, publicacion) {
 					if (err) {
 						return console.log(err);
 

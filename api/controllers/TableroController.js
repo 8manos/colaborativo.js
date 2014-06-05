@@ -31,13 +31,13 @@ module.exports = {
 			theme = '',
 			patrocinadores = '';
 
-		Tablero.find({ slug: slug }).done( function ( err, tableros ) {
+		Tablero.find({ slug: slug }).exec( function ( err, tableros ) {
 
 			if ( tableros.length > 0 ) {
 
 				tablero = tableros[0];
 
-				Publicacion.find({ entablero: tablero.id }).limit(10).sort({ createdAt: 'desc' }).done( function( err, publicaciones ){
+				Publicacion.find({ entablero: tablero.id }).limit(10).sort({ createdAt: 'desc' }).exec( function( err, publicaciones ){
 					if( publicaciones ){
 						publicaciones = publicaciones;
 					}
@@ -48,7 +48,7 @@ module.exports = {
 							theme = theme;
 						}
 
-						Patrocinadores.find({ entablero: tablero.id }).done( function( err, patrocinadores ){
+						Patrocinadores.find({ entablero: tablero.id }).exec( function( err, patrocinadores ){
 
 							if( patrocinadores ){
 								patrocinadores = patrocinadores;
@@ -80,7 +80,7 @@ module.exports = {
 
 			if ( tablero ) {
 
-				Fuente.find({ entablero: tablero.id }).done( function( err, fuentes ) { 
+				Fuente.find({ entablero: tablero.id }).exec( function( err, fuentes ) { 
 
 					if( fuentes ){
 						fuentes = fuentes;
@@ -92,7 +92,7 @@ module.exports = {
 							theme = theme;
 						}
 
-						Theme.find().done( function( err, themes ){
+						Theme.find().exec( function( err, themes ){
 							themes = themes;
 
 							if ( req.wantsJSON ) {
@@ -117,14 +117,49 @@ module.exports = {
 	},
 
 	counts: function (req, res) {
-		var counts = {
-			publicaciones: {
-				total: 100,
-				instagram: 25,
-				twitter: 75
-			}
-		}
+		var num_publicaciones = '',
+			num_publicaciones_twitter = '',
+			num_publicaciones_instagram = '',
+			slug = req.param( 'slug' );
 
-		res.send( counts );
+		Tablero.find({ slug: slug }).exec( function ( err, tableros ) {
+
+			if ( tableros.length > 0 ) {
+
+				tablero = tableros[0];
+
+				Publicacion.find({ entablero: tablero.id }).exec( function( err, publicaciones ) {
+
+					if( publicaciones ){
+						num_publicaciones = publicaciones.length;
+
+						Publicacion.find({ entablero: tablero.id }).where({ red: 'instagram' }).exec( function( err, publicaciones_instagram ) { 
+
+							num_publicaciones_instagram = publicaciones_instagram.length;
+
+							Publicacion.find({ entablero: tablero.id }).where({ red: 'twitter' }).exec( function( err, publicaciones_twitter ) {
+
+								num_publicaciones_twitter = publicaciones_twitter.length;
+
+								var counts = {
+									publicaciones: {
+										total: num_publicaciones,
+										instagram: num_publicaciones_instagram,
+										twitter: num_publicaciones_twitter
+									}
+								}
+
+								res.send( counts );
+
+							});
+
+						
+						});
+					}
+
+				});
+			}
+		});
+
 	}
 };

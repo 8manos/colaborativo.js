@@ -56,7 +56,7 @@ module.exports = {
 	},
 
 	findByID: function (id, cb) {
-		this.findOne(id).done(function (err, theme) {
+		this.findOne(id).exec(function (err, theme) {
 			if (err) {
 				theme = null;
 				cb(theme);

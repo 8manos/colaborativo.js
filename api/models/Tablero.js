@@ -51,7 +51,7 @@ module.exports = {
 	},
 
 	findByID: function (id, cb) {
-		this.findOne(id).done(function (err, tablero) {
+		this.findOne(id).exec(function (err, tablero) {
 			if (err) {
 				return res.send(err,500);
 			} else {

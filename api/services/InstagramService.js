@@ -89,7 +89,7 @@ module.exports.GetRecentFromTag = function( job, done ){
 										tipo: data[i].type ,
 										data: data[i],
 										paging: paging,
-									}).done(function(err, publicacion) {
+									}).exec(function(err, publicacion) {
 										if (err) {
 											return console.log(err);
 
