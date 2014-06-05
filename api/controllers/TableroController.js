@@ -37,7 +37,7 @@ module.exports = {
 
 				tablero = tableros[0];
 
-				Publicacion.find({ entablero: tablero.id }).limit(10).sort({ createdAt: 'desc' }).exec( function( err, publicaciones ){
+				Publicacion.find({ entablero: tablero.id }).where({ ispublic: true }).limit(10).sort({ createdAt: 'desc' }).exec( function( err, publicaciones ){
 					if( publicaciones ){
 						publicaciones = publicaciones;
 					}

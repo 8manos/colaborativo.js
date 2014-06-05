@@ -14,19 +14,28 @@ module.exports = {
 		Tablero.findByID(id, function ( tablero ) {
 
 			if ( tablero ) {
-				Publicacion.find({ entablero: tablero.id }).where({"data.retweeted_status": {"$exists": false }}).limit( 50 ).sort({ createdAt: 'desc' }).exec( function( err, publicaciones ){
-					if( publicaciones ){
-						publicaciones = publicaciones.reverse();
-
-						if ( req.wantsJSON ) {
-							Publicacion.watch( req , {id: tablero.id} );
-							res.send( publicaciones );
-						} else {
-							res.send( publicaciones );
+				Publicacion
+					.find({ entablero: tablero.id })
+					.where(
+						{
+							"data.retweeted_status": {"$exists": false },
+							ispublic: true
 						}
-					}
+					)
+					.limit( 50 )
+					.sort({ createdAt: 'desc' })
+					.exec( function( err, publicaciones ){
+						if( publicaciones ){
+							publicaciones = publicaciones.reverse();
 
-				});
+							if ( req.wantsJSON ) {
+								Publicacion.watch( req , {id: tablero.id} );
+								res.send( publicaciones );
+							} else {
+								res.send( publicaciones );
+							}
+						}
+					});
 			} else {
 				res.redirect('/');
 			}
