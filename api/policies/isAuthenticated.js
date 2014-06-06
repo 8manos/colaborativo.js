@@ -7,7 +7,5 @@ module.exports = function(req, res, next) {
   }
 
   // User is not allowed
-  return next();
-
-  //return res.redirect('/user/login');
+  return res.redirect('/user/login');
 };
