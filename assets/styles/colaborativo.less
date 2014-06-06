@@ -551,7 +551,28 @@ img {
 			-ms-transform: rotate(45deg);
 			-webkit-transform: rotate(45deg);
 		}
+
+		.moderate-link {
+			background-color: #fff;
+			color: red;
+			display: none;
+			font-size: 0.85em;
+			left: 5px;
+			padding: 4px;
+			position: absolute;
+			top: 5px;
+		}
+
+		.moderate-link:hover {
+			background-color: red;
+			color: #fff;
+		}
+
+		&:hover .moderate-link {
+			display: inline-block;
+		}
 	}
+
 
 	li.color-block {
 		article {

@@ -26,12 +26,22 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
   // $scope.publicaciones = Publicacion.get({ id: tablero_id });
 
   (function () {
+  	
+
 	$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
 	  $scope.publicaciones = data;
 	});
 
 	$sails.on("tablero", function (message) {
-	  console.log( "MENSAJE: ", message );
+		// console.log( "MENSAJE: ", message.data.id );
+
+		if ( message.verb === "updated" && message.data.ispublic === false ) {
+			for( var i = $scope.publicaciones.length - 1; i >= 0; i-- ) {
+				if( $scope.publicaciones[i].id === message.data.id ) {
+					$scope.publicaciones.splice(i, 1);
+				}
+			}
+		}
 	});
   	
 	$sails.on("publicacion", function (message) {

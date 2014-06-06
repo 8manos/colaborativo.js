@@ -8,4 +8,5 @@ module.exports = function(req, res, next) {
 
   // User is not allowed
   return res.redirect('/user/login');
+  
 };

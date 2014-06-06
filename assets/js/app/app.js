@@ -28,6 +28,18 @@ app.factory('Publicacion', ['$resource', function($resource){
 
 
 // Directives
+app.directive('myModal', ['$log', function ($log) {
+    return {
+        restrict: 'EA',
+        link: function (scope,element) {
+            scope.openWindow = function( id ){
+                window.open('/publicacion/toggle_ispublic/'+id , 'Moderate', 'width=500,height=400');
+               //some other code
+            };
+        }
+    };
+}]);
+
 var dannyPackery = app.directive('dannyPackery', ['$rootScope', function($rootScope) {
     return {
         restrict: 'A',

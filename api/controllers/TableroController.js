@@ -57,7 +57,7 @@ module.exports = {
 							if ( req.wantsJSON ) {
 								res.send( tablero );
 							} else {
-								res.view({ tablero: tablero, publicaciones: publicaciones, theme: theme, patrocinadores: patrocinadores });
+								res.view({ tablero: tablero, publicaciones: publicaciones, theme: theme, patrocinadores: patrocinadores, isAutenticated: req.isAuthenticated() });
 							}
 						});
 	

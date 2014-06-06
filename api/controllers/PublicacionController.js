@@ -52,7 +52,7 @@ module.exports = {
 				Tablero.publishUpdate( publicacion[0].entablero, {
 					id: id,
 					status: 'moderated',
-					ispublic: !publicacion[0].ispublic
+					ispublic: publicacion[0].ispublic
 				});
 				res.send( publicacion[0].ispublic );
 			});
