@@ -29,6 +29,10 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
 	$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
 	  $scope.publicaciones = data;
 	});
+
+	$sails.on("tablero", function (message) {
+	  console.log( "MENSAJE: ", message );
+	});
   	
 	$sails.on("publicacion", function (message) {
 	  // console.log( "MENSAJE: ", message );

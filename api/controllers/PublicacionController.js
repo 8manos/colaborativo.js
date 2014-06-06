@@ -30,6 +30,7 @@ module.exports = {
 
 							if ( req.wantsJSON ) {
 								Publicacion.watch( req , {id: tablero.id} );
+								Tablero.subscribe( req.socket, tablero.id );
 								res.send( publicaciones );
 							} else {
 								res.send( publicaciones );
@@ -42,4 +43,19 @@ module.exports = {
 		});
 
 	},
+
+	toggle_ispublic: function(req,res) {
+		var id = req.param( 'id' );
+
+		Publicacion.find({ id: id }).exec( function( err, publicacion ){
+			Publicacion.update({ id: id }, { ispublic: !publicacion[0].ispublic }).exec( function( err, publicacion ){
+				Tablero.publishUpdate( publicacion[0].entablero, {
+					id: id,
+					status: 'moderated',
+					ispublic: !publicacion[0].ispublic
+				});
+				res.send( publicacion[0].ispublic );
+			});
+		});
+	}
 };
