@@ -3,7 +3,7 @@
 
 	<ul class="publicaciones" ng-view>
 		<li id="p-{{publicacion.id}}" class="module {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones | limitTo:50" danny-packery>
-		
+
 		<% if( isAutenticated ) { %>
 			<a class="moderate-link" href="#" my-Modal="" ng-click="openWindow( '{{publicacion.id}}' )">Moderar</a>
 		<% } %>
@@ -45,7 +45,7 @@
 				</a>
 				
 				<img src="{{publicacion.data.images.standard_resolution.url}}" width="{{publicacion.data.images.standard_resolution.width}}" height="{{publicacion.data.images.standard_resolution.height}}" />
-				<!-- <h2>{{publicacion.data.caption.text}}</h2> -->
+				<h2>{{publicacion.data.caption.text}}</h2>
 
 				<div class="clearfix article-meta">
 					<div class="table-row">
