@@ -104,6 +104,10 @@ module.exports.start = function(){
 		if( network === "instagram" ){
 			var activar = InstagramService.RequestRecentFromTag( id, query, tablero );
 		}
+
+		if( network === "facebook" ){
+			console.log("  Network: ".red + "No se activar facebook" );
+		}
 	}
 
 	function DesactivarFuente( id, network, query ){
@@ -113,6 +117,10 @@ module.exports.start = function(){
 
 		if ( network === "instagram" ){
 			var desactivar = InstagramService.StopRecentFromTag( id );
+		}
+
+		if( network === "facebook" ){
+			console.log("  Network: ".red + "No se desactivar facebook" );
 		}
 	}
 
