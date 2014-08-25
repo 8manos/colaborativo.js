@@ -110,6 +110,10 @@ module.exports.aTrabajar = function ( jobHandle, concurrency ) {
 							TwitterStream.listenToStream( job, done ) 
 						}
 
+						if( jobHandle === "youtubeSearch" ){
+							YoutubeService.doSearch( job, done ) 
+						}
+
 					});
 				}
 

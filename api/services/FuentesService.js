@@ -108,6 +108,10 @@ module.exports.start = function(){
 		if( network === "facebook" ){
 			console.log("  Network: ".red + "No se activar facebook" );
 		}
+
+		if( network === "youtube" ){
+			var activar = YoutubeService.requestSearch( id, query, tablero );
+		}
 	}
 
 	function DesactivarFuente( id, network, query ){
@@ -121,6 +125,10 @@ module.exports.start = function(){
 
 		if( network === "facebook" ){
 			console.log("  Network: ".red + "No se desactivar facebook" );
+		}
+
+		if( network === "youtube" ){
+			var desactivar = YoutubeService.StopSearch( id );
 		}
 	}
 

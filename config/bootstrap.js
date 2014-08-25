@@ -48,6 +48,10 @@ module.exports.bootstrap = function (cb) {
 				"instagram": {
 					handle: "instagramRecentFromTag",
 					concurrency: 1
+				},
+				"youtube": {
+					handle: "youtubeSearch",
+					concurrency: 1
 				}
 		};
 
