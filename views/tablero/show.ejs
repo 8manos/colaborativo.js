@@ -2,7 +2,7 @@
 <div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl" scroll-glue> 
 
 	<ul class="publicaciones" ng-view>
-		<li id="p-{{publicacion.id}}" class="module {{publicacion.type}} {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones | limitTo:50" danny-packery>
+		<li id="p-{{publicacion.id}}" class="module {{publicacion.type}} {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones track by $index | limitTo:50" danny-packery>
 
 		<% if( isAutenticated ) { %>
 			<a class="moderate-link" href="#" my-Modal="" ng-click="openWindow( '{{publicacion.id}}' )">Moderar</a>
