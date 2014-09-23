@@ -100,6 +100,14 @@
 				</div>
 			</article>
 
+			<article ng-if="publicacion.red=='colaborativo'">
+				<h2>{{publicacion.title}}</h2>
+
+				<div class="article-content">
+					<pre>{{publicacion.content}}</pre>
+				</div>
+			</article>
+
 			<article ng-if="publicacion.type=='box'">
 				<img src="{{publicacion.image}}" />
 			</article>
