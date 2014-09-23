@@ -48,19 +48,19 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
 	  // console.log( "MENSAJE: ", message );
 	  if (message.verb === "created") {
 	  	if(message.id === tablero_id ){
-	  		console.log(message);
+	  		// console.log(message);
 			$scope.publicaciones.unshift( message.data.data );
 	  	}
 	  }
 	});
 
 	function funca( message ){
-		console.log( message[0] );
+		// console.log( message[0] );
 
 		$scope.publicaciones.push( message[0] );
 		$scope.$apply();
 
-		console.log( $scope.publicaciones );
+		// console.log( $scope.publicaciones );
 	}
 
 	function createInterval( f,dynamicParameter,interval ) { 
