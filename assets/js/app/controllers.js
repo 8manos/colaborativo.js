@@ -53,5 +53,27 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
 	  	}
 	  }
 	});
+
+	function funca( message ){
+		console.log( message[0] );
+
+		$scope.publicaciones.unshift( message[0] );
+		$scope.$apply();
+
+		console.log( $scope.publicaciones );
+	}
+
+	function createInterval( f,dynamicParameter,interval ) { 
+		setInterval( function() { 
+			f( dynamicParameter ); 
+		}, interval ); 
+	}
+
+	$sails.get("/patrocinadores/entablero",{ id: tablero_id }, function (data) {
+
+		createInterval( funca, data, 180000 );
+
+	});
+
   }());
 });

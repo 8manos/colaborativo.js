@@ -25,6 +25,9 @@ module.exports.policies = {
   'publicacion': {
   	'entablero': true
   },
+  'patrocinadores': {
+  	'entablero': true
+  },
   'user': {
     'login': true,
     'passport_local': true
