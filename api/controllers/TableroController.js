@@ -161,5 +161,35 @@ module.exports = {
 			}
 		});
 
+	},
+
+	post: function(req, res){
+
+		var theme = null,
+			tablero = null,
+			slug = req.param( 'slug' );
+
+		Tablero.find({ slug: slug }).exec( function ( err, tableros ) {
+
+			if ( tableros.length > 0 ) {
+
+				tablero = tableros[0];
+				
+
+				Theme.findByID( tablero.theme, function( theme ) {
+
+					if( theme ){
+						theme = theme;
+					}
+
+					res.view({ tablero: tablero, theme: theme });
+
+				});
+
+			} else {
+				res.redirect('/');
+			}
+
+		});
 	}
 };

@@ -25,6 +25,11 @@ module.exports = {
 			type: 'STRING',
 			required: true
 		},
+		type: { // banner o box
+			type: 'STRING',
+			required: false,
+			defaultsTo: 'banner'
+		},
 		entablero: {
 			model: 'tablero'
 		}

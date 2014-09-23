@@ -44,6 +44,14 @@ module.exports.routes = {
   'get /:slug/counts': {
     controller: 'tablero',
     action: 'counts'
+  },
+  'get /:slug/post': {
+    controller: 'tablero',
+    action: 'post'
+  },
+  'post /:slug/post': {
+    controller: 'tablero',
+    action: 'post'
   }
 
 

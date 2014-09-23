@@ -1,0 +1,33 @@
+<%- include parts/header.ejs %>
+
+<div class="tablero" id="<%= tablero.id %>">
+	<form action="/publicacion/create" method="POST" id="create_post">
+		<fieldset>
+			<h2><%= __('Publish post') %></h2>
+
+			<div class="field">
+				<label for="title"><%= __('Title') %>:</label>
+				<input required type="text" name="title" id="title" placeholder="<%= __('Title') %>" />
+			</div>
+
+			<div class="field">
+				<label for="date"><%= __('Date') %>:</label>
+				<input required type="date" name="date" id="date" />
+			</div>
+
+			<div class="field">
+				<label for="content"><%= __('Content') %>:</label>
+				<textarea name="content" id="content" form="create_post"></textarea>
+			</div>
+
+			<div class="hidden-fields">
+				<input type="hidden" name="tipo" id="tipo" value="articulo" />
+				<input type="hidden" name="origin_id" id="origin_id" value="<%= tablero.id + "_" + Date.now() %>" />
+				<input type="hidden" name="red" id="red" value="colaborativo" />
+				<input type="hidden" name="entablero" id="entablero" value="<%= tablero.id %>" />
+			</div>
+		</fieldset>
+
+		<input type="submit" value="<%= __('Save') %>" />
+	</form>
+</div>
