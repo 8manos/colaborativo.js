@@ -57,7 +57,7 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
 	function funca( message ){
 		console.log( message[0] );
 
-		$scope.publicaciones.unshift( message[0] );
+		$scope.publicaciones.push( message[0] );
 		$scope.$apply();
 
 		console.log( $scope.publicaciones );
