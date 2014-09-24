@@ -81,9 +81,9 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
 controllers.controller('SingleCtrl', function ($scope, $init, $sails) {
 
   (function () {
-  	$scope.post = [];
-  	$scope.post = $init.post;
-  	console.log( "SingleCtrl", $scope.post );
+  	$scope.publicacion = [];
+  	$scope.publicacion = $init.post;
+  	console.log( "SingleCtrl", $scope.publicacion );
 	/* $sails.get("/tablero", function (data) {
 	  $scope.tableros = data;
 	}); */

@@ -1,0 +1,29 @@
+<a href="https://www.youtube.com/watch?v={{publicacion.data.id.videoId}}" target="_blank">
+	<i class="red-icon fa fa-youtube"></i>
+</a>
+
+<a target="_blank" href="https://www.youtube.com/watch?v={{publicacion.data.id.videoId}}"><img src="{{publicacion.data.snippet.thumbnails.high.url}}" /></a>
+
+<h2 class="youtube-title">{{publicacion.data.snippet.title}}</h2>
+
+<p class="youtube-caption">{{publicacion.data.snippet.description}}</p>
+
+<div class="clearfix article-meta">
+	<div class="table-row">
+		<div class="meta-item autor">
+			<a href="https://www.youtube.com/watch?v={{publicacion.data.id.videoId}}" target="_blank"><i class="fa fa-user"></i> {{publicacion.data.snippet.channelTitle}}</a>
+		</div>
+		<div class="meta-item date">
+			<i class="fa fa-calendar"></i> {{publicacion.createdAt | amCalendar }}
+		</div>
+	</div>
+
+	<div class="table-row">
+		<div class="meta-item time">
+			<i class="fa fa-clock-o"></i> <span am-time-ago="publicacion.createdAt">{{publicacion.createdAt}}</span>
+		</div>
+		<div class="favs meta-item fuente fuente-{{publicacion.data.defuente}}">
+			<i class="fa fa-heart"></i> <span>0</span>
+		</div>
+	</div>
+</div>

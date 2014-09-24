@@ -1,0 +1,19 @@
+<article ng-if="publicacion.red=='twitter'" id="p-{{publicacion.id}}">
+	<div ng-include src="'/js/app/views/tweet.html'"></div>
+</article>
+
+<article ng-if="publicacion.red=='instagram'" id="p-{{publicacion.id}}">
+	<div ng-include src="'/js/app/views/instagram.html'"></div>
+</article>
+
+<article ng-if="publicacion.red=='youtube'" id="p-{{publicacion.id}}">
+	<div ng-include src="'/js/app/views/youtube.html'"></div>
+</article>
+
+<article ng-if="publicacion.red=='colaborativo'" id="p-{{publicacion.id}}">
+	<div ng-include src="'/js/app/views/articulo.html'"></div>
+</article>
+
+<article ng-if="publicacion.type=='box'">
+	<img src="{{publicacion.image}}" />
+</article>
