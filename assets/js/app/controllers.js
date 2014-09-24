@@ -17,7 +17,7 @@ controllers.controller('AppCtrl', function ($scope, $sails) {
   }());
 });
 
-controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero, Publicacion) {
+controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails, Tablero, Publicacion) {
   $scope.tablero = [];
   $scope.publicaciones = [];
   var tablero_id = $attrs.id;
@@ -74,6 +74,19 @@ controllers.controller('TableroCtrl', function ($scope, $attrs, $sails, Tablero,
 		createInterval( funca, data, 180000 );
 
 	});
+
+  }());
+});
+
+controllers.controller('SingleCtrl', function ($scope, $init, $sails) {
+
+  (function () {
+  	$scope.post = [];
+  	$scope.post = $init.post;
+  	console.log( "SingleCtrl", $scope.post );
+	/* $sails.get("/tablero", function (data) {
+	  $scope.tableros = data;
+	}); */
 
   }());
 });

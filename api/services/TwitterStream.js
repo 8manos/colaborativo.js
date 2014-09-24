@@ -77,7 +77,7 @@ module.exports.listenToStream = function( job, done ){
 
 		 	/* On Stream Connect */
 		 	stream.on( 'connect' , function( request ){
-		 		console.log( "info: ".green + "Connected to twitter stream: "+ job.data.id );
+		 		console.log( "info: ".green + "Connecting to twitter stream: "+ job.data.id );
 
 		 		delete requestedStreams[job.data.id];
 
@@ -100,6 +100,7 @@ module.exports.listenToStream = function( job, done ){
 		 	/* On Stream Reconnect */
 		 	stream.on( 'reconnect' , function (request, response, connectInterval) {
 				console.log( "info: ".green + "Reconnected to twitter stream: "+ job.data.id );
+				console.log( "interval: ", connectInterval );
 			});
 
 		 	/* On New Tweet from stream */

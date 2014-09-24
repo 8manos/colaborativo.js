@@ -14,7 +14,7 @@
     
 }(angular));
 
-var app = angular.module('colaborativo', [ 'ngResource', 'ngSanitize', 'twitterFilters', 'luegg.directives', 'angularMoment', 'colaborativo.controllers' ]);
+var app = angular.module('colaborativo', [ 'ngResource', 'ngSanitize', 'twitterFilters', 'luegg.directives', 'angularMoment', 'oc.modal', 'colaborativo.controllers' ]);
 
 
 // Factories
