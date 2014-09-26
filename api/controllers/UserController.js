@@ -5,10 +5,32 @@
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
 
- var passport = require('passport');
- var passwordHash = require('password-hash');
+var passport = require('passport');
+var passwordHash = require('password-hash');
 
- module.exports = {
+var authRedirect = function(req, res, err, user) {
+  if ((err) || (!user))
+  {
+    console.log('error:', 'callback '+err);
+    res.redirect('/user/login');
+    return;
+  }
+
+  req.logIn(user, function(err)
+  {
+    if (err)
+    {
+      console.log('error:', 'login '+err);
+      res.redirect('/user/login');
+      return;
+    }
+
+    res.redirect('/');
+    return;
+  });
+}
+
+module.exports = {
   login: function (req,res)
   {
     res.view();
@@ -16,25 +38,8 @@
 
   passport_local: function(req, res)
   {
-    passport.authenticate('local', function(err, user, info)
-    {
-      if ((err) || (!user))
-      {
-        res.redirect('/user/login');
-        return;
-      }
-
-      req.logIn(user, function(err)
-      {
-        if (err)
-        {
-          res.redirect('/user/login');
-          return;
-        }
-
-        res.redirect('/');
-        return;
-      });
+    passport.authenticate('local', function(err, user) {
+      authRedirect(req, res, err, user);
     })(req, res);
   },
 
@@ -51,25 +56,20 @@
 
   twitter_callback: function (req,res)
   {
-    passport.authenticate('twitter', function(err, user, info)
-    {
-      if ((err) || (!user))
-      {
-        res.redirect('/user/login');
-        return;
-      }
+    passport.authenticate('twitter', function(err, user) {
+      authRedirect(req, res, err, user);
+    })(req, res);
+  },
 
-      req.logIn(user, function(err)
-      {
-        if (err)
-        {
-          res.redirect('/user/login');
-          return;
-        }
+  facebook: function (req,res)
+  {
+    passport.authenticate('facebook')(req, res, req.next);
+  },
 
-        res.redirect('/');
-        return;
-      });
+  facebook_callback: function (req,res)
+  {
+    passport.authenticate('facebook', function(err, user) {
+      authRedirect(req, res, err, user);
     })(req, res);
   },
 
@@ -100,6 +100,4 @@
    * (specific to UserController)
    */
    _config: {}
-
-
- };
+};

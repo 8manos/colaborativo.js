@@ -36,6 +36,8 @@ module.exports.policies = {
     'passport_local': true,
     'twitter': true,
     'twitter_callback': true,
+    'facebook': true,
+    'facebook_callback': true,
     'logout': 'isAuthenticated'
     //'create': true //should be disabled in production
   }

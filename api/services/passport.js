@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var passwordHash = require('password-hash');
 var url = require('url');
 
@@ -41,7 +42,27 @@ passport.use(new TwitterStrategy({
       displayName: profile.displayName,
       provider: 'twitter',
       providerId: profile.id
-    }).exec(function createFindCB(err, user){
+    }).exec(function(err, user){
+      if (err) { return done(err); }
+      done(null, user);
+    });
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: url.resolve(sails.getBaseurl(), '/user/facebook/callback')
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({
+      provider: 'facebook',
+      providerId: profile.id
+    },{
+      displayName: profile.displayName,
+      provider: 'facebook',
+      providerId: profile.id
+    }).exec(function(err, user){
       if (err) { return done(err); }
       done(null, user);
     });
