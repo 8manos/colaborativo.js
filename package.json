@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "colors": "^0.6.2",
+    "connect-redis": "1.4.5",
     "ejs": "~0.8.4",
     "facebook-search": "^0.1.1",
     "grunt": "0.4.2",
@@ -32,7 +33,7 @@
     "password-hash": "~1.2.1",
     "rc": "~0.3.3",
     "redis": "^0.10.1",
-    "sails": "~0.10.0-rc4",
+    "sails": "^0.10.5",
     "sails-disk": "~0.10.0",
     "sails-mongo": "^0.10.0-rc1",
     "twit": "^1.1.12",

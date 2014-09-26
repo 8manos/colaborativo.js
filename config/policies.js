@@ -19,6 +19,7 @@ module.exports.policies = {
   '*': 'isAuthenticated',
   'home': true,
   'tablero': {
+    'index': true,
     'show': true,
     'counts': true
   },
