@@ -37,6 +37,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'passport_local'
   },
+  'get /user/twitter/callback':{
+    controller: 'user',
+    action: 'twitter_callback'
+  },
   '/:slug/': {
     controller: 'tablero',
     action: 'show'

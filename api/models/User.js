@@ -6,6 +6,15 @@ module.exports = {
     },
     password: {
       type: 'string'
+    },
+    displayName: {
+      type: 'string'
+    },
+    provider: {
+      type: 'string'
+    },
+    providerId: {
+     type: 'string'
     }
   }
 

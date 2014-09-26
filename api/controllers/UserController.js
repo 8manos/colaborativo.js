@@ -44,6 +44,35 @@
     res.redirect('/');
   },
 
+  twitter: function (req,res)
+  {
+    passport.authenticate('twitter')(req, res, req.next);
+  },
+
+  twitter_callback: function (req,res)
+  {
+    passport.authenticate('twitter', function(err, user, info)
+    {
+      if ((err) || (!user))
+      {
+        res.redirect('/user/login');
+        return;
+      }
+
+      req.logIn(user, function(err)
+      {
+        if (err)
+        {
+          res.redirect('/user/login');
+          return;
+        }
+
+        res.redirect('/');
+        return;
+      });
+    })(req, res);
+  },
+
   create: function (req,res) {
 
     var email = req.param('email');

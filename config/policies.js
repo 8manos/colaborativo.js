@@ -30,7 +30,9 @@ module.exports.policies = {
   },
   'user': {
     'login': true,
-    'passport_local': true
+    'passport_local': true,
+    'twitter': true,
+    'twitter_callback': true
     //'create': true //should be disabled in production
   }
 
