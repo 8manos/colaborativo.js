@@ -14,8 +14,39 @@
     
 }(angular));
 
-var app = angular.module('colaborativo', [ 'ngResource', 'ngSanitize', 'twitterFilters', 'luegg.directives', 'angularMoment', 'oc.modal', 'colaborativo.controllers' ]);
+var app = angular.module('colaborativo', [ 'ngResource', 'ngSanitize', 'twitterFilters', 'luegg.directives', 'ui.router', 'angularMoment', 'oc.modal', 'colaborativo.controllers' ]);
 
+// UI Router 
+app.config(function($stateProvider, $urlRouterProvider) {
+    
+    $stateProvider
+    
+    // route to show our basic form (/form)
+    .state('tablero', {
+        url: '/',
+        controller: function(){ console.log("#ded") }
+    })
+
+    .state('tablero.publicacion', {
+        url: 'publicacion/:publicacionID/',
+        onEnter: ['$ocModal', function($ocModal) {
+            $ocModal.open({
+                id: "idModal",
+                url: "/js/app/views/modal.html",
+                controller: 'SingleCtrl'
+            });
+        }],
+        onExit: ['$ocModal', function($ocModal) {
+            $ocModal.close({
+                id: "idModal"
+            });
+        }]
+    });
+        
+    // catch all route
+    // send users to the inicial page 
+    $urlRouterProvider.otherwise('/');
+});
 
 // Factories
 app.factory('Tablero', ['$resource', function($resource){

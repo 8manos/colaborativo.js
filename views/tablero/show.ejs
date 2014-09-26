@@ -1,18 +1,19 @@
 <%- include parts/header.ejs %>
 <div class="tablero" id="<%= tablero.id %>" ng-controller="TableroCtrl" scroll-glue> 
+	<div class="publicaciones-container">	
+		<ul class="publicaciones" ui-view>
+			<li ui-sref=".publicacion({ publicacionID: publicacion.id })" class="module {{publicacion.type}} {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones track by publicacion.id | limitTo:50" danny-packery >
+				<!-- oc-modal-open="{url: '/js/app/views/modal.html', controller: 'SingleCtrl', init: { publicacion: publicacion }}" -->
 
-	<ul class="publicaciones" ng-view>
-		<li class="module {{publicacion.type}} {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones track by publicacion.id | limitTo:50" danny-packery oc-modal-open="{url: '/js/app/views/modal.html', controller: 'SingleCtrl', init: { post: publicacion }}">
+				<% if( isAutenticated ) { %>
+					<a class="moderate-link" href="#" my-Modal="" ng-click="openWindow( '{{publicacion.id}}' )">Moderar</a>
+				<% } %>
 
-			<% if( isAutenticated ) { %>
-				<a class="moderate-link" href="#" my-Modal="" ng-click="openWindow( '{{publicacion.id}}' )">Moderar</a>
-			<% } %>
+				<div ng-include src="'/js/app/views/article.html'"></div>
 
-			<div ng-include src="'/js/app/views/article.html'"></div>
-
-		</li>
-	</ul>
-
+			</li>
+		</ul>
+	</div>
 	<% if( patrocinadores.length > 0 ) { %>
 		<ul class="patrocinadores">
 			<% patrocinadores.forEach(function(patrocinador) { %>
