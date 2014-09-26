@@ -18,6 +18,7 @@ controllers.controller('AppCtrl', function ($scope, $sails) {
 });
 
 controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails, Tablero, Publicacion) {
+  console.log( "TableroCtrl Called" );
   $scope.tablero = [];
   $scope.publicaciones = [];
   var tablero_id = $attrs.id;
@@ -78,13 +79,15 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
   }());
 });
 
-controllers.controller('SingleCtrl', function ($scope, $init, $sails) {
+controllers.controller('SingleCtrl', function ($scope, $stateParams, $init, $sails) {
 
   (function () {
-  	console.log( "SingleCtrl", $scope.publicacion );
-	/* $sails.get("/tablero", function (data) {
-	  $scope.tableros = data;
-	}); */
+
+  	console.log( "SingleCtrl", $stateParams.publicacionID );
+	$sails.get("/publicacion/"+ $stateParams.publicacionID , function (data) {
+	  $scope.publicacion = data;
+	  console.log( $scope.publicacion );
+	});
 
   }());
 });

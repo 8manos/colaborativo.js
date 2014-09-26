@@ -23,7 +23,8 @@ module.exports.policies = {
     'counts': true
   },
   'publicacion': {
-  	'entablero': true
+  	'entablero': true,
+  	'find': true
   },
   'patrocinadores': {
   	'entablero': true
