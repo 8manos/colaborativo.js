@@ -41,6 +41,10 @@ module.exports.routes = {
     controller: 'user',
     action: 'twitter_callback'
   },
+  'get /user/facebook/callback':{
+    controller: 'user',
+    action: 'facebook_callback'
+  },
   '/:slug/': {
     controller: 'tablero',
     action: 'show'
