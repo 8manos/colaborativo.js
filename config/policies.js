@@ -19,13 +19,14 @@ module.exports.policies = {
   '*': ['isAuthenticated', 'isAdmin'],
   'home': true,
   'tablero': {
+  	'findOne': true,
     'index': true,
     'show': true,
     'counts': true
   },
   'publicacion': {
   	'entablero': true,
-  	'find': true
+  	'findOne': true
   },
   'patrocinadores': {
   	'entablero': true

@@ -22,7 +22,7 @@ module.exports = {
 			required: true
 		},
 		entablero:{
-			model: 'tablero'
+			model: 'Tablero'
 		},
 		publicaciones: {
 			collection: 'publicacion',

@@ -80,10 +80,10 @@ module.exports = {
 
 			if ( tablero ) {
 
-				Fuente.find({ entablero: tablero.id }).exec( function( err, fuentes ) { 
+				Fuente.find({ entablero: tablero.id }).exec( function( err, fuentesfind ) { 
 
-					if( fuentes ){
-						fuentes = fuentes;
+					if( fuentesfind ){
+						fuentes = fuentesfind;
 					}
 
 					Theme.findByID( tablero.theme, function( theme ) {

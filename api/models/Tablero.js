@@ -34,7 +34,7 @@ module.exports = {
 			unique: true
 		},
 		fuentes: {
-			collection: 'fuente',
+			collection: 'Fuente',
 			via: 'entablero'
 		},
 		publicaciones: {
