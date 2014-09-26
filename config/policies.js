@@ -16,7 +16,7 @@ module.exports.policies = {
 
   // Default policy for all controllers and actions
   // (`true` allows public access)
-  '*': 'isAuthenticated',
+  '*': ['isAuthenticated', 'isAdmin'],
   'home': true,
   'tablero': {
     'index': true,
@@ -33,7 +33,8 @@ module.exports.policies = {
     'login': true,
     'passport_local': true,
     'twitter': true,
-    'twitter_callback': true
+    'twitter_callback': true,
+    'logout': 'isAuthenticated'
     //'create': true //should be disabled in production
   }
 

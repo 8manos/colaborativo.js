@@ -1,6 +1,11 @@
 module.exports = {
 
   attributes: {
+    active: {
+      type: 'boolean',
+      defaultsTo: false,
+      required: true
+    },
     email: {
       type: 'email'
     },
