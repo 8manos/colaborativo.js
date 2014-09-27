@@ -2,7 +2,7 @@
 	<i class="red-icon fa fa-twitter"></i>	
 </a>
 <figure ng-if="publicacion.data.entities.media[0].type=='photo'">
-	<img src="{{publicacion.data.entities.media[0].media_url}}" />
+	<img ng-src="{{publicacion.data.entities.media[0].media_url}}" />
 </figure>
 <blockquote ng-bind-html=" publicacion.data.text | tweet ">
 	
