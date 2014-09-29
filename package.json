@@ -10,7 +10,7 @@
     "ejs": "~0.8.4",
     "facebook-search": "^0.1.1",
     "gake": "^0.1.2",
-    "grunt": "0.4.2",
+    "grunt": "^0.4.2",
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-concat": "~0.3.0",
