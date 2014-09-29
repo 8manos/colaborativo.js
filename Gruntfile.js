@@ -24,6 +24,8 @@ module.exports = function(grunt) {
 
   configureGruntfile();
 
+  grunt.loadNpmTasks('sails-migrations');
+
   /**
    * Load CommonJS submodules from the specified
    * relative path.
