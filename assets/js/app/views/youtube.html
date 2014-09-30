@@ -2,9 +2,9 @@
 	<i class="red-icon fa fa-youtube"></i>
 </a>
 
-<a target="_blank" href="https://www.youtube.com/watch?v={{publicacion.data.id.videoId}}"><img ng-src="{{publicacion.data.snippet.thumbnails.high.url}}" /></a>
+<a target="_blank" ui-sref=".publicacion({ publicacionID: publicacion.id })"><img ng-src="{{publicacion.data.snippet.thumbnails.high.url}}" /></a>
 
-<h2 class="youtube-title">{{publicacion.data.snippet.title}}</h2>
+<h2 ui-sref=".publicacion({ publicacionID: publicacion.id })" class="youtube-title">{{publicacion.data.snippet.title}}</h2>
 
 <p class="youtube-caption">{{publicacion.data.snippet.description}}</p>
 
