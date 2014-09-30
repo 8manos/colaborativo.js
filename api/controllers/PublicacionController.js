@@ -57,5 +57,22 @@ module.exports = {
 				res.send( publicacion[0].ispublic );
 			});
 		});
+	},
+
+	like: function(req,res) {
+		var id = req.param( 'id' ),
+			likes = 0;
+
+		Publicacion.find({ id: id }).exec( function( err, publicacion ){
+			// console.log( "PUB: ", publicacion[0] );
+			Publicacion.update({ id: id }, { likes: publicacion[0].likes+1 || 1 }).exec( function( err, publicacion ){
+				// console.log( "PUB2: ", publicacion[0].likes );
+				Tablero.publishUpdate( publicacion[0].entablero.toString(), {
+					id: id,
+					likes: publicacion[0].likes
+				});
+				res.send( publicacion[0].likes );
+			});
+		});
 	}
 };

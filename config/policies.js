@@ -26,7 +26,8 @@ module.exports.policies = {
   },
   'publicacion': {
   	'entablero': true,
-  	'findOne': true
+  	'findOne': true,
+  	'like': true
   },
   'patrocinadores': {
   	'entablero': true

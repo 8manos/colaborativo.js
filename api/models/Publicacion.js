@@ -26,6 +26,11 @@ module.exports = {
 			defaultsTo: true,
 			required: true
 		},
+		likes: {
+			type: 'integer',
+			defaultsTo: 0,
+			required: true
+		},
 		defuente: {
 			model: 'fuente'
 		},
