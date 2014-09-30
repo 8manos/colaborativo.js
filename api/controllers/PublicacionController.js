@@ -26,7 +26,7 @@ module.exports = {
 					.sort({ createdAt: 'desc' })
 					.exec( function( err, publicaciones ){
 						if( publicaciones ){
-							publicaciones = publicaciones.reverse();
+							publicaciones = publicaciones;
 
 							if ( req.wantsJSON ) {
 								Publicacion.watch( req , {id: tablero.id} );
