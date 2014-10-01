@@ -1,10 +1,35 @@
 <%- include parts/header.ejs %>
 
 <div class="tablero" id="<%= tablero.id %>">
-	<h1>Stats view</h1>
-	<h2>Publicaciones: <%= stats.publicaciones || 0 %></h2>
-	<h2>Tweets: <%= stats.tweets || 0 %></h2>
-	<h2>Instagram: <%= stats.instagram || 0 %></h2>
-	<h2>YouTube: <%= stats.youtube || 0 %></h2>
-	<h2>Artículos: <%= stats.propios || 0 %></h2>
+	<div id="stats">
+		<h1>Dashboard <%= tablero.name %></h1>
+		<!-- <h2>Publicaciones: <%= stats.publicaciones || 0 %></h2>
+		<h2>Tweets: <%= stats.tweets || 0 %></h2>
+		<h2>Instagram: <%= stats.instagram || 0 %></h2>
+		<h2>YouTube: <%= stats.youtube || 0 %></h2>
+		<h2>Artículos: <%= stats.propios || 0 %></h2> -->
+
+		<div class="half">
+			<h2>Publicaciones</h2>
+			<div id="my-cool-bar-chart" style="min-height: 450px"></div>
+			<ul data-bar-id="my-cool-bar-chart">
+				<li data-value="<%= stats.publicaciones || 0 %>">Publicaciones: <%= stats.publicaciones || 0 %></li>
+				<li data-value="<%= stats.tweets || 0 %>">Tweets: <%= stats.tweets || 0 %></li>
+				<li data-value="<%= stats.instagram || 0 %>">Instagram: <%= stats.instagram || 0 %></li>
+				<li data-value="<%= stats.youtube || 0 %>">YouTube: <%= stats.youtube || 0 %></li>
+				<li data-value="<%= stats.propios || 0 %>">Artículos: <%= stats.propios || 0 %></li>
+			</ul>
+		</div>
+
+		<div class="half">
+			<h2>Proporción de publicaciones por red</h2>
+			<div id="my-cool-pie-chart" style="min-height: 200px"></div>
+			<ul data-pie-id="my-cool-pie-chart">
+				<li data-value="<%= stats.tweets || 0 %>">Tweets</li>
+				<li data-value="<%= stats.instagram || 0 %>">Instagram</li>
+				<li data-value="<%= stats.youtube || 0 %>">YouTube</li>
+				<li data-value="<%= stats.propios || 0 %>">Artículos</li>
+			</ul>
+		</div>
+	</div>
 </div>
