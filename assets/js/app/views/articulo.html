@@ -1,5 +1,3 @@
 <h2 ui-sref=".publicacion({ publicacionID: publicacion.id })">{{publicacion.title}}</h2>
 
-<div class="article-content">
-	<pre>{{publicacion.content}}</pre>
-</div>
+<div ng-bind-html="publicacion.content" class="article-content"></div>
