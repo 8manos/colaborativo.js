@@ -22,7 +22,8 @@ module.exports.policies = {
   	'findOne': true,
     'index': true,
     'show': true,
-    'counts': true
+    'counts': true,
+    'stats': true
   },
   'publicacion': {
   	'entablero': true,

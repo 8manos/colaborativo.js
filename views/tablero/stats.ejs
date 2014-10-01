@@ -1,0 +1,10 @@
+<%- include parts/header.ejs %>
+
+<div class="tablero" id="<%= tablero.id %>">
+	<h1>Stats view</h1>
+	<h2>Publicaciones: <%= stats.publicaciones || 0 %></h2>
+	<h2>Tweets: <%= stats.tweets || 0 %></h2>
+	<h2>Instagram: <%= stats.instagram || 0 %></h2>
+	<h2>YouTube: <%= stats.youtube || 0 %></h2>
+	<h2>Artículos: <%= stats.propios || 0 %></h2>
+</div>
