@@ -120,6 +120,8 @@ module.exports = {
 		var num_publicaciones = '',
 			num_publicaciones_twitter = '',
 			num_publicaciones_instagram = '',
+			num_publicaciones_youtube = '',
+			num_publicaciones_propias = '',
 			slug = req.param( 'slug' );
 
 		Tablero.find({ slug: slug }).exec( function ( err, tableros ) {
@@ -141,19 +143,50 @@ module.exports = {
 
 								num_publicaciones_twitter = publicaciones_twitter.length;
 
-								var counts = {
-									publicaciones: {
-										total: num_publicaciones,
-										instagram: num_publicaciones_instagram,
-										twitter: num_publicaciones_twitter
-									}
-								}
+								Publicacion.find({ entablero: tablero.id }).where({ red: 'youtube' }).exec( function( err, publicaciones_youtube ) {
 
-								res.send( counts );
+									var num_publicaciones_youtube = publicaciones_youtube.length;
 
+									Publicacion.find({ entablero: tablero.id }).where({ red: 'colaborativo' }).exec( function( err, publicaciones_propias ) {
+
+										num_publicaciones_propias = publicaciones_propias.length;
+
+										var counts = {
+											publicaciones: {
+												total: num_publicaciones,
+												instagram: num_publicaciones_instagram,
+												twitter: num_publicaciones_twitter,
+												youtube: num_publicaciones_youtube,
+												propios: num_publicaciones_propias
+											}
+										}
+
+										Stats.find({ entablero: tablero.id }).exec( function( err, statsfound ){
+												console.log ("stats found:", statsfound );
+												Stats.update(
+													{ id: statsfound[0].id },
+													{ 
+														publicaciones: num_publicaciones,
+														tweets: num_publicaciones_twitter,
+														instagram: num_publicaciones_instagram,
+														youtube: num_publicaciones_youtube,
+														propios: num_publicaciones_propias
+													}
+												).exec( function( err, stats ){
+													if( err ){
+														return console.log( err );
+													}else{
+														console.log( "stats updated", stats );
+													}
+												});
+												
+										});
+
+										res.send( counts );
+									});
+								});
 							});
 
-						
 						});
 					}
 
@@ -183,6 +216,66 @@ module.exports = {
 					}
 
 					res.view({ tablero: tablero, theme: theme });
+
+				});
+
+			} else {
+				res.redirect('/');
+			}
+
+		});
+	},
+
+	stats: function(req, res){
+
+		var theme = null,
+			tablero = null,
+			slug = req.param( 'slug' );
+
+		Tablero.find({ slug: slug }).exec( function ( err, tableros ) {
+
+			if ( tableros.length > 0 ) {
+
+				tablero = tableros[0];
+				
+
+				Theme.findByID( tablero.theme, function( theme ) {
+
+					if( theme ){
+						theme = theme;
+					}
+
+					Stats.find({ entablero: tablero.id }).exec( function( err, stats ) {
+
+						if( err ){
+							res.send( "error" );
+						}else if( stats.length === 0 ){
+							console.log( "stats inexistentes... generando", stats );
+
+							Stats.create({
+								entablero: tablero.id,
+								publicaciones: 0,
+								tweets: 0,
+								instagram: 0,
+								youtube: 0 
+							}).exec( function( err, stats ){
+								if (err) {
+									return console.log(err);
+								}else{
+									console.log ( "stats generados" );
+									stats = stats;
+									res.view({ tablero: tablero, theme: theme, stats: stats });
+								}
+							});
+
+						}else if( stats.length > 0 ){
+							console.log( "stats", stats );
+							res.view({ tablero: tablero, theme: theme, stats: stats[0] });
+						}else{
+							res.send( "naranjas" );
+						}
+
+					});
 
 				});
 

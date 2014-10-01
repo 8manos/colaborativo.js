@@ -156,6 +156,22 @@ img {
 	}
 }
 
+.tablero.stats {
+	text-align: center;
+	padding: 0 3em;
+}
+
+#stats {
+	background-color: #fff;
+	border-radius: 2px;
+	box-sizing: border-box;
+	display: block;
+	margin: 3em auto;
+	padding: 1em;
+	max-width: 1000px;
+	text-align: left;
+}
+
 .container {
 	color: #696969;
 	font-family: 'Quattrocento Sans', sans-serif;
@@ -470,6 +486,7 @@ img {
 		display: none;
 		margin: 0; 
 		overflow: hidden;
+		position: relative;
 		vertical-align:  top;
 		width: 100%;
 
@@ -543,6 +560,11 @@ img {
 					height: 100%;
 					text-align: center;
 					word-break: break-word;
+				}
+
+				.favs {
+					cursor: pointer;
+					display: block;
 				}
 
 				.meta-item:nth-child(even) {
@@ -629,8 +651,21 @@ img {
 
 	li.box article:after { display: none; }
 
+	.colaborativo {
+		article{
+			padding: 1em;
+		}
+		h2 {
+			margin-top: 0;
+		}
+	}
+
 	.twitter blockquote {
 		font-size: 1em;
+	}
+
+	.twitter figure img {
+		min-width: 100%;
 	}
 
 	.twitter.four {
@@ -1010,6 +1045,14 @@ i.red-icon{
 	#header {
 		h2 {
 			display: inline-block;
+		}
+	}
+
+	#stats {
+		.half {
+			display: inline-block;
+			vertical-align: top;
+			width: 49%;
 		}
 	}
 

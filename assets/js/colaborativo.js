@@ -15,6 +15,8 @@ function(e){"use strict";e.extend(e.fn.cycle.defaults,{progressive:!1}),e(docume
 function(e){"use strict";e.extend(e.fn.cycle.defaults,{tmplRegex:"{{((.)?.*?)}}"}),e.extend(e.fn.cycle.API,{tmpl:function(t,i){var n=RegExp(i.tmplRegex||e.fn.cycle.defaults.tmplRegex,"g"),s=e.makeArray(arguments);return s.shift(),t.replace(n,function(t,i){var n,o,c,l,r=i.split(".");for(n=0;s.length>n;n++)if(c=s[n]){if(r.length>1)for(l=c,o=0;r.length>o;o++)c=l,l=l[r[o]]||i;else l=c[i];if(e.isFunction(l))return l.apply(c,s);if(void 0!==l&&null!==l&&l!=i)return l}return i})}})}(jQuery);
 
 $( document ).ready(function() {
+
+	Pizza.init( document.body, {animation_speed: 500, donut: true} );
  
     NavSpace = function () {
     	var header_height = $('#header').height();

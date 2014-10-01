@@ -26,7 +26,27 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
   $scope.tablero.unshift( Tablero.get({ id: tablero_id }) );
   // $scope.publicaciones = Publicacion.get({ id: tablero_id });
 
+
   (function () {
+
+	$scope.like = function( id ){
+		var response = 1,
+			i = 0,
+			likes = 0;
+
+		for( var i = $scope.publicaciones.length - 1; i >= 0; i-- ) {
+			if( $scope.publicaciones[i].id === id ) {
+
+				likes = $scope.publicaciones[i].likes || 0;
+			
+				$sails.post("/publicacion/like",{ id: id }, function (response) {
+
+				});
+
+				$scope.publicaciones[i].likes = likes+1;
+			}
+		}
+	}
   	
 
 	$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
@@ -36,10 +56,20 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
 	$sails.on("tablero", function (message) {
 		// console.log( "MENSAJE: ", message.data.id );
 
+		// Modera contenido
 		if ( message.verb === "updated" && message.data.ispublic === false ) {
 			for( var i = $scope.publicaciones.length - 1; i >= 0; i-- ) {
 				if( $scope.publicaciones[i].id === message.data.id ) {
 					$scope.publicaciones.splice(i, 1);
+				}
+			}
+		}
+
+		// Free like
+		if ( message.verb === "updated" && message.data.likes >= 0 ) {
+			for( var i = $scope.publicaciones.length - 1; i >= 0; i-- ) {
+				if( $scope.publicaciones[i].id === message.data.id ) {
+					$scope.publicaciones[i].likes = message.data.likes;
 				}
 			}
 		}
@@ -58,7 +88,7 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
 	function funca( message ){
 		console.log( message[0] );
 
-		$scope.publicaciones.push( message[0] );
+		$scope.publicaciones.unshift( message[0] );
 		$scope.$apply();
 
 		// console.log( $scope.publicaciones );

@@ -26,7 +26,7 @@ module.exports = {
 					.sort({ createdAt: 'desc' })
 					.exec( function( err, publicaciones ){
 						if( publicaciones ){
-							publicaciones = publicaciones.reverse();
+							publicaciones = publicaciones;
 
 							if ( req.wantsJSON ) {
 								Publicacion.watch( req , {id: tablero.id} );
@@ -55,6 +55,23 @@ module.exports = {
 					ispublic: publicacion[0].ispublic
 				});
 				res.send( publicacion[0].ispublic );
+			});
+		});
+	},
+
+	like: function(req,res) {
+		var id = req.param( 'id' ),
+			likes = 0;
+
+		Publicacion.find({ id: id }).exec( function( err, publicacion ){
+			// console.log( "PUB: ", publicacion[0] );
+			Publicacion.update({ id: id }, { likes: publicacion[0].likes+1 || 1 }).exec( function( err, publicacion ){
+				// console.log( "PUB2: ", publicacion[0].likes );
+				Tablero.publishUpdate( publicacion[0].entablero.toString(), {
+					id: id,
+					likes: publicacion[0].likes
+				});
+				res.send( publicacion[0].likes );
 			});
 		});
 	}
