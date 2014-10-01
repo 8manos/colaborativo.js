@@ -4,23 +4,12 @@
 <figure ui-sref=".publicacion({ publicacionID: publicacion.id })" ng-if="publicacion.data.entities.media[0].type=='photo'">
 	<img ng-src="{{publicacion.data.entities.media[0].media_url}}" />
 </figure>
-<blockquote ui-sref=".publicacion({ publicacionID: publicacion.id })" ng-bind-html=" publicacion.data.text | tweet ">
-	
+<blockquote >
+	<div ui-sref=".publicacion({ publicacionID: publicacion.id })" ng-bind-html="publicacion.data.text | tweet "></div>
+	<p class="metadata">
+	<em>por: </em> <a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank">@{{publicacion.data.user.name}}</a> / <span am-time-ago="publicacion.data.created_at">{{publicacion.createdAt}}</span>
+	</p>
 </blockquote>
 <div class="clearfix article-meta">
-	<div class="table-row">
-		<div class="meta-item autor">
-			<!-- <img width="48" height="48" src="{{publicacion.data.user.profile_image_url}}" /> -->
-			<a href="https://twitter.com/{{publicacion.data.user.screen_name}}" target="_blank"><i class="fa fa-user"></i> {{publicacion.data.user.name}}</a>
-		</div>
-		<div class="meta-item date">
-			<i class="fa fa-calendar"></i> {{publicacion.data.created_at | amCalendar }}
-		</div>
-	</div>
-	<div class="table-row">
-		<div class="meta-item time">
-			<i class="fa fa-clock-o"></i> <span am-time-ago="publicacion.data.created_at">{{publicacion.createdAt}}</span>
-		</div>
-		<div ng-include src="'/js/app/views/parts/like.html'"></div>
-	</div>
+	<div ng-include src="'/js/app/views/parts/like.html'"></div>
 </div>
