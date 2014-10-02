@@ -95,7 +95,7 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
 	}
 
 	function createInterval( f,dynamicParameter,interval ) { 
-		setInterval( function() { 
+		setTimeout( function() { 
 			f( dynamicParameter ); 
 		}, interval ); 
 	}
