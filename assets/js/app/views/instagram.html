@@ -3,22 +3,11 @@
 </a>
 
 <img ui-sref=".publicacion({ publicacionID: publicacion.id })"  ng-src="{{publicacion.data.images.standard_resolution.url}}" width="{{publicacion.data.images.standard_resolution.width}}" height="{{publicacion.data.images.standard_resolution.height}}" />
-<h2 class="instagram-caption">{{publicacion.data.caption.text}}</h2>
+<div class="instagram-caption">
+	<span>{{publicacion.data.caption.text}}</span>
+	<p class="metadata"><em>por: </em><a href="https://instagram.com/{{publicacion.data.user.username}}" target="_blank">{{publicacion.data.user.full_name}}</a> / <span am-time-ago="publicacion.createdAt">{{publicacion.createdAt}}</span></p>
+</div>
 
 <div class="clearfix article-meta">
-	<div class="table-row">
-		<div class="meta-item autor">
-			<a href="https://instagram.com/{{publicacion.data.user.username}}" target="_blank"><i class="fa fa-user"></i> {{publicacion.data.user.full_name}}</a>
-		</div>
-		<div class="meta-item date">
-			<i class="fa fa-calendar"></i> {{publicacion.createdAt | amCalendar }}
-		</div>
-	</div>
-
-	<div class="table-row">
-		<div class="meta-item time">
-			<i class="fa fa-clock-o"></i> <span am-time-ago="publicacion.createdAt">{{publicacion.createdAt}}</span>
-		</div>
-		<span ng-include src="'/js/app/views/parts/like.html'"></span>
-	</div>
+	<span ng-include src="'/js/app/views/parts/like.html'"></span>
 </div>
