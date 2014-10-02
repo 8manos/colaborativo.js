@@ -72,7 +72,7 @@ module.exports.blueprints = {
    * to GET requests.
    */
   actions: true,
-
+  defaultLimit: 200,
 
   
   /**
