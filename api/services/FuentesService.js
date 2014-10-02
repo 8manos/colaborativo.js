@@ -128,7 +128,7 @@ module.exports.start = function(){
 		}
 
 		if( network === "youtube" ){
-			var desactivar = YoutubeService.StopSearch( id );
+			var desactivar = YoutubeService.stopSearch( id );
 		}
 	}
 
