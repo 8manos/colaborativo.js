@@ -48,7 +48,7 @@ module.exports = {
 							theme = theme;
 						}
 
-						Patrocinadores.find({ entablero: tablero.id }).where({ type: "banner" }).limit(1).exec( function( err, patrocinadores ){
+						Patrocinadores.find({ entablero: tablero.id }).where({ type: "banner" }).limit(2).exec( function( err, patrocinadores ){
 
 							if( patrocinadores ){
 								patrocinadores = patrocinadores;
