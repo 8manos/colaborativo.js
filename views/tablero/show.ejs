@@ -3,7 +3,7 @@
 	<div class="publicaciones-container">	
 		<ul class="publicaciones" ui-view>
 		<span>
-			<li class="module {{publicacion.type}} {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones track by publicacion.id | limitTo:50" danny-packery>
+			<li class="module {{publicacion.type}} {{publicacion.color_class}} publicacion {{publicacion.red}} item four{{publicacion.data.in_reply_to_status_id_str}}" ng-repeat="publicacion in publicaciones track by publicacion.id | limitTo:50"> <!-- danny-packery -->
 				<!-- oc-modal-open="{url: '/js/app/views/modal.html', controller: 'SingleCtrl', init: { publicacion: publicacion }}" -->
 
 				<% if( isAutenticated ) { %>
