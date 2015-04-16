@@ -488,6 +488,15 @@ img {
 	padding: 0;
 	width: 100%;
 
+	span {
+		display: flex;
+		max-height: 500vh;
+		align-items: stretch;
+		width: 100vw;
+		flex-flow: column wrap;
+		align-content: stretch;
+	}
+
 	li {
 		.box-sizing;
 		border: 1em solid transparent;
@@ -497,6 +506,7 @@ img {
 		position: relative;
 		vertical-align:  top;
 		width: 100%;
+		flex: 0 1 0%;
 
 		article {
 			background-color: @blanco;
