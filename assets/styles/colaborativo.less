@@ -489,13 +489,16 @@ img {
 	width: 100%;
 
 	> span {
-		display: flex;
-		max-height: 550vh;
+		display: block;
+		/* max-height: 550vh;
 		align-items: stretch;
 		width: 100vw;
 		flex-flow: column wrap;
-		align-content: stretch;
+		align-content: stretch; */
 		border-bottom: 100px solid transparent;
+		-moz-column-count: 4;
+		-webkit-column-count: 4;
+		column-count: 4;
 	}
 
 	li {
@@ -1056,7 +1059,7 @@ i.red-icon{
 	li.six,
 	li.seven,
 	li.eight {
-		width: 66.667%;
+		width: 100%;
 	}
 
 	li.nine,
@@ -1102,7 +1105,7 @@ i.red-icon{
 	}
 
 	li.four {
-		width: 25%;
+		width: 100%;
 	}
 
 	li.five {
