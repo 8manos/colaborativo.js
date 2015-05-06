@@ -51,13 +51,16 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
   	
 
 	$sails.on( "connect", function(){
-
-		$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
-		 	console.log( "Got data: ", data );
-		 	$scope.publicaciones = data;
-		});
-	
+		console.log ( "Socket Conectado" );
 	});
+
+	$sails.get("/publicacion/entablero",{ id: tablero_id } ).success( function ( data, status, headers, jwr) {
+        console.log( "Got data: ", data );
+	 	$scope.publicaciones = data;
+    })
+    .error(function (data, status, headers, jwr) {
+        console.log('Houston, we got a problem!');
+    });
 
 	$sails.on("tablero", function (message) {
 		// console.log( "MENSAJE: ", message.data.id );
