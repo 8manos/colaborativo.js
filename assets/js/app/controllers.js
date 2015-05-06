@@ -50,9 +50,13 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
 	}
   	
 
-	$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
-	 	console.log( "Got data: ", data );
-	 	$scope.publicaciones = data;
+	$sails.on( "connect", function(){
+
+		$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
+		 	console.log( "Got data: ", data );
+		 	$scope.publicaciones = data;
+		});
+	
 	});
 
 	$sails.on("tablero", function (message) {
