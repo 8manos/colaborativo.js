@@ -11,7 +11,7 @@ module.exports = {
 		var id = req.param( 'id' ),
 			publicaciones = [];
 
-		Tablero.findByID(id, function ( tablero , res) {
+		Tablero.findByID(id, function ( tablero ) {
 
 			if ( tablero ) {
 				Publicacion
@@ -24,7 +24,7 @@ module.exports = {
 					)
 					.limit( 50 )
 					.sort({ createdAt: 'desc' })
-					.exec( function( err, publicaciones, res ){
+					.exec( function( err, publicaciones ){
 						if( publicaciones ){
 							publicaciones = publicaciones;
 
