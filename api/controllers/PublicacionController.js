@@ -31,7 +31,7 @@ module.exports = {
 							if ( req.wantsJSON ) {
 								Publicacion.watch( req , {id: tablero.id} );
 								Tablero.subscribe( req.socket, tablero.id );
-								console.log( "Sent Data: ", publicaciones );
+								// console.log( "Sent Data: ", publicaciones );
 								res.send( publicaciones );
 							} else {
 								res.send( publicaciones );
