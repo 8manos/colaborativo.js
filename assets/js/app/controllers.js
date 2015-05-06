@@ -54,8 +54,8 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
 		console.log ( "Socket Conectado" );
 	});
 
-	$sails.get("/publicacion/entablero",{ id: tablero_id } ).success( function ( data, status, headers, jwr) {
-        console.log( "Got data: ", data );
+	$sails.get("/publicacion/entablero/"+tablero_id ).success( function ( data, status, headers, jwr) {
+        console.log( "Got data success: ", data );
 	 	$scope.publicaciones = data;
     })
     .error(function (data, status, headers, jwr) {
