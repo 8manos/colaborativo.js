@@ -25,7 +25,7 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
   console.log( "Tablero ID: ", tablero_id );
 
   $scope.tablero.unshift( Tablero.get({ id: tablero_id }) );
-  $scope.publicaciones = Publicacion.get({ id: tablero_id });
+  // $scope.publicaciones = Publicacion.get({ id: tablero_id });
 
 
   (function () {
@@ -51,7 +51,8 @@ controllers.controller('TableroCtrl', function ($scope, $ocModal, $attrs, $sails
   	
 
 	$sails.get("/publicacion/entablero",{ id: tablero_id }, function (data) {
-	  $scope.publicaciones = data;
+	 	console.log( "Got data: ", data );
+	 	$scope.publicaciones = data;
 	});
 
 	$sails.on("tablero", function (message) {
