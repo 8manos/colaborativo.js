@@ -31,6 +31,7 @@ module.exports = {
 							if ( req.wantsJSON ) {
 								Publicacion.watch( req , {id: tablero.id} );
 								Tablero.subscribe( req.socket, tablero.id );
+								cosnole.log( "Sent Data: ", publicaciones );
 								res.send( publicaciones );
 							} else {
 								res.send( publicaciones );
